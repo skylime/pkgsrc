@@ -70,6 +70,24 @@ ${PKGFILE}: ${STAGE_PKGFILE}
 		${CP} -f ${STAGE_PKGFILE} ${PKGFILE}
 .endif
 
+#
+# Create .pkginfo files when the "package" target is invoked directly.  This
+# should ideally not be used, but is occasionally useful when building packages
+# manually, and the package and pkginfo files must be in sync.  pbulk invokes
+# the "stage-package-create" target and does its own handling of saving things
+# to PACKAGES directly in the "pkg-build" script.
+#
+# The "|| ${TRUE}" statements are required for bootstrap which builds from a
+# read-only source tree and does not have PACKAGES set up.
+#
+PKGINFOFILE?=	${PACKAGES}/pkginfo/${FILEBASE}-${PKGVERSION}.pkginfo
+package-create: ${PKGINFOFILE}
+${PKGINFOFILE}: ${PKGFILE}
+	@${RUN}								\
+	${STEP_MSG} "Creating pkginfo file ${.TARGET}";			\
+	${MKDIR} ${.TARGET:H:Q} || ${TRUE};				\
+	${PKG_INFO} -X ${PKGFILE} >${.TARGET} || ${TRUE}
+
 ######################################################################
 ### package-remove (PRIVATE)
 ######################################################################
