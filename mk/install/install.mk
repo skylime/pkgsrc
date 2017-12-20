@@ -345,10 +345,12 @@ post-install:
 ######################################################################
 ### install-ctf creates CTF information from debug binaries.
 ###
+ELFDUMP?=	/usr/bin/elfdump
 .PHONY: install-ctf
 install-ctf: plist
 	@${STEP_MSG} "Generating CTF data"
 	${RUN}cd ${DESTDIR:Q}${PREFIX:Q};				\
+	${RM} -f ${WRKDIR}/.ctfdata ${WRKDIR}/.ctferr;			\
 	${CAT} ${_PLIST_NOKEYWORDS} | while read f; do			\
 		case "$${f}" in						\
 		${CTF_FILES_SKIP:@p@${p}) continue ;;@}			\
@@ -356,12 +358,25 @@ install-ctf: plist
 		esac;							\
 		[ ! -h "$${f}" ] || continue;				\
 		tmp_f="$${f}.XXX";					\
-		if ${CTFCONVERT} -o "$${tmp_f}" "$${f}" 2>/dev/null; then \
+		err_f="$${f}.err";					\
+		if ${CTFCONVERT} -o "$${tmp_f}" "$${f}"			\
+		    >"$${err_f}" 2>&1; then				\
 			if [ -f "$${tmp_f}" -a -f "$${f}" ]; then	\
 				${MV} "$${tmp_f}" "$${f}";		\
 			fi;						\
 		fi;							\
-		${RM} -f "$${tmp_f}";					\
+		if [ -s "$${err_f}" ]; then				\
+			${ECHO} "$${f}:" | ${SED} -e 's|^${DESTDIR}||'	\
+			    >>${WRKDIR}/.ctferr;			\
+			${CAT} "$${err_f}" >>${WRKDIR}/.ctferr;		\
+		fi;							\
+		${RM} -f "$${tmp_f}" "$${err_f}";			\
+		if ${ELFDUMP} "$${f}" 2>&1				\
+		    | grep SUNW_ctf >/dev/null; then			\
+			${ECHO} $${f}					\
+			    | ${SED} -e 's|^${DESTDIR}||'		\
+			    >>${WRKDIR}/.ctfdata;			\
+		fi;							\
 	done
 
 ######################################################################
