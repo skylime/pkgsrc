@@ -12,6 +12,7 @@
 #		sun-jdk7 oracle-jdk8
 #		adoptopenjdk11-bin
 #		openjdk-bin openjdk11
+#		openjdk9 to openjdk15 (illumos)
 #		openjdk17
 #	Default value: (platform-dependent)
 #
@@ -31,7 +32,7 @@
 #	should be set to "yes". It can also be set to "1.4", "1.5", "6".
 #	"7", "8", "9" and "17" require an even more recent implementation.
 #
-#	Possible values: yes no 1.4 1.5 6 7 8 9 17
+#	Possible values: yes no 1.4 1.5 6 7 8 9 10 11 12 13 14 15 17
 #	Default value: no
 #
 # PKG_JVMS_ACCEPTED
@@ -76,10 +77,16 @@ PKG_JVMS_ACCEPTED?=	${_PKG_JVMS}
 #
 # adoptopenjdk11-bin and openjdk-bin do not provide native NetBSD binaries
 _PKG_JVMS.17=		openjdk17
+_PKG_JVMS.15=		openjdk15
+_PKG_JVMS.14=		${_PKG_JVMS.15} openjdk14
+_PKG_JVMS.13=		${_PKG_JVMS.14} openjdk13
+_PKG_JVMS.12=		${_PKG_JVMS.13} openjdk12
+_PKG_JVMS.11=		${_PKG_JVMS.12} openjdk11
+_PKG_JVMS.10=		${_PKG_JVMS.11} openjdk10
 .if ${OPSYS} == "NetBSD"
 _PKG_JVMS.9=		${_PKG_JVMS.17} openjdk11 adoptopenjdk11-bin openjdk-bin
 .else
-_PKG_JVMS.9=		${_PKG_JVMS.17} adoptopenjdk11-bin openjdk-bin openjdk11
+_PKG_JVMS.9=		${_PKG_JVMS.10} openjdk9
 .endif
 _PKG_JVMS.8=		${_PKG_JVMS.9} openjdk8 oracle-jdk8
 _PKG_JVMS.7=		${_PKG_JVMS.8} sun-jdk7
@@ -172,11 +179,24 @@ _ONLY_FOR_PLATFORMS.openjdk8= \
 	NetBSD-[8-9].*-aarch64		NetBSD-[8-9].*-earmv[67]hf	\
 	SunOS-*-x86_64			SunOS-*-i386			\
 	FreeBSD-10.*-x86_64
+_ONLY_FOR_PLATFORMS.openjdk9= \
+	SunOS-5.11-x86_64
+_ONLY_FOR_PLATFORMS.openjdk10= \
+	SunOS-5.11-x86_64
 _ONLY_FOR_PLATFORMS.openjdk11= \
+	SunOS-5.11-x86_64						\
 	NetBSD-[8-9].*-x86_64		NetBSD-[8-9].*-i386		\
 	NetBSD-1[0-9].*-x86_64		NetBSD-1[0-9].*i386		\
 	NetBSD-9.99.*-aarch64		NetBSD-9.99.*-earmv[67]hf	\
 	NetBSD-1[0-9].*-aarch64		NetBSD-1[0-9].*-earmv[67]hf
+_ONLY_FOR_PLATFORMS.openjdk12= \
+	SunOS-5.11-x86_64
+_ONLY_FOR_PLATFORMS.openjdk13= \
+	SunOS-5.11-x86_64
+_ONLY_FOR_PLATFORMS.openjdk14= \
+	SunOS-5.11-x86_64
+_ONLY_FOR_PLATFORMS.openjdk15= \
+	SunOS-5.11-x86_64
 _ONLY_FOR_PLATFORMS.openjdk17= \
 	NetBSD-9.*-x86_64		NetBSD-9.*-i386			\
 	NetBSD-1[0-9].*-x86_64		NetBSD-1[0-9].*-i386		\
@@ -203,7 +223,13 @@ _JAVA_PKGBASE.sun-jdk7=		sun-jre7
 _JAVA_PKGBASE.oracle-jdk8=	oracle-jre8
 _JAVA_PKGBASE.adoptopenjdk11-bin=	adoptopenjdk11-bin
 _JAVA_PKGBASE.openjdk-bin=	openjdk-bin
+_JAVA_PKGBASE.openjdk9=		openjdk9
+_JAVA_PKGBASE.openjdk10=	openjdk10
 _JAVA_PKGBASE.openjdk11=	openjdk11
+_JAVA_PKGBASE.openjdk12=	openjdk12
+_JAVA_PKGBASE.openjdk13=	openjdk13
+_JAVA_PKGBASE.openjdk14=	openjdk14
+_JAVA_PKGBASE.openjdk15=	openjdk15
 _JAVA_PKGBASE.openjdk17=	openjdk17
 
 # The following is copied from the respective JVM Makefiles.
@@ -213,7 +239,13 @@ _JAVA_NAME.sun-jdk7=		sun7
 _JAVA_NAME.oracle-jdk8=		oracle8
 _JAVA_NAME.adoptopenjdk11-bin=		adoptopenjdk11-bin
 _JAVA_NAME.openjdk-bin=		openjdk-bin
+_JAVA_NAME.openjdk9=		openjdk9
+_JAVA_NAME.openjdk10=		openjdk10
 _JAVA_NAME.openjdk11=		openjdk11
+_JAVA_NAME.openjdk12=		openjdk12
+_JAVA_NAME.openjdk13=		openjdk13
+_JAVA_NAME.openjdk14=		openjdk14
+_JAVA_NAME.openjdk15=		openjdk15
 _JAVA_NAME.openjdk17=		openjdk17
 
 # Mark the acceptable JVMs and check which JVM packages are installed.
@@ -270,7 +302,13 @@ BUILDLINK_API_DEPENDS.oracle-jdk8?=	oracle-jdk8-[0-9]*
 BUILDLINK_API_DEPENDS.oracle-jre8?=	oracle-jre8-[0-9]*
 BUILDLINK_API_DEPENDS.adoptopenjdk11-bin?=	adoptopenjdk11-bin-[0-9]*
 BUILDLINK_API_DEPENDS.openjdk-bin?=	openjdk-bin-[0-9]*
+BUILDLINK_API_DEPENDS.openjdk9?=	openjdk9-[0-9]*
+BUILDLINK_API_DEPENDS.openjdk10?=	openjdk10-[0-9]*
 BUILDLINK_API_DEPENDS.openjdk11?=	openjdk11-[0-9]*
+BUILDLINK_API_DEPENDS.openjdk12?=	openjdk12-[0-9]*
+BUILDLINK_API_DEPENDS.openjdk13?=	openjdk13-[0-9]*
+BUILDLINK_API_DEPENDS.openjdk14?=	openjdk14-[0-9]*
+BUILDLINK_API_DEPENDS.openjdk15?=	openjdk15-[0-9]*
 BUILDLINK_API_DEPENDS.openjdk17?=	openjdk17-[0-9]*
 
 _JRE.kaffe=		kaffe
@@ -279,7 +317,13 @@ _JRE.sun-jdk7=		sun-jre7
 _JRE.oracle-jdk8=	oracle-jre8
 _JRE.adoptopenjdk11-bin=	adoptopenjdk11-bin
 _JRE.openjdk-bin=	openjdk-bin
+_JRE.openjdk9=		openjdk9
+_JRE.openjdk10=		openjdk10
 _JRE.openjdk11=		openjdk11
+_JRE.openjdk12=		openjdk12
+_JRE.openjdk13=		openjdk13
+_JRE.openjdk14=		openjdk14
+_JRE.openjdk15=		openjdk15
 _JRE.openjdk17=		openjdk17
 
 _JAVA_BASE_CLASSES=	classes.zip
@@ -311,10 +355,40 @@ _JDK_PKGSRCDIR=		../../lang/openjdk-bin
 _JRE_PKGSRCDIR=		../../lang/openjdk-bin
 _JAVA_HOME=		${LOCALBASE}/java/openjdk-bin
 UNLIMIT_RESOURCES+=	datasize virtualsize
+.elif ${_PKG_JVM} == "openjdk9"
+_JDK_PKGSRCDIR=		../../joyent/openjdk9
+_JRE_PKGSRCDIR=		../../joyent/openjdk9
+_JAVA_HOME=		${LOCALBASE}/java/openjdk9
+UNLIMIT_RESOURCES+=	datasize virtualsize
+.elif ${_PKG_JVM} == "openjdk10"
+_JDK_PKGSRCDIR=		../../joyent/openjdk10
+_JRE_PKGSRCDIR=		../../joyent/openjdk10
+_JAVA_HOME=		${LOCALBASE}/java/openjdk10
+UNLIMIT_RESOURCES+=	datasize virtualsize
 .elif ${_PKG_JVM} == "openjdk11"
-_JDK_PKGSRCDIR=		../../lang/openjdk11
-_JRE_PKGSRCDIR=		../../lang/openjdk11
+_JDK_PKGSRCDIR=		../../joyent/openjdk11
+_JRE_PKGSRCDIR=		../../joyent/openjdk11
 _JAVA_HOME=		${LOCALBASE}/java/openjdk11
+UNLIMIT_RESOURCES+=	datasize virtualsize
+.elif ${_PKG_JVM} == "openjdk12"
+_JDK_PKGSRCDIR=		../../joyent/openjdk12
+_JRE_PKGSRCDIR=		../../joyent/openjdk12
+_JAVA_HOME=		${LOCALBASE}/java/openjdk12
+UNLIMIT_RESOURCES+=	datasize virtualsize
+.elif ${_PKG_JVM} == "openjdk13"
+_JDK_PKGSRCDIR=		../../joyent/openjdk13
+_JRE_PKGSRCDIR=		../../joyent/openjdk13
+_JAVA_HOME=		${LOCALBASE}/java/openjdk13
+UNLIMIT_RESOURCES+=	datasize virtualsize
+.elif ${_PKG_JVM} == "openjdk14"
+_JDK_PKGSRCDIR=		../../joyent/openjdk14
+_JRE_PKGSRCDIR=		../../joyent/openjdk14
+_JAVA_HOME=		${LOCALBASE}/java/openjdk14
+UNLIMIT_RESOURCES+=	datasize virtualsize
+.elif ${_PKG_JVM} == "openjdk15"
+_JDK_PKGSRCDIR=		../../joyent/openjdk15
+_JRE_PKGSRCDIR=		../../joyent/openjdk15
+_JAVA_HOME=		${LOCALBASE}/java/openjdk15
 UNLIMIT_RESOURCES+=	datasize virtualsize
 .elif ${_PKG_JVM} == "openjdk17"
 _JDK_PKGSRCDIR=		../../lang/openjdk17
