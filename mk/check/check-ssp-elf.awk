@@ -70,10 +70,10 @@ function shquote(IN, out) {
 }
 
 function checkssp(ELF, got_ssp, found) {
-	cmd = readelf " -Wd " shquote(ELF) " 2>/dev/null"
+	cmd = readelf " -Ws " shquote(ELF) " 2>/dev/null"
 	while ((cmd | getline) > 0) {
 		found = 1
-		if ($2 == "(NEEDED)" && $5 ~ /libssp/) {
+		if ($NF == "__stack_chk_guard") {
 			got_ssp = 1
 			break
 		}
