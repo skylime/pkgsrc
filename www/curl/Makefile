@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.251 2021/12/08 16:02:46 adam Exp $
+# $NetBSD: Makefile,v 1.253 2022/01/15 15:51:29 ryoon Exp $
 
-DISTNAME=	curl-7.80.0
-PKGREVISION=	1
+DISTNAME=	curl-7.81.0
 CATEGORIES=	www
-MASTER_SITES=	https://curl.haxx.se/download/
+MASTER_SITES=	https://curl.se/download/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	leot@NetBSD.org
-HOMEPAGE=	https://curl.haxx.se/
+HOMEPAGE=	https://curl.se/
 COMMENT=	Client that groks URLs
 # not completely, but near enough
 LICENSE=	mit
