@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.85 2021/12/08 16:02:48 adam Exp $
+# $NetBSD: buildlink3.mk,v 1.85.2.2 2022/01/21 15:24:17 bsiegert Exp $
 
 BUILDLINK_TREE+=	webkit-gtk
 
@@ -10,7 +10,7 @@ BUILDLINK_ABI_DEPENDS.webkit-gtk?=	webkit-gtk>=2.34.2
 BUILDLINK_PKGSRCDIR.webkit-gtk?=	../../www/webkit-gtk
 
 # This is necessary to match the package requirement.
-GCC_REQD+=	7.3
+GCC_REQD+=	8
 
 pkgbase := webkit-gtk
 .include "../../mk/pkg-build-options.mk"
@@ -28,6 +28,7 @@ pkgbase := webkit-gtk
 .include "../../graphics/libwebp/buildlink3.mk"
 .include "../../multimedia/gstreamer1/buildlink3.mk"
 .include "../../multimedia/gst-plugins1-base/buildlink3.mk"
+.include "../../multimedia/gst-plugins1-good/buildlink3.mk"
 .include "../../net/libsoup/buildlink3.mk"
 .include "../../security/libsecret/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"

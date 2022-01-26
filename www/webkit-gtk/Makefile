@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.217 2021/12/20 12:26:16 leot Exp $
+# $NetBSD: Makefile,v 1.217.2.2 2022/01/21 15:24:17 bsiegert Exp $
 
 DISTNAME=	webkitgtk-2.34.3
 PKGNAME=	${DISTNAME:S/webkitgtk/webkit-gtk/}
+PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://www.webkitgtk.org/releases/
 EXTRACT_SUFX=	.tar.xz
@@ -18,15 +19,26 @@ TOOL_DEPENDS+=	gettext-tools>=0.18:../../devel/gettext-tools
 TOOL_DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 
 USE_CMAKE=	yes
-USE_LANGUAGES=	c c++11
+USE_LANGUAGES=	c c++17
 USE_TOOLS+=	automake bash bison flex gmake perl pkg-config msgfmt
 
 # Enabling -gdwarf-2 hits GNU ar limits on file size.
 CTF_SUPPORTED=	no
 
-# GCC >= 7.3.0 is required, checked via CMakeLists.txt
-GCC_REQD+=		7
+# GCC >= 8 is required, it no longer builds with lower versions.
+GCC_REQD+=		8
 USE_GCC_RUNTIME=	yes
+
+.include "../../mk/bsd.prefs.mk"
+
+# This package will link against libstdc++.so from the pkgsrc GCC when the
+# base OS GCC doesn't meet the minimum requirement. Thus we do this so the
+# appropriate gcc-libs package will be captured as a dependency, otherwise
+# binary packages will be broken. See also PR pkg/56604.
+.if ${OPSYS} == "NetBSD" && ${OPSYS_VERSION} < 099915
+USE_PKGSRC_GCC=		yes
+USE_PKGSRC_GCC_RUNTIME=	yes
+.endif
 
 # Using ld.gold subverts Pkgsrc wrappers, and this package also crashes buggy
 # versions of ld.gold.
@@ -147,6 +159,7 @@ BUILDLINK_API_DEPENDS.gstreamer1+=	gstreamer1>=1.0.3
 .include "../../multimedia/gstreamer1/buildlink3.mk"
 BUILDLINK_API_DEPENDS.gst-plugins1-base+=	gst-plugins1-base>=1.0.3
 .include "../../multimedia/gst-plugins1-base/buildlink3.mk"
+.include "../../multimedia/gst-plugins1-good/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libsoup+= libsoup>=2.42.2nb3
 .include "../../net/libsoup/buildlink3.mk"
 .include "../../security/libsecret/buildlink3.mk"

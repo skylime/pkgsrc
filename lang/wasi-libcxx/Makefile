@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2021/12/27 10:00:13 wiz Exp $
+# $NetBSD: Makefile,v 1.4.2.2 2022/01/13 19:53:12 bsiegert Exp $
 
 .include "../../lang/llvm/version.mk"
 
@@ -52,7 +52,7 @@ CMAKE_ARGS+=	-DCMAKE_CXX_COMPILER_WORKS=1
 CMAKE_ARGS+=	-DCXX_SUPPORTS_CXX11=ON
 CMAKE_ARGS+=	-DLLVM_COMPILER_CHECKED=ON
 CMAKE_ARGS+=	-DUNIX:BOOL=ON
-CMAKE_ARGS+=	-DCMAKE_SYSROOT=${PREFIX}/wasi
+CMAKE_ARGS+=	-DCMAKE_SYSROOT=${BUILDLINK_DIR}/wasi
 CMAKE_ARGS+=	-DCMAKE_CXX_COMPILER_TARGET=wasm32-wasi
 CMAKE_ARGS+=	-DLLVM_CONFIG_PATH=${PREFIX}/bin/llvm-config
 CMAKE_ARGS+=	-DLIBCXX_LIBDIR_SUFFIX=/wasm32-wasi
@@ -167,9 +167,21 @@ do-configure:
 	${PKGSRC_SETENV} ${_CONFIGURE_CMAKE_ENV} \
 		cmake ${CMAKE_ARGS} ../libcxxabi
 
+# Run llvm-ranlib again on the archives. Fixes mystery build failure
+# in Firefox due to missing index (see PR pkg/56590). Might be a MAKE_JOBS
+# problem in this package?
+post-install:
+	${PREFIX}/bin/llvm-ranlib \
+	  ${DESTDIR}${PREFIX}/wasi/lib/wasm32-wasi/libc++.a
+	${PREFIX}/bin/llvm-ranlib \
+	  ${DESTDIR}${PREFIX}/wasi/lib/wasm32-wasi/libc++abi.a
+
 .include "../../lang/llvm/buildlink3.mk"
 .include "../../lang/wasi-libc/buildlink3.mk"
 .include "../../lang/wasi-compiler-rt/buildlink3.mk"
+ABI=			# 32
+CFLAGS=			-O2
+CXXFLAGS=		-O2
 PKGSRC_COMPILER=	clang
 CLANGBASE=		${PREFIX}
 BUILDLINK_DEPMETHOD.clang=	build

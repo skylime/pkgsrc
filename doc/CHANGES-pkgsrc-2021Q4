@@ -1,3 +1,50 @@
-$NetBSD: CHANGES-pkgsrc-2021Q4,v 1.1.2.1 2021/12/29 01:27:38 gdt Exp $
+$NetBSD: CHANGES-pkgsrc-2021Q4,v 1.1.2.7 2022/01/21 15:51:51 bsiegert Exp $
 
 Changes to packages and infrastructure on the pkgsrc-2021Q4 branch:
+
+Pullup ticket #6556 - requested by leot
+www/webkit-gtk: add missing dependency
+
+Pullup ticket #6557 - requested by he
+graphics/graphviz: PowerPC build fix
+
+Pullup ticket #6558 - requested by he
+emulators/compat90: fix for PR pkg/56597
+
+Pullup ticket #6559 - requested by sborrill
+www/e2guardian: build fix
+
+Pullup ticket #6560 - requested by tnn
+lang/wasi-compiler-rt: build fix
+lang/wasi-libc: build fix
+lang/wasi-libcxx: build fix
+
+Pullup ticket #6566 - requested by gdt
+NEWS: documentation fix
+
+Pullup ticket #6565 - requested by gutteridge
+lang/wasi-libcxx: build fix
+
+Pullup ticket #6567 - requested by morr
+www/wordpress: security fix
+
+Pullup ticket #6568 - requested by nia
+audio/lmms: NetBSD bugfix
+
+Pullup ticket #6569 - requested by tnn
+cross/aarch64-none-elf-gcc: NetBSD 9 build fix
+cross/arm-none-eabi-gcc: NetBSD 9 build fix
+
+Pullup ticket #6569 - requested by tnn
+cross/aarch64-none-elf-gcc: NetBSD 9 build fix
+cross/arm-none-eabi-gcc: NetBSD 9 build fix
+
+Pullup ticket #6570 - requested by gutteridge
+www/webkit-gtk: NetBSD 9 build fix, PR pkg/56604
+
+Pullup ticket #6571 - requested by taca
+security/clamav: security fix
+
+Pullup ticket #6572 - requested by taca
+net/samba4: security fix
+
