@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.276 2021/08/25 15:22:05 adam Exp $
+# $NetBSD: Makefile,v 1.279 2022/03/15 18:20:02 wiz Exp $
 
 # Remember to upload-distfiles when updating OpenSSL -- otherwise it
 # is not possible for users who have bootstrapped without OpenSSL
 # to install it and enable HTTPS fetching.
-DISTNAME=	openssl-1.1.1l
+DISTNAME=	openssl-1.1.1n
 CATEGORIES=	security
 MASTER_SITES=	https://www.openssl.org/source/
 
@@ -45,7 +45,11 @@ CONFIGURE_ENV+=		PERL=${PERL5:Q}
 # If the config script cannot guess the host system correctly then we need to
 # specify it manually and call the Configure script directly.
 OPENSSL_HOST.SunOS-i386=	solaris-x86-gcc
+.if ${PKGSRC_COMPILER:Msunpro}
+OPENSSL_HOST.SunOS-x86_64=	solaris64-x86_64-cc
+.else
 OPENSSL_HOST.SunOS-x86_64=	solaris64-x86_64-gcc
+.endif
 OPENSSL_HOST.Darwin-aarch64=	darwin64-arm64-cc
 
 LDFLAGS.SunOS+=		-lrt
