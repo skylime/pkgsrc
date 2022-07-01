@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.14 2022/02/26 23:11:43 bacon Exp $
+# $NetBSD: Makefile,v 1.16 2022/06/30 11:18:04 nia Exp $
 
 DISTNAME=	samtools-1.15
+PKGREVISION=	2
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=samtools/}
 

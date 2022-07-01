@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.80 2022/05/28 14:12:16 wen Exp $
+# $NetBSD: Makefile,v 1.82 2022/06/30 11:18:59 nia Exp $
 #
 
 DISTNAME=	owncloud-10.9.1
 PKGNAME=	${PHP_PKG_PREFIX}-${DISTNAME}
+PKGREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://download.owncloud.org/community/
 EXTRACT_SUFX=	.tar.bz2

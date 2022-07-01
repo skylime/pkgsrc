@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.33 2022/03/28 10:44:18 tnn Exp $
+# $NetBSD: Makefile,v 1.35 2022/07/01 09:58:53 micha Exp $
 
-DISTNAME=	woof_9.0.0
+DISTNAME=	woof_10.0.0
 PKGNAME=	${DISTNAME:S/_/-/}
-PKGREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=fabiangreffrath/}
 GITHUB_TAG=	${DISTNAME}
@@ -23,11 +22,18 @@ WRKSRC=		${WRKDIR}/woof-${DISTNAME}
 # DOOMWADDIR is intentionally shared with other Doom packages
 DOOMWADDIR=	share/doom
 
+# Install man page into PKGMANDIR hierarchy
+SUBST_CLASSES+=		mandir
+SUBST_STAGE.mandir=	pre-configure
+SUBST_MESSAGE.mandir=	Preparing data/CMakeLists.txt file ...
+SUBST_FILES.mandir=	data/CMakeLists.txt
+SUBST_VARS.mandir=	PKGMANDIR
+
 # Add DOOMWADDIR to search path
 SUBST_CLASSES+=		waddir
 SUBST_STAGE.waddir=	pre-configure
-SUBST_MESSAGE.waddir=	Preparing d_iwad.c file ...
-SUBST_FILES.waddir=	Source/d_iwad.c
+SUBST_MESSAGE.waddir=	Preparing src/d_iwad.c file ...
+SUBST_FILES.waddir=	src/d_iwad.c
 SUBST_SED.waddir=	-e 's,PKGSRC_PREFIX,"${PREFIX}",'
 SUBST_SED.waddir+=	-e 's,PKGSRC_DOOMWADDIR,"/${DOOMWADDIR}",'
 

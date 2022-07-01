@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.137 2022/06/25 19:35:54 gutteridge Exp $
+# $NetBSD: Makefile,v 1.141 2022/06/30 11:18:45 nia Exp $
 
 DISTNAME=	lilypond-2.18.2
-PKGREVISION=	25
+PKGREVISION=	27
 CATEGORIES=	print
 MASTER_SITES=	http://download.linuxaudio.org/lilypond/sources/v2.18/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://lilypond.org/
 COMMENT=	GNU Music Typesetter
-LICENSE=	gnu-gpl-v2
+LICENSE=	gnu-gpl-v3 AND gnu-fdl-v1.3 AND ofl-v1.1
 
 BUILD_DEPENDS+=	tex-metafont-[0-9]*:../../fonts/tex-metafont
 BUILD_DEPENDS+=	tex-metapost-[0-9]*:../../graphics/tex-metapost
@@ -37,7 +37,11 @@ GNU_CONFIGURE=		YES
 USE_PKGLOCALEDIR=	YES
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		bison flex gmake gs:run makeinfo perl pkg-config msgfmt
-USE_TOOLS+=		texi2html zip
+# GNU grep will likely not be required after this package is next updated,
+# assuming the package no longer greps binary files for strings. This is a
+# build fix workaround for GNU grep >= 3.5 changing its behaviour in this
+# regard.
+USE_TOOLS+=		ggrep texi2html zip
 MAKE_FILE=		GNUmakefile
 
 .include "../../mk/bsd.prefs.mk"
