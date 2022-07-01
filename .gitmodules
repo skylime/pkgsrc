@@ -1,0 +1,6 @@
+[submodule "joyent"]
+	path = joyent
+	url = https://github.com/TritonDataCenter/pkgsrc-joyent.git
+[submodule "wip"]
+	path = wip
+	url = https://github.com/TritonDataCenter/pkgsrc-wip.git
