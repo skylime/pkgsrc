@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.22 2022/06/27 21:41:52 wiz Exp $
+# $NetBSD: Makefile,v 1.24 2022/07/02 16:53:42 ryoon Exp $
 
 DISTNAME=	qtwebengine-everywhere-opensource-src-${QTVERSION}
 PKGNAME=	qt5-qtwebengine-${QTVERSION}
+PKGREVISION=	1
 COMMENT=	Chromium-based web engine for Qt5
 
 MAKE_ENV+=		QTDIR=${QTDIR}
@@ -113,6 +114,7 @@ BUILDLINK_TRANSFORM+=   l:pci:${PCIUTILS_LIBNAME}
 .include "../../multimedia/gst-plugins1-bad/buildlink3.mk"
 .include "../../x11/libXcomposite/buildlink3.mk"
 .include "../../x11/libXtst/buildlink3.mk"
+.include "../../x11/libxkbfile/buildlink3.mk"
 .endif
 .include "../../x11/qt5-qtdeclarative/buildlink3.mk"
 .include "../../x11/qt5-qtlocation/buildlink3.mk"
