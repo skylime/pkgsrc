@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3758 2022/07/03 12:36:20 wiz Exp $
+# $NetBSD: Makefile,v 1.3760 2022/07/10 19:15:22 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -455,7 +455,6 @@ SUBDIR+=	got
 SUBDIR+=	gperf
 SUBDIR+=	gperftools
 SUBDIR+=	gprbuild-aux
-SUBDIR+=	gps
 SUBDIR+=	gputils
 SUBDIR+=	gradle
 SUBDIR+=	grantlee
@@ -2752,7 +2751,6 @@ SUBDIR+=	py-reparser
 SUBDIR+=	py-repoze.lru
 SUBDIR+=	py-requests
 SUBDIR+=	py-requests-file
-SUBDIR+=	py-requests-ftp
 SUBDIR+=	py-requests-futures
 SUBDIR+=	py-requests-mock
 SUBDIR+=	py-requests-toolbelt

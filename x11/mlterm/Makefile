@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.171 2022/07/02 03:17:04 rin Exp $
+# $NetBSD: Makefile,v 1.173 2022/07/07 12:59:51 rin Exp $
 
 DISTNAME=	mlterm-3.9.2
 DIST_SUBDIR=	${PKGNAME_NOREV}	# for re-tagged 3.9.2
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=arakiken/}
 GITHUB_PROJECT= ${PKGBASE}
@@ -23,7 +23,7 @@ USE_PKGLOCALEDIR=	yes
 
 PKG_SYSCONFSUBDIR=	mlterm
 EGDIR=			${PREFIX}/share/examples/mlterm
-.for f in aafont color font key main menu taafont termcap tfont vaafont vfont \
+.for f in aafont color font key main taafont termcap tfont vaafont vfont \
 	xim
 CONF_FILES+=		${EGDIR}/${f} ${PKG_SYSCONFDIR}/${f}
 .endfor
@@ -84,7 +84,6 @@ post-install:
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
-.include "../../x11/gtk3/buildlink3.mk"
 .include "../../x11/libSM/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"

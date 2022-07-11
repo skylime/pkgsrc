@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.266 2022/07/02 16:53:06 ryoon Exp $
+# $NetBSD: Makefile,v 1.269 2022/07/11 08:25:59 adam Exp $
 
-DISTNAME=	mpd-0.23.7
+DISTNAME=	mpd-0.23.8
 PKGNAME=	${DISTNAME:S/mpd/musicpd/}
-PKGREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	https://www.musicpd.org/download/mpd/${PKGVERSION_NOREV:R}/
 EXTRACT_SUFX=	.tar.xz
@@ -11,6 +10,8 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.musicpd.org/
 COMMENT=	Remote controllable audio player
 LICENSE=	gnu-gpl-v2
+
+TOOL_DEPENDS+=	${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 
 CONFLICTS=	mpd-[0-9]*
 
@@ -108,9 +109,8 @@ SUBST_SED.sphinx+=	-e "s,sphinx-build,sphinx-build-${PYVERSSUFFIX},"
 
 INSTALLATION_DIRS=	${EGDIR} ${EGDIR}/logrotate.d
 
-PYTHON_FOR_BUILD_ONLY=	tool
-
-PYTHON_VERSIONED_DEPENDENCIES=	sphinx:tool
+PYTHON_FOR_BUILD_ONLY=		tool
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 post-extract:
 	${CP} ${FILESDIR}/mpd.conf ${WRKSRC}/mpd.conf
@@ -120,6 +120,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/mpdconf.example ${DESTDIR}${EGDIR}
 	${INSTALL_DATA} ${FILESDIR}/mpd.logrotate ${DESTDIR}${EGDIR}/logrotate.d/mpd
 
+.include "../../lang/python/pyversion.mk"
 .include "../../devel/meson/build.mk"
 BUILDLINK_API_DEPENDS.flac+=	flac>=1.2
 .include "../../audio/flac/buildlink3.mk"
@@ -132,7 +133,6 @@ BUILDLINK_API_DEPENDS.flac+=	flac>=1.2
 .include "../../devel/pcre2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-.include "../../lang/python/versioned_dependencies.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../textproc/fmtlib/buildlink3.mk"

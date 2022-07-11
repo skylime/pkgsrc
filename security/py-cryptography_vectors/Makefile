@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.29 2022/01/04 20:54:40 wiz Exp $
+# $NetBSD: Makefile,v 1.32 2022/07/08 13:55:08 wiz Exp $
 
-DISTNAME=	cryptography_vectors-3.3.2
+DISTNAME=	cryptography_vectors-37.0.4
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	security python
 MASTER_SITES=	${MASTER_SITE_PYPI:=c/cryptography_vectors/}
 
@@ -11,7 +10,12 @@ HOMEPAGE=	https://github.com/pyca/cryptography
 COMMENT=	Cryptographic test vectors
 LICENSE=	apache-2.0 OR modified-bsd
 
+PYTHON_VERSIONS_INCOMPATIBLE=	27
+
 USE_LANGUAGES=	# none
+
+post-extract:
+	${RM} -r ${WRKSRC}/cryptography_vectors/__pycache__
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,5 +1,5 @@
-$NetBSD: distinfo,v 1.5 2022/04/27 09:41:34 adam Exp $
+$NetBSD: distinfo,v 1.7 2022/07/06 07:26:31 adam Exp $
 
-BLAKE2s (setuptools-rust-1.3.0.tar.gz) = e88549ae67ee936904f8218e8c257b06fd600b32c416cc7f71ba6ee3ee3db40d
-SHA512 (setuptools-rust-1.3.0.tar.gz) = 5971413a9544ddd626671de74e9517fb20410e4838c5420ed31653d7fdf07b858ff4ef14ec2d5b51677e3402757da915a76858337d0c2b164682450bce35ba11
-Size (setuptools-rust-1.3.0.tar.gz) = 285698 bytes
+BLAKE2s (setuptools-rust-1.4.1.tar.gz) = 66a7e89269dab9fe26662eb5d4683abbd3bb566c463453e96fd7bb37c1fb8a78
+SHA512 (setuptools-rust-1.4.1.tar.gz) = 3b92eb37564872b4094e77c8412b006f57a3557213d1368e2db883bc04f5d0d516a97a5b1f0b5255b362ecc32832d2ef734ac759a49db72439f227d54f8a86f5
+Size (setuptools-rust-1.4.1.tar.gz) = 288848 bytes
