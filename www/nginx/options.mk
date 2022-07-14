@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.81 2022/05/25 13:57:02 osa Exp $
+# $NetBSD: options.mk,v 1.83 2022/07/14 16:09:42 osa Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.nginx
 PKG_SUPPORTED_OPTIONS=	array-var auth-request cache-purge dav debug
@@ -19,7 +19,7 @@ PKG_OPTIONS_GROUP.pcre=		pcre pcre2
 
 PLIST_VARS+=		arrayvar cprg dav dso echo encses forminput geoip2
 PLIST_VARS+=		headmore imagefilter lua mail naxsi nchan ndk njs
-PLIST_VARS+=		perl rtmp setmisc stream uwsgi
+PLIST_VARS+=		perl rtmp setmisc stream upload uwsgi
 
 .include "../../mk/bsd.options.mk"
 
@@ -193,7 +193,7 @@ PLIST.setmisc=			yes
 .endif
 
 .if !empty(PKG_OPTIONS:Mgeoip2) || make(makesum) || make(mdi) || make(distclean)
-GEOIP2_VERSION=			3.3
+GEOIP2_VERSION=			3.4
 GEOIP2_DISTNAME=		ngx_http_geoip2_module-${GEOIP2_VERSION}
 GEOIP2_DISTFILE=		${GEOIP2_DISTNAME}.tar.gz
 SITES.${GEOIP2_DISTFILE}=	-${MASTER_SITE_GITHUB:=leev/ngx_http_geoip2_module/archive/}${GEOIP2_VERSION}.tar.gz
@@ -252,7 +252,7 @@ CONFIGURE_ARGS+=	--without-http_uwsgi_module
 .endif
 
 .if !empty(PKG_OPTIONS:Mpush) || make(makesum) || make(mdi) || make(distclean)
-PUSH_VERSION=		1.2.15
+PUSH_VERSION=		1.3.0
 PUSH_DISTNAME=		nchan-${PUSH_VERSION}
 PUSH_DISTFILE=		${PUSH_DISTNAME}.tar.gz
 SITES.${PUSH_DISTFILE}=	-${MASTER_SITE_GITHUB:=slact/nchan/archive/}v${PUSH_VERSION}.tar.gz
@@ -328,7 +328,7 @@ PLIST.rtmp=		yes
 .endif
 
 .if !empty(PKG_OPTIONS:Mnjs) || make(makesum) || make(mdi) || make(distclean)
-NJS_VERSION=		0.7.4
+NJS_VERSION=		0.7.5
 NJS_DISTNAME=		njs-${NJS_VERSION}
 NJS_DISTFILE=		${NJS_DISTNAME}.tar.gz
 NJS_CONFIGURE_ARGS=	--no-pcre2

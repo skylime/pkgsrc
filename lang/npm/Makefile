@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.53 2022/07/07 10:05:11 adam Exp $
+# $NetBSD: Makefile,v 1.55 2022/07/14 07:17:14 adam Exp $
 
-DISTNAME=	npm-8.13.2
+DISTNAME=	npm-8.14.0
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GITHUB:=npm/}
 GITHUB_PROJECT=	cli
@@ -12,6 +12,8 @@ COMMENT=	Package manager for JavaScript
 LICENSE=	artistic-2.0
 
 USE_TOOLS+=	bash gmake perl
+
+DEPENDS+=	nodejs-[0-9]*:../../lang/nodejs
 
 MAKE_JOBS_SAFE=	no	# building man-pages
 
@@ -46,6 +48,5 @@ do-install:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${INSTALL_ENV} ${PREFIX}/bin/node \
 		bin/npm-cli.js install -g -f ${PKGNAME_NOREV}.tgz
 
-.include "../../lang/nodejs/nodeversion.mk"
 .include "../../lang/python/pyversion.mk"
 .include "../../mk/bsd.pkg.mk"

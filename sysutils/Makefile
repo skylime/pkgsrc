@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1007 2022/07/08 14:40:06 wiz Exp $
+# $NetBSD: Makefile,v 1.1009 2022/07/13 12:16:02 adam Exp $
 #
 
 COMMENT=	System utilities
@@ -139,7 +139,6 @@ SUBDIR+=	cpuburn
 SUBDIR+=	cpuid
 SUBDIR+=	crashme
 SUBDIR+=	ctv
-SUBDIR+=	cuisine
 SUBDIR+=	cvsreport
 SUBDIR+=	daemond
 SUBDIR+=	daemonize
@@ -560,6 +559,7 @@ SUBDIR+=	py-diffoscope
 SUBDIR+=	py-eliot
 SUBDIR+=	py-filetype
 SUBDIR+=	py-google-compute-engine
+SUBDIR+=	py-invoke
 SUBDIR+=	py-jeepney
 SUBDIR+=	py-kazoo
 SUBDIR+=	py-magic

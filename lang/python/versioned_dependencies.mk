@@ -1,4 +1,4 @@
-# $NetBSD: versioned_dependencies.mk,v 1.77 2022/07/10 19:17:44 wiz Exp $
+# $NetBSD: versioned_dependencies.mk,v 1.79 2022/07/12 09:29:37 wiz Exp $
 #
 # This file determines which separate distribution of a Python
 # package is used as dependency, depending on the Python version
@@ -9,7 +9,7 @@
 # PYTHON_VERSIONED_DEPENDENCIES
 #       The Python package which should be added as a dependency.
 #
-#       Possible values: Pillow X cairo chardet click cryptography docstyle flake8 html2text hypothesis importlib-metadata jinja2 lama markdown mccabe more-itertools pip packaging pygments pyparsing pyphen python-digest rsa setuptools setuptools_scm test twisted zipp
+#       Possible values: Pillow X cairo chardet click cryptography flake8 html2text hypothesis importlib-metadata jinja2 lama markdown mccabe more-itertools pip packaging pygments pyparsing pyphen python-digest rsa setuptools setuptools_scm test twisted
 #       Default: (nothing)
 #
 
@@ -23,7 +23,6 @@ _SUPPORTED_PACKAGES+=	cairo graphics/py-cairo118 graphics/py-cairo
 _SUPPORTED_PACKAGES+=	chardet converters/py-chardet4 converters/py-chardet
 _SUPPORTED_PACKAGES+=	click devel/py-click7 devel/py-click
 _SUPPORTED_PACKAGES+=	cryptography security/py27-cryptography security/py-cryptography 
-_SUPPORTED_PACKAGES+=	docstyle devel/py-docstyle3 devel/py-docstyle
 _SUPPORTED_PACKAGES+=	flake8 devel/py-flake8-3 devel/py-flake8
 _SUPPORTED_PACKAGES+=	html2text textproc/py-html2text-2019.8.11 textproc/py-html2text
 _SUPPORTED_PACKAGES+=	hypothesis devel/py-hypothesis4 devel/py-hypothesis
@@ -45,7 +44,6 @@ _SUPPORTED_PACKAGES+=	setuptools devel/py-setuptools44 devel/py-setuptools
 _SUPPORTED_PACKAGES+=	setuptools_scm devel/py-setuptools_scm5 devel/py-setuptools_scm
 _SUPPORTED_PACKAGES+=	test devel/py-test4 devel/py-test
 _SUPPORTED_PACKAGES+=	twisted net/py-twisted19 net/py-twisted
-_SUPPORTED_PACKAGES+=	zipp archivers/py-zipp1 archivers/py-zipp
 
 .for pattern in ${PYTHON_VERSIONED_DEPENDENCIES}
 _PKG_MATCHED=	no

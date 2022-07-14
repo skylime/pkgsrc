@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3760 2022/07/10 19:15:22 wiz Exp $
+# $NetBSD: Makefile,v 1.3762 2022/07/12 08:30:51 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -2358,7 +2358,6 @@ SUBDIR+=	py-canonicaljson
 SUBDIR+=	py-capstone
 SUBDIR+=	py-case
 SUBDIR+=	py-cffi
-SUBDIR+=	py-chai
 SUBDIR+=	py-characteristic
 SUBDIR+=	py-checker
 SUBDIR+=	py-cheetah
@@ -3284,7 +3283,6 @@ SUBDIR+=	ucommon
 SUBDIR+=	ucpp
 SUBDIR+=	ugdb
 SUBDIR+=	umbrello
-SUBDIR+=	undebt
 SUBDIR+=	unibilium
 SUBDIR+=	unidiff
 SUBDIR+=	unifdef
