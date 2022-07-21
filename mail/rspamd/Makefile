@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.78 2021/12/21 15:00:41 triaxx Exp $
+# $NetBSD: Makefile,v 1.82 2022/07/20 15:55:04 jperkin Exp $
 
-DISTNAME=	rspamd-3.1
+DISTNAME=	rspamd-3.2
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_GITHUB:=rspamd/}
 
@@ -102,6 +102,7 @@ post-extract:
 .include "../../devel/fann/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/libevent/buildlink3.mk"
+.include "../../devel/pcre2/buildlink3.mk"
 .include "../../lang/lua/buildlink3.mk"
 .include "../../mail/gmime/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
