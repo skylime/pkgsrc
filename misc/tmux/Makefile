@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.56 2021/04/17 10:11:04 leot Exp $
+# $NetBSD: Makefile,v 1.59 2022/06/01 20:56:27 leot Exp $
 
-DISTNAME=	tmux-3.2
+DISTNAME=	tmux-3.3
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=tmux/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -14,6 +14,7 @@ GNU_CONFIGURE=	yes
 USE_TERMINFO=	yes
 
 USE_TOOLS+=	pkg-config
+USE_FEATURES+=	strnlen
 
 CONFIGURE_ARGS+=	--enable-utempter
 
