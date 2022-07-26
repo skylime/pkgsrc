@@ -1,4 +1,4 @@
-# $NetBSD: versioned_dependencies.mk,v 1.79 2022/07/12 09:29:37 wiz Exp $
+# $NetBSD: versioned_dependencies.mk,v 1.82 2022/07/20 23:04:56 wiz Exp $
 #
 # This file determines which separate distribution of a Python
 # package is used as dependency, depending on the Python version
@@ -9,7 +9,7 @@
 # PYTHON_VERSIONED_DEPENDENCIES
 #       The Python package which should be added as a dependency.
 #
-#       Possible values: Pillow X cairo chardet click cryptography flake8 html2text hypothesis importlib-metadata jinja2 lama markdown mccabe more-itertools pip packaging pygments pyparsing pyphen python-digest rsa setuptools setuptools_scm test twisted
+#       Possible values: Pillow X cairo chardet click cryptography flake8 hypothesis importlib-metadata jinja2 lama markdown mccabe more-itertools pip packaging pygments pyphen rsa setuptools setuptools_scm test twisted
 #       Default: (nothing)
 #
 
@@ -24,7 +24,6 @@ _SUPPORTED_PACKAGES+=	chardet converters/py-chardet4 converters/py-chardet
 _SUPPORTED_PACKAGES+=	click devel/py-click7 devel/py-click
 _SUPPORTED_PACKAGES+=	cryptography security/py27-cryptography security/py-cryptography 
 _SUPPORTED_PACKAGES+=	flake8 devel/py-flake8-3 devel/py-flake8
-_SUPPORTED_PACKAGES+=	html2text textproc/py-html2text-2019.8.11 textproc/py-html2text
 _SUPPORTED_PACKAGES+=	hypothesis devel/py-hypothesis4 devel/py-hypothesis
 _SUPPORTED_PACKAGES+=	importlib-metadata devel/py-importlib-metadata2 devel/py-importlib-metadata
 _SUPPORTED_PACKAGES+=	isort devel/py-isort4 devel/py-isort
@@ -36,9 +35,7 @@ _SUPPORTED_PACKAGES+=	more-itertools devel/py-more-itertools2 devel/py-more-iter
 _SUPPORTED_PACKAGES+=	packaging devel/py-packaging2 devel/py-packaging
 _SUPPORTED_PACKAGES+=	pip devel/py-pip20 devel/py-pip
 _SUPPORTED_PACKAGES+=	pygments textproc/py-pygments25 textproc/py-pygments
-_SUPPORTED_PACKAGES+=	pyparsing devel/py-pyparsing2 devel/py-pyparsing
 _SUPPORTED_PACKAGES+=	pyphen textproc/py27-pyphen textproc/py-pyphen
-_SUPPORTED_PACKAGES+=	python-digest www/py-python-digest www/py-python3-digest
 _SUPPORTED_PACKAGES+=	rsa security/py-rsa40 security/py-rsa
 _SUPPORTED_PACKAGES+=	setuptools devel/py-setuptools44 devel/py-setuptools
 _SUPPORTED_PACKAGES+=	setuptools_scm devel/py-setuptools_scm5 devel/py-setuptools_scm

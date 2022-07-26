@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.65 2022/04/27 21:15:23 nia Exp $
+# $NetBSD: Makefile,v 1.67 2022/07/23 23:02:14 wiz Exp $
 
 PKGNAME=	${DISTNAME:C/[^[:alnum:]]*//}
 PKGREVISION=	1

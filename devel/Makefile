@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3762 2022/07/12 08:30:51 adam Exp $
+# $NetBSD: Makefile,v 1.3767 2022/07/24 11:04:24 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -432,6 +432,7 @@ SUBDIR+=	go-gopkgs
 SUBDIR+=	go-goptlib
 SUBDIR+=	go-goreturns
 SUBDIR+=	go-gox
+SUBDIR+=	go-impl
 SUBDIR+=	go-logrus
 SUBDIR+=	go-nbreader
 SUBDIR+=	go-protobuf
@@ -447,11 +448,13 @@ SUBDIR+=	gob2
 SUBDIR+=	gobject-introspection
 SUBDIR+=	golangci-lint
 SUBDIR+=	golint
+SUBDIR+=	gomodifytags
 SUBDIR+=	google-glog
 SUBDIR+=	googletest
 SUBDIR+=	gopls
 SUBDIR+=	goredo
 SUBDIR+=	got
+SUBDIR+=	gotests
 SUBDIR+=	gperf
 SUBDIR+=	gperftools
 SUBDIR+=	gprbuild-aux
@@ -2614,6 +2617,7 @@ SUBDIR+=	py-pep8
 SUBDIR+=	py-pexpect
 SUBDIR+=	py-pip
 SUBDIR+=	py-pip-api
+SUBDIR+=	py-pip-requirements-parser
 SUBDIR+=	py-pip-run
 SUBDIR+=	py-pip20
 SUBDIR+=	py-pkgconfig
@@ -2638,6 +2642,7 @@ SUBDIR+=	py-py
 SUBDIR+=	py-py2app
 SUBDIR+=	py-pybind11
 SUBDIR+=	py-pycotap
+SUBDIR+=	py-pydantic
 SUBDIR+=	py-pydispatcher
 SUBDIR+=	py-pyelftools
 SUBDIR+=	py-pygit2

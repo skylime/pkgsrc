@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.527 2022/07/09 02:22:25 ryoon Exp $
+# $NetBSD: Makefile,v 1.530 2022/07/25 01:01:54 tnn Exp $
 
 FIREFOX_VER=		${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
 MOZ_BRANCH=		102.0
@@ -6,12 +6,13 @@ MOZ_BRANCH_MINOR=	.1
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
 PKGNAME=	${DISTNAME:S/.source//:S/b/beta/:S/esr//}
+PKGREVISION=	3
 CATEGORIES=	www
 MASTER_SITES+=	${MASTER_SITE_MOZILLA:=firefox/releases/${FIREFOX_VER}/source/}
 EXTRACT_SUFX=	.tar.xz
 
-NODEJSKIT=	nodejs-output-95.0.tgz
-DISTFILES=	${DEFAULT_DISTFILES} ${NODEJSKIT}
+NODEJSKIT=		nodejs-output-95.0.tgz
+DISTFILES=		${DEFAULT_DISTFILES} ${NODEJSKIT}
 SITES.${NODEJSKIT}=	${MASTER_SITE_LOCAL}
 
 MAINTAINER=	ryoon@NetBSD.org
@@ -68,11 +69,6 @@ LDFLAGS.SunOS+=		-lm
 
 # XXX not sure how to test this! likely unnecessary
 NOT_PAX_MPROTECT_SAFE+=	lib/${PKGBASE}/plugin-container
-# For RLBox WASM sandbox. Sync condition with mozilla-common.mk
-.if ${MACHINE_ARCH} == "x86_64" || ${MACHINE_ARCH} == "i386"
-NOT_PAX_MPROTECT_SAFE+=	lib/${PKGBASE}/firefox
-NOT_PAX_MPROTECT_SAFE+=	lib/${PKGBASE}/firefox-bin
-.endif
 
 # Avoid ld "invalid section index" errors.
 BUILDLINK_TRANSFORM.SunOS+=	rm:-fdata-sections

@@ -1,5 +1,5 @@
 #! @PYTHONBIN@
-# $NetBSD: url2pkg.py,v 1.42 2022/02/08 20:48:09 rillig Exp $
+# $NetBSD: url2pkg.py,v 1.44 2022/07/16 09:16:50 rillig Exp $
 
 # Copyright (c) 2019 The NetBSD Foundation, Inc.
 # All rights reserved.
@@ -108,7 +108,12 @@ class Globals:
 
     def bmake(self, *args: str) -> None:
         self.debug('running bmake {0} in {1}', args, str(self.pkgdir))
-        subprocess.check_call([self.make, *args], cwd=self.pkgdir)
+        env = dict(os.environ)
+        env.update({
+            # Resuming transfers only works when distinfo already exists.
+            'PKG_RESUME_TRANSFERS': 'no',
+        })
+        subprocess.check_call([self.make, *args], cwd=self.pkgdir, env=env)
 
     def show_var(self, varname: str) -> str:
         output = subprocess.check_output(
@@ -1021,7 +1026,7 @@ class Adjuster:
         cmd = f'{self.g.pythonbin} setup.py build'
         env = {
             'PYTHONDONTWRITEBYTECODE': 'x',
-            'PYTHONPATH': self.g.libdir
+            'PYTHONPATH': f'{self.g.libdir}/python'
         }
         self.read_dependencies(cmd, env, self.abs_wrksrc, 'py-', '${PYPKGPREFIX}-')
 

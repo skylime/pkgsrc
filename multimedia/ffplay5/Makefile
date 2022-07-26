@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2022/04/18 19:11:43 adam Exp $
+# $NetBSD: Makefile,v 1.6 2022/07/25 01:01:53 tnn Exp $
 
 PKGNAME=	${DISTNAME:S/ffmpeg/ffplay5/}
 PKGREVISION=	1

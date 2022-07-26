@@ -1,4 +1,4 @@
-# $NetBSD: bsd.prefs.mk,v 1.422 2022/06/07 10:04:25 jperkin Exp $
+# $NetBSD: bsd.prefs.mk,v 1.424 2022/07/22 09:27:01 nia Exp $
 #
 # This file includes the mk.conf file, which contains the user settings.
 #
@@ -101,7 +101,11 @@ OS_VARIANT?=		# empty
 # without executing the commands at all.  Later, recursed make
 # invocations will skip these blocks entirely thanks to MAKEFLAGS.
 .if !defined(OS_VERSION)
+.  if ${OPSYS} == "NetBSD" && exists(/etc/release)
+_OS_VERSION_CMD=	head -1 /etc/release | sed -e "s,^NetBSD ,,g" -e "s,/.*$,,g"
+.  else
 _OS_VERSION_CMD=	${UNAME} -r
+.  endif
 OS_VERSION=		${_OS_VERSION_CMD:sh}
 MAKEFLAGS+=		OS_VERSION=${OS_VERSION:Q}
 .endif
@@ -113,8 +117,14 @@ MAKEFLAGS+=		OS_VERSION=${OS_VERSION:Q}
 # it to a custom command in the later OPSYS-specific section.
 #
 .if !defined(OPSYS_VERSION)
+.  if ${OPSYS} == "NetBSD" && exists(/etc/release)
+_OPSYS_VERSION_CMD=	head -1 /etc/release | \
+			sed -e "s,^NetBSD ,,g" | \
+			awk -F. '{major=int($$1); minor=int($$2); if (minor>=100) minor=99; patch=int($$3); if (patch>=100) patch=99; printf "%02d%02d%02d", major, minor, patch}'
+.  else
 _OPSYS_VERSION_CMD=	${UNAME} -r | \
 			awk -F. '{major=int($$1); minor=int($$2); if (minor>=100) minor=99; patch=int($$3); if (patch>=100) patch=99; printf "%02d%02d%02d", major, minor, patch}'
+.  endif
 OPSYS_VERSION=		${_OPSYS_VERSION_CMD:sh}
 MAKEFLAGS+=		OPSYS_VERSION=${OPSYS_VERSION:Q}
 .endif
