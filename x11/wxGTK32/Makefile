@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.2 2022/07/26 02:58:56 dbj Exp $
+# $NetBSD: Makefile,v 1.7 2022/07/29 18:36:06 wiz Exp $
 
 DISTNAME=	wxWidgets-3.2.0
 PKGNAME=	${DISTNAME:S/wxWidgets/wxGTK32/}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=wxWidgets/}
 GITHUB_PROJECT=	wxWidgets
@@ -40,21 +40,41 @@ REPLACE_SH=		wx-config.in wx-config-inplace.in
 # and remove support for building with GNU_CONFIGURE
 PKG_OPTIONS_VAR=	PKG_OPTIONS.wxGTK32
 PKG_SUPPORTED_OPTIONS=	cmake
+.if ${OPSYS} == "NetBSD"
+PKG_SUGGESTED_OPTIONS=	cmake
+.endif
 .include "../../mk/bsd.options.mk"
 
 .if !empty(PKG_OPTIONS:Mcmake)
+
 USE_CMAKE=		yes
-CMAKE_ARGS+=		-DCMAKE_DISABLE_PRECOMPILE_HEADERS:BOOL=ON
 PLIST_SRC+=		PLIST.cmake
 
-. if ${OPSYS} != "Darwin"
-WX_CONFIG=		lib/wx/config/gtk3-unicode-3.2
-. else
-WX_CONFIG=		lib/wx/config/osx_cocoa-unicode-3.2
-. endif
+CMAKE_ARGS+=		-DCMAKE_DISABLE_PRECOMPILE_HEADERS:BOOL=ON
+CMAKE_ARGS+=		-DCMAKE_INSTALL_BINDIR:PATH=libexec/wx-3.2
+.  if ${OPSYS} != "Linux"
+# https://github.com/wxWidgets/wxWidgets/issues/22646
+CMAKE_ARGS+=		-DwxUSE_JOYSTICK:BOOL=OFF
+.  endif
 
-.else
+SUBST_CLASSES+=		unwrap
+SUBST_STAGE.unwrap=	post-build
+SUBST_MESSAGE.unwrap=	Unwrapping wx-config.
+.  if ${OPSYS} != "Darwin"
+SUBST_FILES.unwrap=	lib/wx/config/gtk3-unicode-3.2
+.  else
+SUBST_FILES.unwrap=	lib/wx/config/osx_cocoa-unicode-3.2
+.  endif
+SUBST_SED.unwrap=	-e 's,EGREP=.*,EGREP=${EGREP},'
+SUBST_SED.unwrap+=	-e 's,echo.*/${CC}",echo "${CC}",'
+SUBST_SED.unwrap+=	-e 's,echo.*/${CXX}",echo "${CXX}",'
+SUBST_SED.unwrap+=	-e 's,echo.*/${CXX} -o",echo "${CXX} -o",'
+
+.else # empty(PKG_OPTIONS:Mcmake)
+
 GNU_CONFIGURE=		yes
+PLIST_SRC+=		PLIST.configure
+
 USE_GNU_CONFIGURE_HOST=	no
 CONFIGURE_ARGS+=	--with-libpng=sys
 CONFIGURE_ARGS+=	--with-libjpeg=sys
@@ -74,8 +94,6 @@ CONFIGURE_ARGS.Darwin+=	--without-macosx-version-min
 CONFIGURE_ARGS.Darwin+=	--disable-precomp-headers
 CONFIGURE_ARGS.SunOS+=	--disable-xlocale
 
-PLIST_SRC+=		PLIST.configure
-
 SUBST_CLASSES+=			fix-paths
 SUBST_STAGE.fix-paths=		pre-configure
 SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
@@ -89,34 +107,8 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/lgpl.txt ${DESTDIR}${PREFIX}/${DOCDIR}
 	${INSTALL_DATA} ${WRKSRC}/docs/changes.txt ${DESTDIR}${PREFIX}/${DOCDIR}
 	${INSTALL_DATA} ${WRKSRC}/docs/readme.txt ${DESTDIR}${PREFIX}/${DOCDIR}
-.if defined(USE_CMAKE)
-# Installation rules in cmake are not using DESTDIR properly, do it manually
-# https://github.com/wxWidgets/wxWidgets/issues/22647
-# CMake Error: failed to create symbolic link '/usr/pkg/bin/wx-config': Permission denied
-# CMake Error: failed to create symbolic link '/usr/pkg/bin/wxrc': Permission denied
-	${LN} -sf ../${WX_CONFIG} ${DESTDIR}${PREFIX}/bin/wx-config-3.2
-.endif
-.if defined(GNU_CONFIGURE)
-	${LN} -sf ../libexec/wx-3.2/wxrc-3.2 ${DESTDIR}${PREFIX}/bin/wxrc-3.2
+	${LN} -sf ../libexec/wx-3.2/wxrc ${DESTDIR}${PREFIX}/bin/wxrc-3.2
 	${LN} -sf ../libexec/wx-3.2/wx-config ${DESTDIR}${PREFIX}/bin/wx-config-3.2
-.endif
-
-.if defined(USE_CMAKE)
-SUBST_CLASSES+=		unwrap
-SUBST_STAGE.unwrap=	post-build
-SUBST_FILES.unwrap=	${WX_CONFIG}
-SUBST_SED.unwrap=	-e "s,EGREP=.*,EGREP=${EGREP},"
-SUBST_SED.unwrap+=	-e 's,echo.*/${CC}",echo "${CC}",'
-SUBST_SED.unwrap+=	-e 's,echo.*/${CXX}",echo "${CXX}",'
-SUBST_SED.unwrap+=	-e 's,echo.*/${CXX} -o",echo "${CXX} -o",'
-.endif
-
-.if defined(USE_CMAKE)
-# https://github.com/wxWidgets/wxWidgets/issues/22646
-.if ${OPSYS} != "Linux"
-CMAKE_ARGS+=		-DwxUSE_JOYSTICK:BOOL=OFF
-.endif
-.endif
 
 .if ${OPSYS} != "Darwin"
 .include "../../sysutils/libnotify/buildlink3.mk"

@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.22062 2022/07/26 16:19:34 wiz Exp $
+$NetBSD: TODO,v 1.22067 2022/07/30 01:22:38 tnn Exp $
 
 Suggested new packages
 ======================
@@ -553,7 +553,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o consul-1.9.5
 	o cook-2.31
 	o coordgenlibs-2.0.3
-	o coreutils-9.1
 	o couchdb-3.1.1
 	o courier-0.77.0
 	o courier-imap-4.16.1
@@ -813,7 +812,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gst-rtsp-server-1.20.3 [needs libcgroup]
 	o gthumb-3.4.0
 	o gtk-gnutella-1.2.0
-	o gtk4-4.6.5
 	o gtk4+-4.4
 	o gtkglarea-2.1.0
 	o gtklevel9-5.1
@@ -1096,7 +1094,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o ns-plugger-common-5.1.3
 	o nsm-2.4.12
 	o ntop-5.0
-	o ntpsec-1.2.0
 	o nts-82
 	o nuitka-0.6.14.4
 	o nut-20.1
@@ -1163,7 +1160,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o p5-Dumbbench-0.501
 	o p5-ExtUtils-F77-1.26
 	o p5-Fsdb-2.71
-	o p5-GD-2.73
 	o p5-GStreamer-0.21
 	o p5-GitLab-API-v3-1.06
 	o p5-GitLab-API-v4-0.26
@@ -1547,7 +1543,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o top-3.8beta1
 	o topgit-0.8
 	o tor-browser-11.0.9 [wip]
-	o tor-browser-11.5
+	o tor-browser-11.5.1
 	o torrentzip-2.1.0
 	o toxcore-0.2.12
 	o trafficserver-9.0.1
