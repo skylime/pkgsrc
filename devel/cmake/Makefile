@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.194 2022/07/29 10:40:21 adam Exp $
+# $NetBSD: Makefile,v 1.196 2022/08/04 09:22:33 jperkin Exp $
 
 .include "Makefile.common"
 
@@ -26,6 +26,10 @@ LDFLAGS.Darwin+=	-framework CoreServices # for LSOpenCFURLRef()
 LDFLAGS.SunOS+=		-lsocket -lnsl
 
 .include "../../mk/bsd.prefs.mk"
+
+.if ${INSTALL_UNSTRIPPED:Uno:tl} != yes
+INSTALL_TARGET=		install/strip
+.endif
 
 # Enforce arm64 to support building inside x86_64 chroots.
 .if !empty(MACHINE_PLATFORM:MDarwin-*-aarch64)
