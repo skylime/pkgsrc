@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2022,v 1.3685 2022/08/04 15:29:16 nia Exp $
+$NetBSD: CHANGES-2022,v 1.3691 2022/08/05 11:46:54 adam Exp $
 
 Changes to the packages collection and infrastructure in 2022:
 
@@ -5488,3 +5488,13 @@ Changes to the packages collection and infrastructure in 2022:
 	Updated devel/wayland to 1.21.0 [nia 2022-08-04]
 	Updated lang/php81 to 8.1.9 [taca 2022-08-04]
 	Updated devel/wayland-protocols to 1.26 [nia 2022-08-04]
+	Updated www/py-yarl to 1.8.1 [adam 2022-08-05]
+	Updated devel/py-xdg to 0.28 [adam 2022-08-05]
+	Updated multimedia/libaacs to 0.11.1 [adam 2022-08-05]
+	Updated multimedia/libbdplus to 0.2.0 [adam 2022-08-05]
+	Updated graphics/py-wand to 0.6.9 [adam 2022-08-05]
+	Updated www/py-paste to 3.5.1 [adam 2022-08-05]
+	Updated www/firefox102 to 102.1.0 [nia 2022-08-05]
+	Updated www/firefox102-l10n to 102.1.0 [nia 2022-08-05]
+	Updated www/py-werkzeug to 2.2.1 [adam 2022-08-05]
+	Updated www/py-flask to 2.2.1 [adam 2022-08-05]
