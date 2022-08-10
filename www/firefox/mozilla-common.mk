@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.236 2022/08/03 17:09:26 ryoon Exp $
+# $NetBSD: mozilla-common.mk,v 1.238 2022/08/06 20:47:51 nia Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -35,6 +35,7 @@ TOOL_DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 .if ${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64"
 TOOL_DEPENDS+=		nasm>=2.14:../../devel/nasm
 TOOL_DEPENDS+=		yasm>=1.1:../../devel/yasm
+CFLAGS+=		-msse2
 .endif
 
 # This is to work around build failures where an upstream configuration script
@@ -140,7 +141,8 @@ SUBST_SED.fix-libpci-soname+=		-e 's,"libpci.so, "lib${PCIUTILS_LIBNAME}.so,'
 
 # Workaround for link of libxul.so as of 96.0.
 # There are too many -ldl under third_paty/libwebrtc.
-BUILDLINK_TRANSFORM.NetBSD+=	rm:-ldl
+.include "../../mk/dlopen.buildlink3.mk"
+BUILDLINK_TRANSFORM+=	opt:-ldl:${BUILDLINK_LDADD.dl:Q}
 
 CONFIG_GUESS_OVERRIDE+=		${MOZILLA_DIR}build/autoconf/config.guess
 CONFIG_GUESS_OVERRIDE+=		${MOZILLA_DIR}js/src/build/autoconf/config.guess

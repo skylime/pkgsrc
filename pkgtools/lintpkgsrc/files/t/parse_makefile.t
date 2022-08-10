@@ -1,4 +1,4 @@
-# $NetBSD: parse_makefile.t,v 1.3 2022/08/03 18:51:56 rillig Exp $
+# $NetBSD: parse_makefile.t,v 1.5 2022/08/10 07:12:52 rillig Exp $
 
 use strict;
 use warnings;
@@ -10,7 +10,7 @@ BEGIN { plan tests => 6, onfail => sub { die } }
 
 require('../lintpkgsrc.pl');
 
-sub test_parse_expand_vars() {
+sub test_expand_var() {
 	my %vars = (
 	    CFLAGS      => '${CFLAGS_OPT} ${CFLAGS_WARN} ${CFLAGS_ERR}',
 	    CFLAGS_WARN => '${CFLAGS_WARN_ALL}',
@@ -18,7 +18,7 @@ sub test_parse_expand_vars() {
 	    CFLAGS_ERR  => '${CFLAGS_WARN_ALL:M*error=*}',
 	);
 
-	my $cflags = parse_expand_vars('<${CFLAGS}>', \%vars);
+	my $cflags = expand_var('<${CFLAGS}>', \%vars);
 
 	ok($cflags, '<-Os M_a_G_i_C_uNdEfInEd ${CFLAGS_WARN_ALL:M*error=*}>')
 }
@@ -52,5 +52,23 @@ sub test_parse_makefile_vars() {
 	ok($vars->{VAR}, 'value');
 }
 
-test_parse_expand_vars();
+sub test_expand_modifiers() {
+	my $vars = {
+	    REF => 'VALUE',
+	};
+	export_for_test()->{opt}->{D} = 1;
+
+	expand_modifiers('file.mk', 'VAR', '<', 'REF', 'S,U,X,', '>', $vars);
+
+	# FIXME: Should be 'VALXE', but the 'U' is wrongly interpreted as a
+	#  ':U' modifier.
+	ok($vars->{VAR}, '<VALUE>');
+
+	expand_modifiers('file.mk', 'VAR', '<', 'REF', 'S,VAL,H,', '>', $vars);
+
+	ok($vars->{VAR}, '<HUE>');
+}
+
+test_expand_var();
 test_parse_makefile_vars();
+test_expand_modifiers();

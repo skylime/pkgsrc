@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.48 2022/07/14 23:46:27 dholland Exp $
+# $NetBSD: Makefile,v 1.50 2022/08/06 08:14:07 nia Exp $
 
 DISTNAME=	wxWidgets-3.0.5.1
 PKGNAME=	${DISTNAME:S/wxWidgets/wxGTK30/}

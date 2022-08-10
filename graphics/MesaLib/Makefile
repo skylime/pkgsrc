@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.202 2022/08/02 20:36:51 tnn Exp $
+# $NetBSD: Makefile,v 1.204 2022/08/06 19:35:33 he Exp $
 
 DISTNAME=	mesa-21.3.9
 PKGNAME=	${DISTNAME:S/mesa/MesaLib/}
@@ -128,7 +128,6 @@ MESON_ARGS+=	-Dplatforms=${MESA_PLATFORMS:ts,}
 
 .if ${MACHINE_ARCH} == "i386"
 MESON_ARGS+=	-Dglx-read-only-text=true
-CFLAGS+=	-march=i586
 CXXFLAGS+=	-march=i586
 .endif
 
@@ -192,4 +191,5 @@ post-install:
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/tool.mk"
 .include "../../textproc/expat/buildlink3.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

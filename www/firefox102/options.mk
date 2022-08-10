@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.1 2022/07/21 23:56:38 nia Exp $
+# $NetBSD: options.mk,v 1.3 2022/08/07 18:08:08 nia Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.firefox
 
@@ -17,7 +17,7 @@ PKG_SUGGESTED_OPTIONS+=	pulseaudio mozilla-jemalloc webrtc
 PKG_SUGGESTED_OPTIONS+=	sunaudio
 .endif
 
-.if ${OPSYS} == "NetBSD" && ${OPSYS_VERSION} >= 090000 && (!empty(MACHINE_ARCH:Mx86_64) || !empty(MACHINE_ARCH:Mi386))
+.if ${OPSYS} == "NetBSD" && ${OPSYS_VERSION} >= 090000
 PKG_SUGGESTED_OPTIONS+=	webrtc
 .endif
 
@@ -63,6 +63,9 @@ AUDIO_BACKENDS+=	pulseaudio
 CONFIGURE_ARGS+=	--enable-dbus
 .else
 CONFIGURE_ARGS+=	--disable-dbus
+.  if ${OPSYS} == "Linux"
+CONFIGURE_ARGS+=	--disable-necko-wifi
+.  endif
 .endif
 
 .if !empty(PKG_OPTIONS:Mofficial-mozilla-branding)

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.9 2022/08/04 04:49:40 dbj Exp $
+# $NetBSD: Makefile,v 1.13 2022/08/10 05:19:57 dbj Exp $
 
 DISTNAME=	wxWidgets-3.2.0
 PKGNAME=	${DISTNAME:S/wxWidgets/wxGTK32/}
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=wxWidgets/}
 GITHUB_PROJECT=	wxWidgets
@@ -15,7 +15,7 @@ COMMENT=	Cross-platform wxWidgets GUI library (3.2 stable branch)
 # LGPLv2 with additional permission; http://opensource.org/licenses/wxwindows
 LICENSE=	gnu-lgpl-v2
 
-USE_TOOLS+=		pkg-config
+USE_TOOLS+=		pkg-config msgfmt
 USE_LANGUAGES=		c c++
 
 PLIST_SRC+=		${PLIST_SRC_DFLT}
@@ -24,16 +24,17 @@ DOCDIR=			share/wx-3.2/doc/wxWidgets
 
 INSTALLATION_DIRS+=	${DOCDIR}
 INSTALLATION_DIRS+=	bin
+INSTALLATION_DIRS+=	share/wx-3.2/aclocal
 
 REPLACE_SH=		wx-config.in wx-config-inplace.in
 
 .include "../../mk/bsd.prefs.mk"
 
-# We build using configure by default
-# The software supports building using cmake but
-# the default cmake configuration is different.
-# In particular it installs unused headers.
-#
+# We now build using cmake by default
+# However, the cmake build system installs
+# unused headers that the configure build system doesn't.
+# https://github.com/wxWidgets/wxWidgets/issues/22714
+
 # This option is expected to be a temporary hack.
 # We should fix cmake builds to match configure builds
 # and remove support for building with GNU_CONFIGURE
@@ -97,15 +98,30 @@ SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
 SUBST_FILES.fix-paths=		configure
 SUBST_SED.fix-paths=		-e 's,/usr/pkg/include,${PREFIX}/include,g'
 SUBST_VARS.fix-paths=		PREFIX
+
+.  if ${OPSYS} != "Darwin"
+# not needed, but configure stops if it's not found
+.include "../../graphics/glu/buildlink3.mk"
+.  endif
 .endif
+
+post-build:
+	${RM} ${WRKSRC}/locale/*.mo
+	# We could do this:
+	# ${GMAKE} -C ${WRKSRC}/locale MSGFMT=${TOOLS_PATH.msgfmt:Q} allmo
+	# But that seems to bring an unnecessary build dependency on gmake
+	# So instead, we do:
+	for f in ${WRKSRC}/locale/*.po; do \
+	  lang=`basename $${f} .po`; \
+	  ${TOOLS_PATH.msgfmt:Q} -c -o "${WRKSRC}/locale/$${lang}.mo" "$${f}"; \
+	done
 
 post-install:
 	for f in ${WRKSRC}/locale/*.mo; do \
-	  lang="$$(basename "$${f}" .mo)"; \
+	  lang=`basename $${f} .mo`; \
 	  ${INSTALL_DATA_DIR} "${DESTDIR}/${PREFIX}/share/wx-3.2/locale/$${lang}/LC_MESSAGES"; \
 	  ${INSTALL_DATA} "$${f}" "${DESTDIR}/${PREFIX}/share/wx-3.2/locale/$${lang}/LC_MESSAGES/wxstd.mo"; \
 	done
-	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/wx-3.2/aclocal
 	${INSTALL_DATA} ${WRKSRC}/wxwin.m4 ${DESTDIR}${PREFIX}/share/wx-3.2/aclocal/wxwin.m4
 	${INSTALL_DATA} ${WRKSRC}/docs/licence.txt ${DESTDIR}${PREFIX}/${DOCDIR}
 	${INSTALL_DATA} ${WRKSRC}/docs/lgpl.txt ${DESTDIR}${PREFIX}/${DOCDIR}
