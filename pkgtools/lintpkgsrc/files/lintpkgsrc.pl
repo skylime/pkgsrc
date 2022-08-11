@@ -1,6 +1,6 @@
 #!@PERL5@
 
-# $NetBSD: lintpkgsrc.pl,v 1.69 2022/08/10 07:12:52 rillig Exp $
+# $NetBSD: lintpkgsrc.pl,v 1.72 2022/08/10 22:43:55 rillig Exp $
 
 # Written by David Brownlee <abs@netbsd.org>.
 #
@@ -13,7 +13,7 @@
 # TODO: Handle fun DEPENDS like avifile-devel with
 #			{qt2-designer>=2.2.4,qt2-designer-kde>=2.3.1nb1}
 
-use v5.34;
+use v5.36;
 use locale;
 use strict;
 use warnings;
@@ -22,8 +22,6 @@ use File::Find;
 use File::Basename;
 use IPC::Open3;
 use Cwd 'realpath', 'getcwd';
-use feature 'signatures';               # only for < v5.36
-no warnings 'experimental::signatures'; # only for < v5.36
 
 # PkgVer is a PKGBASE + PKGVERSION, including some of the variables that
 # have been extracted from the package Makefile.
@@ -160,9 +158,12 @@ package main;
 
 # Buildtime configuration
 my $conf_make = '@MAKE@';
+my $conf_makeconf = '@MAKECONF@';
+my $conf_pkg_info = '@PKG_INFO@';
 my $conf_pkgsrcdir = '@PKGSRCDIR@';
 my $conf_prefix = '@PREFIX@';
 my $conf_sysconfdir = '@PKG_SYSCONFDIR@';
+my $conf_x11base = '@X11BASE@';
 
 my (
     $pkgdb,                    # Database of pkgsrc packages
@@ -178,12 +179,12 @@ my (
 # gets removed in the final evaluation
 my $magic_undefined = 'M_a_G_i_C_uNdEfInEd';
 
-sub debug(@) {
-	$opt{D} and print STDERR 'DEBUG: ', @_;
+sub debug(@args) {
+	$opt{D} and print STDERR 'DEBUG: ', @args;
 }
 
-sub verbose(@) {
-	-t STDERR and print STDERR @_;
+sub verbose(@args) {
+	-t STDERR and print STDERR @args;
 }
 
 sub fail($msg) {
@@ -277,6 +278,52 @@ sub expand_var($value, $vars) {
 	$value;
 }
 
+sub eval_mk_cond_func($func, $arg, $vars) {
+	if ($func eq 'defined') {
+		my $varname = expand_var($arg, $vars);
+		defined $vars->{$varname} ? 1 : 0;
+
+	} elsif ($func eq 'empty') {
+
+		# Implement (some of) make's :M modifier
+		if ($arg =~ /^ ([^:]+) :M ([^:]+) $/x) {
+			my ($varname, $pattern) = ($1, $2);
+			$varname = expand_var($varname, $vars);
+			$pattern = expand_var($pattern, $vars);
+
+			my $value = $vars->{$varname};
+			return 1 unless defined $value;
+
+			$value = expand_var($value, $vars);
+
+			$pattern =~ s/([{.+])/\\$1/g;
+			$pattern =~ s/\*/.*/g;
+			$pattern =~ s/\?/./g;
+			$pattern = '^' . $pattern . '$';
+
+			foreach my $word (split(/\s+/, $value)) {
+				return 0 if $word =~ /$pattern/;
+			}
+			return 1;
+		} elsif ($arg =~ /:M/) {
+			debug("Unsupported ':M' modifier in '$arg'\n");
+		}
+
+		my $value = expand_var("\${$arg}", $vars);
+		defined $value && $value =~ /\S/ ? 0 : 1;
+
+	} elsif ($func eq 'exists') {
+		my $fname = expand_var($arg, $vars);
+		-e $fname ? 1 : 0;
+
+	} elsif ($func eq 'make') {
+		0;
+
+	} else { # $func eq 'target'
+		0;
+	}
+}
+
 sub parse_eval_make_false($line, $vars) {
 	my $false = 0;
 	my $test = expand_var($line, $vars);
@@ -289,49 +336,9 @@ sub parse_eval_make_false($line, $vars) {
 	debug("conditional: $test\n");
 
 	while ($test =~ /(target|empty|make|defined|exists)\s*\(([^()]+)\)/) {
-		my ($testname, $varname) = ($1, $2);
-		my $var;
-
-		# Implement (some of) make's :M modifier
-		if ($varname =~ /^([^:]+):M(.+)$/) {
-			$varname = $1;
-			my $match = $2;
-
-			$var = $${vars}{$varname};
-			$var = expand_var($var, $vars)
-			    if defined $var;
-
-			$match =~ s/([{.+])/\\$1/g;
-			$match =~ s/\*/.*/g;
-			$match =~ s/\?/./g;
-			$match = '^' . $match . '$';
-			$var = ($var =~ /$match/)
-			    if defined $var;
-		} else {
-			$var = $${vars}{$varname};
-			$var = expand_var($var, $vars)
-			    if defined $var;
-		}
-
-		if (defined $var && $var eq $magic_undefined) {
-			$var = undef;
-		}
-
-		if ($testname eq 'exists') {
-			$_ = -e $varname ? 1 : 0;
-
-		} elsif ($testname eq 'defined') {
-			$_ = defined $var ? 1 : 0;
-
-		} elsif ($testname eq 'empty') {
-			$_ = !defined $var || $var eq '' ? 1 : 0;
-
-		} else {
-			# XXX Could do something with target
-			$_ = 0;
-		}
-
-		$test =~ s/$testname\s*\([^()]+\)/$_/;
+		my ($func, $arg) = ($1, $2);
+		my $cond = eval_mk_cond_func($func, $arg, $vars);
+		$test =~ s/$func\s*\([^()]+\)/$cond/;
 		debug("conditional: update to $test\n");
 	}
 
@@ -513,7 +520,7 @@ sub parse_makefile_vars($file, $cwd = undef) {
 	push @incdirs, dirname($file);
 
 	# Some Makefiles depend on these being set
-	if ($file eq '/etc/mk.conf') {
+	if ($file eq $conf_makeconf) {
 		$vars{LINTPKGSRC} = 'YES';
 	} else {
 		%vars = %{$default_vars};
@@ -626,7 +633,7 @@ sub parse_makefile_vars($file, $cwd = undef) {
 
 sub get_default_makefile_vars() {
 
-	chomp($pkg_installver = `pkg_info -V 2>/dev/null || echo 20010302`);
+	chomp($pkg_installver = `$conf_pkg_info -V 2>/dev/null || echo 20010302`);
 
 	chomp($_ = `uname -srm`);
 	(
@@ -655,16 +662,12 @@ sub get_default_makefile_vars() {
 	    : $conf_pkgsrcdir;
 
 	$default_vars->{DESTDIR} = '';
-	$default_vars->{LOCALBASE} = '/usr/pkg';
-	$default_vars->{X11BASE} = '/usr/X11R6';
+	$default_vars->{LOCALBASE} = $conf_pkgsrcdir;
+	$default_vars->{X11BASE} = $conf_x11base;
 
 	my ($vars);
-	if (-f '/etc/mk.conf' && ($vars = parse_makefile_vars('/etc/mk.conf', undef))) {
-		foreach my $var (keys %{$vars}) {
-			$default_vars->{$var} = $vars->{$var};
-		}
-	} elsif (-f "$conf_sysconfdir/mk.conf" &&
-	    ($vars = parse_makefile_vars("$conf_sysconfdir/mk.conf", undef))) {
+	if (-f $conf_makeconf &&
+	    ($vars = parse_makefile_vars($conf_makeconf, undef))) {
 		foreach my $var (keys %{$vars}) {
 			$default_vars->{$var} = $vars->{$var};
 		}
@@ -740,8 +743,8 @@ sub invalid_version($pkgmatch) {
 }
 
 sub list_installed_packages() {
-	open(PKG_INFO, 'pkg_info -e "*" |')
-	    or fail("Unable to run pkg_info: $!");
+	open(PKG_INFO, "$conf_pkg_info -e '*' |")
+	    or fail("Unable to run $conf_pkg_info: $!");
 	chomp(my @pkgs = <PKG_INFO>);
 	close(PKG_INFO);
 	map { $_ = canonicalize_pkgname($_) } @pkgs;
@@ -1035,7 +1038,7 @@ sub load_pkgsrc_makefiles($fname) {
 	open(STORE, '<', $fname)
 	    or die("Cannot read pkgsrc store from $fname: $!\n");
 	my ($pkgver);
-	$pkgdb = PkgDb->new;
+	$pkgdb = PkgDb->new();
 	while (defined(my $line = <STORE>)) {
 		chomp($line);
 		if ($line =~ qr"^package\t([^\t]+)\t([^\t]+$)$") {
@@ -1067,7 +1070,7 @@ sub scan_pkgsrc_makefiles($pkgsrcdir) {
 		return;
 	}
 
-	$pkgdb = new PkgDb;
+	$pkgdb = PkgDb->new();
 	@categories = list_pkgsrc_categories($pkgsrcdir);
 	verbose('Scan Makefiles: ');
 
@@ -1356,8 +1359,8 @@ sub check_prebuilt_packages() {
 	}
 }
 
-sub debug_parse_makefiles(@) {
-	foreach my $file (@_) {
+sub debug_parse_makefiles(@args) {
+	foreach my $file (@args) {
 		-d $file and $file .= '/Makefile';
 		-f $file or fail("No such file: $file");
 
@@ -1575,8 +1578,9 @@ sub check_outdated_installed_packages($pkgsrcdir) {
 	print "\nREQUIRED details for packages that could be updated:\n";
 
 	foreach my $pkgver (@update) {
-		print $pkgver->pkgbase . ':';
-		if (open(PKGINFO, 'pkg_info -R ' . $pkgver->pkgbase . '|')) {
+		my $pkgbase = $pkgver->pkgbase;
+		print "$pkgbase:";
+		if (open(PKGINFO, "$conf_pkg_info -R $pkgbase |")) {
 			my ($list);
 
 			while (<PKGINFO>) {

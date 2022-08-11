@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.47 2022/08/09 18:14:22 rillig Exp $
+# $NetBSD: Makefile,v 1.49 2022/08/10 22:43:54 rillig Exp $
 
-PKGNAME=	lintpkgsrc-2022.08.09
+PKGNAME=	lintpkgsrc-2022.08.10
 CATEGORIES=	pkgtools
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -12,6 +12,7 @@ TEST_DEPENDS+=	p5-File-Slurp>=0:../../devel/p5-File-Slurp
 TEST_DEPENDS+=	p5-IO-Null>=0:../../devel/p5-IO-Null
 
 USE_TOOLS+=	perl:run
+PERL5_REQD+=	5.36
 
 WRKSRC=		${WRKDIR}
 USE_LANGUAGES=	# none
@@ -20,11 +21,16 @@ AUTO_MKDIRS=	yes
 SUBST_CLASSES+=		lp
 SUBST_STAGE.lp=		post-configure
 SUBST_FILES.lp+=	lintpkgsrc.0 lintpkgsrc.1 lintpkgsrc.pl
-SUBST_SED.lp+=		-e 's;@PKGSRCDIR@;${BATCH:D/usr/pkgsrc:U${PKGSRCDIR}};g'
+SUBST_SED.lp+=		-e 's,_\(.\)@_.M_.A_.K_.E_.C_.O_.N_.F_.@,${MAKECONF:C,(.),_\\\\1\1,g},g'
+SUBST_SED.lp+=		-e 's,_\(.\)@_.P_.R_.E_.F_.I_.X_.@,${PREFIX:C,(.),_\\\\1\1,g},g'
 SUBST_VARS.lp+=		MAKE
+SUBST_VARS.lp+=		MAKECONF
 SUBST_VARS.lp+=		PERL5
+SUBST_VARS.lp+=		PKGSRCDIR
+SUBST_VARS.lp+=		PKG_INFO
 SUBST_VARS.lp+=		PKG_SYSCONFDIR
 SUBST_VARS.lp+=		PREFIX
+SUBST_VARS.lp+=		X11BASE
 
 .include "../../mk/bsd.prefs.mk"
 
