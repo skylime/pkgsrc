@@ -1,4 +1,4 @@
-# $NetBSD: versioned_dependencies.mk,v 1.82 2022/07/20 23:04:56 wiz Exp $
+# $NetBSD: versioned_dependencies.mk,v 1.85 2022/08/24 09:18:59 wiz Exp $
 #
 # This file determines which separate distribution of a Python
 # package is used as dependency, depending on the Python version
@@ -9,7 +9,7 @@
 # PYTHON_VERSIONED_DEPENDENCIES
 #       The Python package which should be added as a dependency.
 #
-#       Possible values: Pillow X cairo chardet click cryptography flake8 hypothesis importlib-metadata jinja2 lama markdown mccabe more-itertools pip packaging pygments pyphen rsa setuptools setuptools_scm test twisted
+#       Possible values: Pillow X cairo chardet click coverage cryptography dns flake8 hypothesis importlib-metadata jinja2 lama markdown mccabe more-itertools pip packaging pygments pyphen rsa setuptools setuptools_scm test test-cov twisted
 #       Default: (nothing)
 #
 
@@ -22,7 +22,9 @@ _SUPPORTED_PACKAGES+=	X textproc/py-X2 textproc/py-X
 _SUPPORTED_PACKAGES+=	cairo graphics/py-cairo118 graphics/py-cairo
 _SUPPORTED_PACKAGES+=	chardet converters/py-chardet4 converters/py-chardet
 _SUPPORTED_PACKAGES+=	click devel/py-click7 devel/py-click
+_SUPPORTED_PACKAGES+=	coverage devel/py27-coverage devel/py-coverage
 _SUPPORTED_PACKAGES+=	cryptography security/py27-cryptography security/py-cryptography 
+_SUPPORTED_PACKAGES+=	dns net/py-dns1 net/py-dns 
 _SUPPORTED_PACKAGES+=	flake8 devel/py-flake8-3 devel/py-flake8
 _SUPPORTED_PACKAGES+=	hypothesis devel/py-hypothesis4 devel/py-hypothesis
 _SUPPORTED_PACKAGES+=	importlib-metadata devel/py-importlib-metadata2 devel/py-importlib-metadata
@@ -40,6 +42,7 @@ _SUPPORTED_PACKAGES+=	rsa security/py-rsa40 security/py-rsa
 _SUPPORTED_PACKAGES+=	setuptools devel/py-setuptools44 devel/py-setuptools
 _SUPPORTED_PACKAGES+=	setuptools_scm devel/py-setuptools_scm5 devel/py-setuptools_scm
 _SUPPORTED_PACKAGES+=	test devel/py-test4 devel/py-test
+_SUPPORTED_PACKAGES+=	test-cov devel/py27-test-cov devel/py-test-cov
 _SUPPORTED_PACKAGES+=	twisted net/py-twisted19 net/py-twisted
 
 .for pattern in ${PYTHON_VERSIONED_DEPENDENCIES}

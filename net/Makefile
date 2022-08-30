@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1471 2022/07/24 21:35:31 wiz Exp $
+# $NetBSD: Makefile,v 1.1473 2022/08/23 21:47:10 wiz Exp $
 #
 
 COMMENT=	Networking tools
@@ -680,6 +680,7 @@ SUBDIR+=	py-ORBit
 SUBDIR+=	py-Socks
 SUBDIR+=	py-adns
 SUBDIR+=	py-aio-pika
+SUBDIR+=	py-aiodns
 SUBDIR+=	py-aioresponses
 SUBDIR+=	py-aiormq
 SUBDIR+=	py-aiorpcX
@@ -697,6 +698,7 @@ SUBDIR+=	py-celery
 SUBDIR+=	py-cymruwhois
 SUBDIR+=	py-digitalocean
 SUBDIR+=	py-dns
+SUBDIR+=	py-dns1
 SUBDIR+=	py-dnsdiag
 SUBDIR+=	py-dpkt
 SUBDIR+=	py-dropbox

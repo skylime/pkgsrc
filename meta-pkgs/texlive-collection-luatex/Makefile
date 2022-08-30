@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.19 2022/04/25 10:43:14 markd Exp $
+# $NetBSD: Makefile,v 1.21 2022/08/22 11:36:15 markd Exp $
 
 DISTNAME=	collection-luatex
-PKGNAME=	texlive-${DISTNAME}-2022pre1
+PKGNAME=	texlive-${DISTNAME}-2022pre2
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	63081
+TEXLIVE_REV=	63732
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.tug.org/texlive/
@@ -30,10 +30,12 @@ DEPENDS+=	tex-ctablestack-[0-9]*:../../print/tex-ctablestack
 # depend innerscript
 # depend interpreter
 # depend kanaparser
+# depend ligtype
 # depend linebreaker
+# depend lt3luabridge
 # depend lua-typo
 # depend lua-uca
-# depend lua-ul
+DEPENDS+=	tex-lua-ul-[0-9]*:../../print/tex-lua-ul
 DEPENDS+=	tex-lua-uni-algos-[0-9]*:../../print/tex-lua-uni-algos
 # depend lua-visual-debug
 # depend lua-widow-control
@@ -80,6 +82,9 @@ DEPENDS+=	tex-luatexbase-[0-9]*:../../devel/tex-luatexbase
 # depend plantuml
 # depend pyluatex
 # depend selnolig
+# depend showhyphenation
+# depend showkerning
+# depend spacekern
 # depend spelling
 # depend stricttex
 # depend truthtable

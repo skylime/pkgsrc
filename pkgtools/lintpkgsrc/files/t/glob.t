@@ -1,4 +1,6 @@
-# $NetBSD: glob.t,v 1.7 2022/08/10 21:48:47 rillig Exp $
+# $NetBSD: glob.t,v 1.13 2022/08/14 12:54:01 rillig Exp $
+#
+# Tests for file globbing and matching.
 
 use strict;
 use warnings;
@@ -56,4 +58,25 @@ sub test_glob2regex() {
 	ok("a\nb" =~ $re, 1);
 }
 
+sub test_expand_braces() {
+	my @examples = (
+	    [ '', ],
+	    [ 'abc', 'abc' ],
+	    [ '{a,b,c}', 'a', 'b', 'c' ],
+	    [ '<{opt,}>', '<opt>', '<>' ],
+	    [ '<{,opt}>', '<>', '<opt>' ],
+	    [ '{0,1,2}', '0', '1', '2' ],
+	    [ '{2,1,0}', '2', '1', '0' ],
+	    # XXX: duplicate 'thirteen'.
+	    [ '{thir,f{our,if}}teen', 'thirteen', 'fourteen', 'thirteen', 'fifteen' ]
+	);
+
+	foreach my $example (@examples) {
+		my ($str, @expected) = @$example;
+		my @actual = expand_braces($str);
+		ok(join(' ', @actual), join(' ', @expected));
+	}
+}
+
 test_glob2regex();
+test_expand_braces();

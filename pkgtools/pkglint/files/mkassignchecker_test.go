@@ -108,12 +108,17 @@ func (s *Suite) Test_MkAssignChecker_checkLeft__infrastructure(c *check.C) {
 		MkCvsID,
 		"_VARNAME=\t\tvalue",
 		"_SORTED_VARS.group=\tVARNAME")
+	t.CreateFileLines("wip/mk/infra.mk",
+		MkCvsID,
+		"_CVS_ENV+=\t\tCVS_RSH=ssh")
 	t.FinishSetUp()
 
 	G.Check(t.File("mk/infra.mk"))
+	G.Check(t.File("wip/mk/infra.mk"))
 
 	t.CheckOutputLines(
-		"WARN: ~/mk/infra.mk:2: _VARNAME is defined but not used.")
+		"WARN: ~/mk/infra.mk:2: _VARNAME is defined but not used.",
+		"WARN: ~/wip/mk/infra.mk:2: _CVS_ENV is defined but not used.")
 }
 
 func (s *Suite) Test_MkAssignChecker_checkLeft__documented_underscore(c *check.C) {
@@ -1182,4 +1187,26 @@ func (s *Suite) Test_MkAssignChecker_checkVaruseShell(c *check.C) {
 	t.CheckOutputLines(
 		"WARN: filename.mk:1: Unknown shell command \"grep\".",
 		"WARN: filename.mk:1: EXAMPLE_FILES is used but not defined.")
+}
+
+func (s *Suite) Test_MkAssignChecker_mayBeDefined(c *check.C) {
+	t := s.Init(c)
+	t.SetUpVartypes()
+
+	mklines := t.NewMkLines("filename.mk",
+		MkCvsID,
+		"",
+		"_GOOD_PREFIX=\t\tvalue",
+		"_BAD_PREFIX=\t\tvalue",
+		"",
+		"_VARGROUPS+=\t\tgood",
+		"_IGN_VARS.good+=\t_GOOD_PREFIX")
+
+	mklines.Check()
+
+	t.CheckOutputLines(
+		"WARN: filename.mk:3: _GOOD_PREFIX is defined but not used.",
+		"WARN: filename.mk:4: Variable names starting with an underscore (_BAD_PREFIX) are reserved for internal pkgsrc use.",
+		"WARN: filename.mk:4: _BAD_PREFIX is defined but not used.",
+		"WARN: filename.mk:4: Variable _BAD_PREFIX is defined but not mentioned in the _VARGROUPS section.")
 }

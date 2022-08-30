@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.65 2022/06/28 11:36:06 wiz Exp $
+# $NetBSD: Makefile,v 1.67 2022/08/22 22:27:12 tnn Exp $
 
-PKGREVISION= 1
+PKGREVISION= 2
 .include "Makefile.common"
 
 PKGNAME=		ups-${DISTNAME}
@@ -20,6 +20,7 @@ CONFIGURE_ARGS+=	--with-drvpath=${NUT_DRVDIR:Q}
 CONFIGURE_ARGS+=	--with-altpidpath=${NUT_STATEDIR:Q}
 CONFIGURE_ARGS+=	--with-pidpath=${NUT_STATEDIR:Q}
 CONFIGURE_ARGS+=	--with-dev
+CONFIGURE_ARGS+=	--without-snmp	# provided by sysutils/ups-nut-snmp
 
 PKG_GROUPS_VARS+=	NUT_GROUP
 PKG_USERS_VARS+=	NUT_USER
@@ -75,4 +76,6 @@ post-install:
 		${INSTALL_DATA} $$f ${DESTDIR}${NUT_DOCDIR}/cables/; \
 	done
 
+# nut-scanner needs libltdl, but this is not documented
+.include "../../devel/libltdl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
