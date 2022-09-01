@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2022/04/10 22:17:40 gutteridge Exp $
+# $NetBSD: Makefile,v 1.7 2022/08/29 15:56:18 wiz Exp $
 
-DISTNAME=	pyerfa-1.7.1.1
+DISTNAME=	pyerfa-2.0.0.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pyerfa/}
 
@@ -18,11 +17,11 @@ USE_LANGUAGES=	c
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27 37 # py-numpy
 
-DEPENDS+=	${PYPKGPREFIX}-numpy>=1.17.0:../../math/py-numpy
+DEPENDS+=	${PYPKGPREFIX}-numpy>=1.18.0:../../math/py-numpy
 DEPENDS+=	${PYPKGPREFIX}-jinja2>=2.10.3:../../textproc/py-jinja2
 DEPENDS+=	${PYPKGPREFIX}-packaging>=20.4:../../devel/py-packaging
 DEPENDS+=	${PYPKGPREFIX}-setuptools_scm>=4.1.2:../../devel/py-setuptools_scm
-DEPENDS+=	erfa>=1.7.1:../../math/erfa
+DEPENDS+=	erfa>=2.0.0:../../math/erfa
 
 .include "../../lang/python/egg.mk"
 .include "../../math/py-numpy/buildlink3.mk"

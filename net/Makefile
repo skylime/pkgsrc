@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1473 2022/08/23 21:47:10 wiz Exp $
+# $NetBSD: Makefile,v 1.1476 2022/08/28 16:21:25 pin Exp $
 #
 
 COMMENT=	Networking tools
@@ -643,6 +643,7 @@ SUBDIR+=	php-xmlrpc
 SUBDIR+=	php-yaz
 SUBDIR+=	pim6dd
 SUBDIR+=	pim6sd
+SUBDIR+=	piratebay
 SUBDIR+=	pload
 SUBDIR+=	podcastdl
 SUBDIR+=	poink
@@ -830,8 +831,10 @@ SUBDIR+=	ruby-ffi-rzmq-core
 SUBDIR+=	ruby-icmp
 SUBDIR+=	ruby-ipaddress
 SUBDIR+=	ruby-net-dhcp
+SUBDIR+=	ruby-net-imap
 SUBDIR+=	ruby-net-ldap
 SUBDIR+=	ruby-net-ping
+SUBDIR+=	ruby-net-smtp
 SUBDIR+=	ruby-netaddr
 SUBDIR+=	ruby-netrc
 SUBDIR+=	ruby-network_interface

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3784 2022/08/25 10:22:09 abs Exp $
+# $NetBSD: Makefile,v 1.3787 2022/08/31 08:24:24 sborrill Exp $
 #
 
 COMMENT=	Development utilities
@@ -2382,6 +2382,7 @@ SUBDIR+=	py-codespell
 SUBDIR+=	py-codestyle
 SUBDIR+=	py-cogapp
 SUBDIR+=	py-collections-extended
+SUBDIR+=	py-colorlog
 SUBDIR+=	py-compizconfig
 SUBDIR+=	py-configargparse
 SUBDIR+=	py-configobj
@@ -2565,6 +2566,7 @@ SUBDIR+=	py-libusb1
 SUBDIR+=	py-limits
 SUBDIR+=	py-line_profiler
 SUBDIR+=	py-linecache2
+SUBDIR+=	py-littleutils
 SUBDIR+=	py-llvmlite
 SUBDIR+=	py-lockfile
 SUBDIR+=	py-logan
@@ -2617,6 +2619,7 @@ SUBDIR+=	py-path.py
 SUBDIR+=	py-pathlib
 SUBDIR+=	py-pathlib2
 SUBDIR+=	py-pathspec
+SUBDIR+=	py-pathvalidate
 SUBDIR+=	py-pbr
 SUBDIR+=	py-pebble
 SUBDIR+=	py-pep517
