@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1637 2022/08/31 16:09:27 taca Exp $
+# $NetBSD: Makefile,v 1.1640 2022/09/01 11:57:38 markd Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -753,6 +753,7 @@ SUBDIR+=	py-flask-restplus
 SUBDIR+=	py-flask-script
 SUBDIR+=	py-flask-security
 SUBDIR+=	py-flask-sendmail
+SUBDIR+=	py-flask-session
 SUBDIR+=	py-flask-sqlalchemy
 SUBDIR+=	py-flask-sslify
 SUBDIR+=	py-flask-static-digest
@@ -785,9 +786,11 @@ SUBDIR+=	py-hyperlink
 SUBDIR+=	py-idna
 SUBDIR+=	py-ipywidgets
 SUBDIR+=	py-jonpy
+SUBDIR+=	py-jwcrypto
 SUBDIR+=	py-klein
 SUBDIR+=	py-landslide
 SUBDIR+=	py-livereload
+SUBDIR+=	py-lti1p3
 SUBDIR+=	py-mechanize
 SUBDIR+=	py-meinheld
 SUBDIR+=	py-mezzanine
