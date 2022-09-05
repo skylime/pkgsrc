@@ -611,7 +611,6 @@ ${PLIST.ads}lib/samba/bind9/dlz_bind9_12.${SOEXT}
 ${PLIST.ads}lib/samba/bind9/dlz_bind9_14.${SOEXT}
 ${PLIST.ads}lib/samba/bind9/dlz_bind9_16.${SOEXT}
 ${PLIST.ads}lib/samba/bind9/dlz_bind9_18.${SOEXT}
-${PLIST.ads}lib/samba/gensec/krb5.${SOEXT}
 ${PLIST.ads}lib/samba/idmap/ad.${SOEXT}
 lib/samba/idmap/autorid.${SOEXT}
 lib/samba/idmap/hash.${SOEXT}
