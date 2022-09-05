@@ -34,6 +34,7 @@ SHA1 (patch-source3_smbd_open.c) = 002f26f77dad54617bf9c0fe4fa12f093ef3b66c
 SHA1 (patch-source3_smbd_process.c) = 3a6f9682aca6473e364d0be0f601774df4fd1296
 SHA1 (patch-source3_smbd_quotas.c) = 7f959964fac3ee435c57a115c8f5b6407e57b777
 SHA1 (patch-source3_utils_net__offlinejoin.c) = 773a4686d5e2a7eaebf9430529708e8318d45c77
+SHA1 (patch-source4_auth_gensec_wscript__build) = 67dcfdb1cf4716b86fe10f77a7453a363e4b35ee
 SHA1 (patch-source4_dsdb_samdb_ldb__modules_wscript__build__server) = 47f55ec16b667a0a4d38de5ac89a117f2ac8f898
 SHA1 (patch-source4_scripting_wsript_build) = 816d44f48b6cbc6d999995e00eaea1d2dc477159
 SHA1 (patch-source4_utils_oLschema2ldif_wscript__build) = cbba15c2c0e1eee9d07424510a96b596f46992b4
