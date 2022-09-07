@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3790 2022/09/05 14:12:15 adam Exp $
+# $NetBSD: Makefile,v 1.3792 2022/09/07 02:57:19 pho Exp $
 #
 
 COMMENT=	Development utilities
@@ -632,8 +632,10 @@ SUBDIR+=	hs-monad-logger
 SUBDIR+=	hs-monad-loops
 SUBDIR+=	hs-mono-traversable
 SUBDIR+=	hs-mono-traversable-instances
+SUBDIR+=	hs-monoidal-containers
 SUBDIR+=	hs-mtl-compat
 SUBDIR+=	hs-mutable-containers
+SUBDIR+=	hs-newtype
 SUBDIR+=	hs-old-locale
 SUBDIR+=	hs-optional-args
 SUBDIR+=	hs-optparse-applicative

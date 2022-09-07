@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.3 2022/08/20 08:08:23 wiz Exp $
+# $NetBSD: Makefile,v 1.6 2022/09/07 06:50:52 pho Exp $
 
-DISTNAME=	bower-json-1.0.0.1
-PKGREVISION=	2
+DISTNAME=	bower-json-1.1.0.0
+PKGREVISION=	1
 CATEGORIES=	www
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-COMMENT=	Components of paths
+COMMENT=	Read bower.json from Haskell
 LICENSE=	modified-bsd
 
 .include "../../converters/hs-aeson/buildlink3.mk"
