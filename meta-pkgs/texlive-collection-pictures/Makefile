@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.32 2022/04/14 05:39:05 markd Exp $
+# $NetBSD: Makefile,v 1.34 2022/09/01 06:18:44 markd Exp $
 
 DISTNAME=	collection-pictures
-PKGNAME=	texlive-${DISTNAME}-2021pre1
+PKGNAME=	texlive-${DISTNAME}-2022pre1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	62930
+TEXLIVE_REV=	64199
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.tug.org/texlive/
@@ -64,6 +64,7 @@ DEPENDS+=	tex-ellipse-[0-9]*:../../graphics/tex-ellipse
 # depend fast-diagram
 # depend fig4latex
 # depend figchild
+# depend figput
 # depend fitbox
 # depend flowchart
 # depend forest
@@ -175,6 +176,7 @@ DEPENDS+=	tex-tikz-3dplot-[0-9]*:../../graphics/tex-tikz-3dplot
 DEPENDS+=	tex-tikz-cd-[0-9]*:../../graphics/tex-tikz-cd
 # depend tikz-dependency
 # depend tikz-dimline
+# depend tikz-ext
 # depend tikz-feynhand
 # depend tikz-feynman
 # depend tikz-imagelabels
@@ -201,6 +203,7 @@ DEPENDS+=	tex-tikz-cd-[0-9]*:../../graphics/tex-tikz-cd
 # depend tikzbricks
 # depend tikzcodeblocks
 # depend tikzducks
+# depend tikzfill
 DEPENDS+=	tex-tikzinclude-[0-9]*:../../graphics/tex-tikzinclude
 # depend tikzlings
 DEPENDS+=	tex-tikzmark-[0-9]*:../../graphics/tex-tikzmark
@@ -210,6 +213,7 @@ DEPENDS+=	tex-tikzorbital-[0-9]*:../../graphics/tex-tikzorbital
 DEPENDS+=	tex-tikzpagenodes-[0-9]*:../../graphics/tex-tikzpagenodes
 # depend tikzpeople
 DEPENDS+=	tex-tikzpfeile-[0-9]*:../../graphics/tex-tikzpfeile
+# depend tikzpingus
 DEPENDS+=	tex-tikzposter-[0-9]*:../../graphics/tex-tikzposter
 DEPENDS+=	tex-tikzscale-[0-9]*:../../graphics/tex-tikzscale
 DEPENDS+=	tex-tikzsymbols-[0-9]*:../../graphics/tex-tikzsymbols
@@ -224,6 +228,7 @@ DEPENDS+=	tex-tkz-fct-[0-9]*:../../graphics/tex-tkz-fct
 # depend tkz-graph
 # depend tkz-orm
 # depend tkz-tab
+# depend tkzexample
 # depend tonevalue
 # depend tqft
 # depend tsemlines

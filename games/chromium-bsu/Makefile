@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.26 2022/07/29 16:29:08 jperkin Exp $
+# $NetBSD: Makefile,v 1.28 2022/08/11 05:08:24 gutteridge Exp $
 
 DISTNAME=		chromium-bsu-0.9.16.1
-PKGREVISION=		6
+PKGREVISION=		7
 CATEGORIES=		games
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=chromium-bsu/}
 
@@ -19,7 +19,7 @@ GNU_CONFIGURE=		yes
 
 LDFLAGS+=		${BUILDLINK_LDADD.gettext}
 LDFLAGS.DragonFly=	-lSDL2
-LDFLAGS.SunOS=		-lSDL2 -lintl
+LDFLAGS.SunOS=		-lSDL2
 
 CONFIGURE_ARGS+=	--disable-ftgl
 CONFIGURE_ARGS+=	--disable-glut

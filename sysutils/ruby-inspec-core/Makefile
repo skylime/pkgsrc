@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.13 2021/12/12 13:16:23 taca Exp $
+# $NetBSD: Makefile,v 1.15 2022/09/04 16:26:21 taca Exp $
 
-DISTNAME=	inspec-core-4.50.3
+DISTNAME=	inspec-core-4.56.20
 CATEGORIES=	sysutils
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -32,6 +32,8 @@ DEPENDS+=	${RUBY_PKGPREFIX}-multipart-post>=2.0<3:../../www/ruby-multipart-post
 DEPENDS+=	${RUBY_PKGPREFIX}-train-core>=3.0<4:../../net/ruby-train-core
 
 USE_LANGUAGES=	# none
+
+RUBY_VERSIONS_INCOMPATIBLE=	26 # ruby-semverse
 
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

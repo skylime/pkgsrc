@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.11 2022/07/28 06:52:58 adam Exp $
+# $NetBSD: Makefile,v 1.13 2022/08/18 07:35:32 adam Exp $
 
-DISTNAME=	setproctitle-1.3.0
+DISTNAME=	setproctitle-1.3.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	sysutils python
 MASTER_SITES=	${MASTER_SITE_PYPI:=s/setproctitle/}

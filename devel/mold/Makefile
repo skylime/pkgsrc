@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.18 2022/07/02 21:22:44 fcambus Exp $
+# $NetBSD: Makefile,v 1.21 2022/09/04 14:37:15 fcambus Exp $
 
-DISTNAME=	mold-1.3.1
+DISTNAME=	mold-1.4.2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=rui314/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -36,6 +36,8 @@ DL_AUTO_VARS=		yes
 PTHREAD_AUTO_VARS=	yes
 
 PYTHON_FOR_BUILD_ONLY=	yes
+
+REPLACE_PYTHON+=	update-git-hash.py
 
 pre-configure:
 	# install phase uses python3 command

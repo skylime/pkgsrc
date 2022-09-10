@@ -1,6 +1,5 @@
-# $NetBSD: Makefile,v 1.17 2022/08/03 11:51:07 jperkin Exp $
+# $NetBSD: Makefile,v 1.19 2022/08/13 09:58:04 tnn Exp $
 
-PKGREVISION= 1
 .include "../../lang/clang/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/clang/clang-tools-extra/:S/.src//}
@@ -9,15 +8,15 @@ COMMENT=	Extra Clang tools
 
 DEPENDS+=	clang>=${LLVM_VERSION}:../../lang/clang
 
-_EXTRA_DIST=		${DISTNAME:S/clang/clang-tools-extra/}${EXTRACT_SUFX}
-SITES.${_EXTRA_DIST}=	${MASTER_SITES:=${GITHUB_PROJECT}/releases/download/${GITHUB_RELEASE}/}
+EXTRA_DIST=		${DISTNAME:S/clang/clang-tools-extra/}${EXTRACT_SUFX}
+SITES.${EXTRA_DIST}=	${MASTER_SITES:=${GITHUB_PROJECT}/releases/download/${GITHUB_RELEASE}/}
 
-DISTFILES=	${DEFAULT_DISTFILES} ${_EXTRA_DIST}
+DISTFILES=	${DEFAULT_DISTFILES} ${EXTRA_DIST}
 
 BUILD_TARGET=	clang-change-namespace clang-apply-replacements clang-doc
 BUILD_TARGET+=	clang-include-fixer clang-move clang-query clang-reorder-fields
 BUILD_TARGET+=	clang-tidy clangd modularize pp-trace tool-template
-INSTALL_DIRS=	../build/tools/extra
+INSTALL_DIRS=	build/tools/extra
 
 REPLACE_PYTHON+=	tools/extra/clang-include-fixer/find-all-symbols/tool/run-find-all-symbols.py
 REPLACE_PYTHON+=	tools/extra/clang-tidy/tool/clang-tidy-diff.py

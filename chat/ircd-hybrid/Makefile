@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.82 2022/07/05 10:45:29 fox Exp $
+# $NetBSD: Makefile,v 1.84 2022/09/04 08:25:09 fox Exp $
 
-DISTNAME=	ircd-hybrid-8.2.40
+DISTNAME=	ircd-hybrid-8.2.42
 CATEGORIES=	chat
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=ircd-hybrid/}
 EXTRACT_SUFX=	.tgz
@@ -70,6 +70,9 @@ CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}/log/ircd-hybrid
 
 .include "options.mk"
+
+post-extract:
+	${MV} ${WRKDIR}/${PKGBASE} ${WRKDIR}/${DISTNAME}
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/INSTALL.md ${DESTDIR}${PREFIX}/${DOCDIR}

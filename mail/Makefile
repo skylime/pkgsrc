@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.579 2022/05/25 15:45:31 manu Exp $
+# $NetBSD: Makefile,v 1.585 2022/09/08 05:17:54 wiz Exp $
 #
 
 COMMENT=	Electronic mail utilities
@@ -108,6 +108,7 @@ SUBDIR+=	gnus
 SUBDIR+=	greetdelay
 SUBDIR+=	grepmail
 SUBDIR+=	greylisting-spp
+SUBDIR+=	gyb
 SUBDIR+=	heirloom-mailx
 SUBDIR+=	hypermail
 SUBDIR+=	ifile
@@ -296,10 +297,14 @@ SUBDIR+=	pst-utils
 SUBDIR+=	pulsar
 SUBDIR+=	py-aiosmtpd
 SUBDIR+=	py-authres
+SUBDIR+=	py-checkdmarc
 SUBDIR+=	py-email_validator
 SUBDIR+=	py-flufl.bounce
 SUBDIR+=	py-imapclient
+SUBDIR+=	py-mail-parser
+SUBDIR+=	py-mailsuite
 SUBDIR+=	py-policyd-spf
+SUBDIR+=	py-postfix-mta-sts-resolver
 SUBDIR+=	py-sendmail-admin
 SUBDIR+=	py-spf
 SUBDIR+=	py-ukpostcodeparser
@@ -354,6 +359,8 @@ SUBDIR+=	ruby-mime-types1
 SUBDIR+=	ruby-mini_mime
 SUBDIR+=	ruby-roadie
 SUBDIR+=	ruby-roadie-rails
+SUBDIR+=	ruby-roadie-rails2
+SUBDIR+=	ruby-roadie4
 SUBDIR+=	ruby-tmail
 SUBDIR+=	s-nail
 SUBDIR+=	safecat

@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.15 2022/06/30 11:18:44 nia Exp $
+# $NetBSD: Makefile,v 1.20 2022/08/24 17:49:36 leot Exp $
 
-DISTNAME=	yt-dlp-2022.6.22.1
-PKGREVISION=	1
+DISTNAME=	yt-dlp-2022.8.19
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_PYPI:=y/yt-dlp/}
 # \TODO: create symlink, as mpv makes use of youtube-dl?
@@ -14,17 +13,17 @@ LICENSE=	unlicense
 
 USE_LANGUAGES=	# none
 
-INSTALLATION_DIRS+=	${PKGMANDIR}/man1
-
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	pre-configure
 SUBST_FILES.paths=	setup.py
-SUBST_VARS.paths=	PKGMANDIR
+SUBST_SED.paths=	-e "s,share/man/man1,${PKGMANDIR}/man1,"
 
-# Only for >= 3.6
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 USE_PKG_RESOURCES=	yes
+
+post-install:
+	${RM} -fr ${DESTDIR}${PREFIX}/${PYSITELIB}/devscripts
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

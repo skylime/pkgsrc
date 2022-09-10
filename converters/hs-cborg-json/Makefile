@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2022/02/26 03:57:44 pho Exp $
+# $NetBSD: Makefile,v 1.4 2022/08/29 10:41:02 wiz Exp $
 
-DISTNAME=	cborg-json-0.2.3.0
-PKGREVISION=	1
+DISTNAME=	cborg-json-0.2.4.0
 CATEGORIES=	converters
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

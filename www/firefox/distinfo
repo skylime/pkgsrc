@@ -1,8 +1,8 @@
-$NetBSD: distinfo,v 1.478 2022/08/03 17:09:26 ryoon Exp $
+$NetBSD: distinfo,v 1.483 2022/09/08 19:54:16 ryoon Exp $
 
-BLAKE2s (firefox-103.0.1.source.tar.xz) = 5128a952e6957b1b808dd5c513848706937e6943639d64ac6856858ae8564cb1
-SHA512 (firefox-103.0.1.source.tar.xz) = cb487e1d5d602e6b07093b5e722c4e70b9bf39f42c13c25642f263f90f9d3940d02e6fdbab9e8f41b66a50f81d70300acf81c222f08a26eed3ae55777fdc6303
-Size (firefox-103.0.1.source.tar.xz) = 480380068 bytes
+BLAKE2s (firefox-104.0.2.source.tar.xz) = 4a1f957c30c316020043a868c7ae7d7292ed4ff85c0c7039b1850fc2bea92ca7
+SHA512 (firefox-104.0.2.source.tar.xz) = bf0d972add11566f5ef6402a22abd82122945de9fa9aab6ed7bb7e41d0843d41948a6d95c0769b0b704c066c8ff6e3f3bf26fcf288c64cd3b3f09a13d4dd467d
+Size (firefox-104.0.2.source.tar.xz) = 478270500 bytes
 BLAKE2s (nodejs-output-95.0.tgz) = c44b37d3605524a49157002f01c29f568f04194b0e635bc312de7ffdeb9a74c9
 SHA512 (nodejs-output-95.0.tgz) = 2faf326f4e100b66f8597c365cc2eb5d0eee26aae92a7e2446891f2178041aa71ba16eae37000acacd43a657025ec11c18db73b112f5c49cc21cdb882da6d798
 Size (nodejs-output-95.0.tgz) = 200627 bytes
@@ -23,7 +23,6 @@ SHA1 (patch-js_src_jit_ProcessExecutableMemory.cpp) = fad103cc698f9828ad58f74223
 SHA1 (patch-js_src_jit_arm64_vixl_MozCpu-vixl.cpp) = fdc522e3fb626b1b8a2ebf19ad60bfc25dfa4183
 SHA1 (patch-js_src_util_NativeStack.cpp) = a0a16d8d8d78d3cc3f4d2a508586f1a7821f7dba
 SHA1 (patch-js_src_vm_ArrayBufferObject.cpp) = 0501fdcae11568ae4ea78e0d2f6b3750b7a67d47
-SHA1 (patch-libwebrtc.diff) = e007fe7dd2fd16e7d0ac4a35f9a006db4e24eb7e
 SHA1 (patch-media_ffvpx_libavutil_arm_bswap.h) = de58daa0fd23d4fec50426602b65c9ea5862558a
 SHA1 (patch-media_libcubeb_src_cubeb__alsa.c) = 2ef11da83c90c41490db4c0d9809c3e1826b488a
 SHA1 (patch-media_libcubeb_src_cubeb__jack.cpp) = fc546c5e6582fd5eda64ba83287dfbbb3c9e229f
@@ -38,6 +37,7 @@ SHA1 (patch-third__party_js_cfworker_build.sh) = 46cdf97b99cf01080f290ae8d9a33b5
 SHA1 (patch-third__party_libwebrtc_modules_video__capture_linux_device__info__linux.cc) = 2e951d7d91934751608e99628fc144632d8a3b5c
 SHA1 (patch-third__party_libwebrtc_system__wrappers_source_cpu__features__linux.cc) = b90e22b50879f7adcc1da3a993f52c0701b720f8
 SHA1 (patch-third__party_wasm2c_wasm2c_wasm-rt-os-unix.c) = 9b8ce4b823fd06951aac59bdb4a5642f256b8e3f
+SHA1 (patch-toolkit_components_protobuf_src_google_protobuf_arenastring.cc) = 5bfd94022f7defc0e4aafb2ee82c3c77eae1fb5f
 SHA1 (patch-toolkit_components_terminator_nsTerminator.cpp) = bd7b2a0f2407c3ab95515b2f143c41c3ca6fb0c4
 SHA1 (patch-toolkit_modules_subprocess_subprocess__shared__unix.js) = 2303b753066298305ccae80d72765dbc4da5e0dc
 SHA1 (patch-toolkit_moz.configure) = 8de54693dc47b0993f220cc5a04af98925de1fb5

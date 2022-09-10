@@ -1,11 +1,12 @@
-# $NetBSD: Makefile,v 1.3 2022/01/15 19:04:24 schmonz Exp $
+# $NetBSD: Makefile,v 1.5 2022/08/30 17:55:31 schmonz Exp $
 
-GITHUB_PROJECT=		tlswrapper
-GITHUB_TAG=		20220114
 DISTNAME=		${GITHUB_PROJECT}
 PKGNAME=		${GITHUB_PROJECT}-${GITHUB_TAG}
+PKGREVISION=		1
 CATEGORIES=		security net
 MASTER_SITES=		${MASTER_SITE_GITHUB:=janmojzis/}
+GITHUB_PROJECT=		tlswrapper
+GITHUB_TAG=		20220814
 
 MAINTAINER=		schmonz@NetBSD.org
 HOMEPAGE=		https://github.com/janmojzis/tlswrapper/
@@ -21,6 +22,10 @@ MAKE_ENV+=		EMPTYDIR=${TLSWRAPPER_CHROOT:Q}
 LDFLAGS.SunOS+=		-lsocket
 
 INSTALLATION_DIRS=	bin man/man1 share/examples/${PKGBASE}
+
+post-extract:
+	cd ${WRKSRC};							\
+	${MV} -f randombytes.h randombytes.h-01getentropy
 
 do-install:
 	cd ${WRKSRC};							\

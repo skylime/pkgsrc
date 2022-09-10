@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.3 2022/05/09 21:48:48 pin Exp $
+# $NetBSD: Makefile,v 1.6 2022/08/30 11:20:43 pin Exp $
 
-DISTNAME=	tuifeed-0.1.1
+DISTNAME=	tuifeed-0.3.2
 CATEGORIES=	news
 MASTER_SITES=	${MASTER_SITE_GITHUB:=veeso/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	pin@NetBSD.org
 HOMEPAGE=	https://github.com/veeso/tuifeed/
 COMMENT=	Terminal feed reader with a fancy ui
 LICENSE=	mit

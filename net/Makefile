@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1471 2022/07/24 21:35:31 wiz Exp $
+# $NetBSD: Makefile,v 1.1478 2022/09/03 04:05:49 taca Exp $
 #
 
 COMMENT=	Networking tools
@@ -643,6 +643,7 @@ SUBDIR+=	php-xmlrpc
 SUBDIR+=	php-yaz
 SUBDIR+=	pim6dd
 SUBDIR+=	pim6sd
+SUBDIR+=	piratebay
 SUBDIR+=	pload
 SUBDIR+=	podcastdl
 SUBDIR+=	poink
@@ -680,6 +681,7 @@ SUBDIR+=	py-ORBit
 SUBDIR+=	py-Socks
 SUBDIR+=	py-adns
 SUBDIR+=	py-aio-pika
+SUBDIR+=	py-aiodns
 SUBDIR+=	py-aioresponses
 SUBDIR+=	py-aiormq
 SUBDIR+=	py-aiorpcX
@@ -697,6 +699,7 @@ SUBDIR+=	py-celery
 SUBDIR+=	py-cymruwhois
 SUBDIR+=	py-digitalocean
 SUBDIR+=	py-dns
+SUBDIR+=	py-dns1
 SUBDIR+=	py-dnsdiag
 SUBDIR+=	py-dpkt
 SUBDIR+=	py-dropbox
@@ -828,8 +831,12 @@ SUBDIR+=	ruby-ffi-rzmq-core
 SUBDIR+=	ruby-icmp
 SUBDIR+=	ruby-ipaddress
 SUBDIR+=	ruby-net-dhcp
+SUBDIR+=	ruby-net-imap
 SUBDIR+=	ruby-net-ldap
 SUBDIR+=	ruby-net-ping
+SUBDIR+=	ruby-net-pop
+SUBDIR+=	ruby-net-protocol
+SUBDIR+=	ruby-net-smtp
 SUBDIR+=	ruby-netaddr
 SUBDIR+=	ruby-netrc
 SUBDIR+=	ruby-network_interface

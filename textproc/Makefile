@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1320 2022/07/10 19:26:47 wiz Exp $
+# $NetBSD: Makefile,v 1.1325 2022/09/05 15:38:27 taca Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -1187,6 +1187,7 @@ SUBDIR+=	rtf-tools
 SUBDIR+=	rtfm
 SUBDIR+=	rubber
 SUBDIR+=	ruby-actionpack-xml_parser
+SUBDIR+=	ruby-actionpack52-xml_parser
 SUBDIR+=	ruby-actiontext60
 SUBDIR+=	ruby-actiontext61
 SUBDIR+=	ruby-actiontext70
@@ -1199,7 +1200,9 @@ SUBDIR+=	ruby-builder
 SUBDIR+=	ruby-cabocha
 SUBDIR+=	ruby-classifier-reborn
 SUBDIR+=	ruby-coderay
+SUBDIR+=	ruby-commonmarker
 SUBDIR+=	ruby-csv
+SUBDIR+=	ruby-deckar01-task_list
 SUBDIR+=	ruby-diff-lcs
 SUBDIR+=	ruby-erubi
 SUBDIR+=	ruby-escape
@@ -1213,6 +1216,7 @@ SUBDIR+=	ruby-haml
 SUBDIR+=	ruby-hikidoc
 SUBDIR+=	ruby-hpricot
 SUBDIR+=	ruby-html-parser
+SUBDIR+=	ruby-html-pipeline
 SUBDIR+=	ruby-htmlentities
 SUBDIR+=	ruby-htree
 SUBDIR+=	ruby-inifile
@@ -1251,6 +1255,7 @@ SUBDIR+=	ruby-rqrcode
 SUBDIR+=	ruby-rqrcode_core
 SUBDIR+=	ruby-rttool
 SUBDIR+=	ruby-safe_yaml
+SUBDIR+=	ruby-sanitize
 SUBDIR+=	ruby-sary
 SUBDIR+=	ruby-simple-rss
 SUBDIR+=	ruby-simplecov_json_formatter

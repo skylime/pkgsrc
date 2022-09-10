@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.319 2022/06/28 11:33:52 wiz Exp $
+# $NetBSD: Makefile,v 1.321 2022/08/11 05:08:22 gutteridge Exp $
 
 DISTNAME=		gnucash-4.11
-PKGREVISION=		1
+PKGREVISION=		2
 CATEGORIES=		finance
 MASTER_SITES=		${MASTER_SITE_GITHUB:=gnucash/}
 EXTRACT_SUFX=		.tar.bz2
@@ -13,8 +13,6 @@ COMMENT=		Personal or business finance management program
 LICENSE=		gnu-gpl-v3
 
 DEPENDS+=		guile30-slib>=3.2.1:../../devel/guile30-slib
-DEPENDS+=		p5-Finance-Quote-[0-9]*:../../finance/p5-Finance-Quote
-DEPENDS+=		p5-Date-Manip-[0-9]*:../../devel/p5-Date-Manip
 DEPENDS+=		dconf-[0-9]*:../../devel/dconf
 
 GCC_REQD+=		8

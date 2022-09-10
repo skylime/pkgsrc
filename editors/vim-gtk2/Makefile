@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.97 2022/07/27 15:13:10 khorben Exp $
+# $NetBSD: Makefile,v 1.99 2022/08/28 19:49:13 morr Exp $
 
 PKGNAME=	vim-gtk2-${VIM_VERSION}.${VIM_PATCHLEVEL}
 

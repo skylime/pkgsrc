@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.72 2022/07/09 08:16:02 wiz Exp $
+# $NetBSD: Makefile,v 1.81 2022/09/01 01:36:42 gutteridge Exp $
 #
-# when updating this, please also update:
+# When updating this, please also update:
 # devel/include-what-you-use
 # devel/lld
 # devel/lldb
@@ -11,6 +11,8 @@
 # lang/libcxx
 # lang/libcxxabi
 # lang/libunwind
+# lang/wasi-compiler-rt
+# lang/wasi-libcxx
 # parallel/openmp
 #
 # Do not update:
@@ -19,13 +21,13 @@
 # logically libLLVM4.
 #
 # Always update all */buildlink3.mk to require the latest stable release
-# version in BUILDLINK_API_DEPENDS, as there is no backwards compatibility
+# version in BUILDLINK_API_DEPENDS, as there is no backwards compatibility.
 
-PKGREVISION= 2
 .include "version.mk"
 
 DISTNAME=	llvm-${LLVM_VERSION}.src
 PKGNAME=	${DISTNAME:S/.src//}
+PKGREVISION=	1
 CATEGORIES=	lang devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -35,7 +37,7 @@ LICENSE=	apache-2.0
 
 USE_LANGUAGES=		c c++14
 USE_CMAKE=		yes
-GCC_REQD+=		5
+GCC_REQD+=		7
 PYTHON_FOR_BUILD_ONLY=	yes
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
@@ -43,7 +45,7 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 NOT_FOR_PLATFORM+=	*-*-alpha
 NOT_FOR_PLATFORM+=	*-*-vax
 
-CONFIGURE_DIRS=		${WRKDIR}/build
+CONFIGURE_DIRS=		build
 CMAKE_ARG_PATH=		${WRKSRC}
 
 CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
@@ -99,16 +101,33 @@ SOEXT=		so
 PLIST.notdylib=	yes
 .endif
 PLIST_SUBST+=	SOEXT=${SOEXT}
+PLIST_SUBST+=	LLVM_MAJOR_VERSION=${LLVM_MAJOR_VERSION}
+
+NOTDYLIBS=	LTO Remarks
+.for libname in ${NOTDYLIBS}
+PRINT_PLIST_AWK+=	/lib${libname}.${SOEXT}.${LLVM_MAJOR_VERSION}/ { gsub(/\.${SOEXT}\.${LLVM_MAJOR_VERSION}/, ".$${SOEXT}.$${LLVM_MAJOR_VERSION}"); print "$${PLIST.notdylib}" $$0; next }
+.endfor
+PRINT_PLIST_AWK+=	{ gsub(/\.${SOEXT}/, ".$${SOEXT}") }
 
 # needs std::atomic with 64-bit CAS
 .if ${MACHINE_ARCH} == "i386"
 CXXFLAGS+=	-march=i586
 .endif
 
-.if !empty(MACHINE_ARCH:Mpowerpc*)
+.if ${MACHINE_ARCH:Mpowerpc*}
 # Needed to avoid "relocation truncated to fit: R_PPC_REL24"
 CFLAGS+=	-mlongcall
 CXXFLAGS+=	-mlongcall
+.  if ${OPSYS} == "NetBSD" && ${OPSYS_VERSION} >= 099917
+# The -mno-pltseq option is not available in gcc7, but is needed for
+# the above-mentioned relocation truncation issue in newer GCC
+CFLAGS+=	-mno-pltseq
+CXXFLAGS+=	-mno-pltseq
+.  else # Not NetBSD
+# Let's just insist on newer gcc -- untested.
+CFLAGS+=	-mno-pltseq
+CXXFLAGS+=	-mno-pltseq
+.  endif
 .endif
 
 .if ${OPSYS} == "NetBSD"
@@ -120,7 +139,7 @@ CMAKE_ARGS+=	-DPKGSRC_LLVM_PTHREADLIB=-lpthread
 # replacing config.guess is required even for cmake.
 # It is used to detect correct LLVM_HOST_TRIPLE, e.g. for NetBSD/evbarm.
 post-extract:
-	${MKDIR} ${WRKDIR}/build
+	${MKDIR} ${WRKSRC}/build
 .for f in config.guess config.sub
 	cp ../../mk/gnu-config/${f} ${WRKSRC}/cmake/${f}
 .endfor
@@ -129,4 +148,5 @@ post-extract:
 .include "../../lang/python/application.mk"
 .include "../../lang/python/tool.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

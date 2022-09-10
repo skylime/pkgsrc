@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2022/08/01 14:35:41 pin Exp $
+# $NetBSD: Makefile,v 1.17 2022/08/22 18:16:48 pin Exp $
 
 DISTNAME=	git-cliff-0.8.1
 CATEGORIES=	devel

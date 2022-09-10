@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.25 2022/02/26 03:57:44 pho Exp $
+# $NetBSD: Makefile,v 1.27 2022/08/20 08:08:12 wiz Exp $
 
-DISTNAME=	aeson-2.0.3.0
-PKGREVISION=	2
+DISTNAME=	aeson-2.1.0.0
+PKGREVISION=	1
 CATEGORIES=	converters
 
 MAINTAINER=	szptvlfn@NetBSD.org
@@ -12,6 +12,7 @@ LICENSE=	modified-bsd
 .include "../../devel/hs-base-compat-batteries/buildlink3.mk"
 .include "../../devel/hs-data-fix/buildlink3.mk"
 .include "../../devel/hs-dlist/buildlink3.mk"
+.include "../../devel/hs-generically/buildlink3.mk"
 .include "../../devel/hs-hashable/buildlink3.mk"
 .include "../../devel/hs-indexed-traversable/buildlink3.mk"
 .include "../../devel/hs-OneTuple/buildlink3.mk"

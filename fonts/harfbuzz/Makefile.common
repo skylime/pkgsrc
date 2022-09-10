@@ -1,7 +1,7 @@
-# $NetBSD: Makefile.common,v 1.24 2022/07/31 09:46:42 wiz Exp $
+# $NetBSD: Makefile.common,v 1.26 2022/08/07 14:53:38 tnn Exp $
 # used by fonts/harfbuzz-icu/Makefile
 
-DISTNAME=	harfbuzz-5.0.1
+DISTNAME=	harfbuzz-5.1.0
 CATEGORIES=	fonts
 MASTER_SITES=	${MASTER_SITE_GITHUB:=harfbuzz/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -14,7 +14,7 @@ LICENSE=	mit
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
 DISTINFO_FILE=	${.CURDIR}/../../fonts/harfbuzz/distinfo
-#PATCHDIR=	${.CURDIR}/../../fonts/harfbuzz/patches
+PATCHDIR=	${.CURDIR}/../../fonts/harfbuzz/patches
 
 # C++11
 GCC_REQD+=	4.9

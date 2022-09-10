@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.22078 2022/08/05 08:02:39 adam Exp $
+$NetBSD: TODO,v 1.22185 2022/09/10 10:38:47 wiz Exp $
 
 Suggested new packages
 ======================
@@ -373,7 +373,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o ImageMagick6-6.9.12.8
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
-	o MesaLib-22.1.4
+	o MesaLib-22.1.7
 	o OdfConverter-4.0
 	o PACK-0.0.4
 	o Pantomime-1.2.2
@@ -397,9 +397,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o R-tseries-0.10.48
 	o SDL_sound-2.0
 	o SOGo-2.4.3
-	o SOGo-5.7.0
+	o SOGo-5.7.1
 	o SOPE-2.4.3
-	o SOPE-5.7.0
+	o SOPE-5.7.1
 	o SQLiteCpp-2.5.0
 	o TeXmacs-2.1.1
 	o TiffIO-140a
@@ -462,7 +462,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o aspell-nb-2.0.10
 	o asunder-2.9.7
 	o attr-2.5.1
-	o auctex-12.3
 	o audacity-3.1.3
 	o authelia-4.28.0
 	o autoconvert-0.3.16
@@ -495,7 +494,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o bioperl-1.7.8
 	o bird-2.0.8
 	o bird6-2.0.8
-	o blender-3.2
+	o blender-3.3
 	o bliz++-0.10
 	o blur6ex-0.3.462
 	o boolean-7.1
@@ -511,7 +510,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o cacti-spine-1.2.16
 	o calc-2.11.10.1
 	o calcoo-2.1.0
-	o calibre-6.1
+	o calibre-6.4.0 [requires qt6/py-qt6/py-qt6-webengine]
 	o calligra-3.0.1 [in wip; koffice successor]
 	o camlp4-4.12
 	o camlp5-8.00.03 [dholland has a partial update]
@@ -543,10 +542,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o coccigrep-1.20
 	o collectd-CGP-1
 	o colord-1.4.5
-	o colorize-0.3.4
 	o colortail-0.3.3
 	o commit-patch-2.6
-	o compiz-0.8.10
+	o compiz-0.9.14.2
 	o concurrencykit-0.6.0
 	o cone-0.92
 	o conserver8-8.2.6
@@ -572,6 +570,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o cyrus-imapd-3.4.3
 	o dap-3.10
 	o dar-2.4.14
+	o darcs-2.16.5
 	o darktable-4.0
 	o dateutils-0.4.8
 	o dcc-2.3.167
@@ -657,7 +656,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o felt-3.07 [wip]
 	o fet-6.0.1
 	o filerunner-14.06.18.10
-	o fish-3.5
 	o flashplayer-0.4.13
 	o flatbuffers-1.12.0
 	o flow-tools-0.411
@@ -668,6 +666,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o fortunes-calvin-0.3
 	o fortunes-de-0.34
 	o fplll-5.4.0
+	o frama-c-25.0
 	o freecell-solver-6.2.0
 	o freemint-binutils-2.30
 	o freemint-gcc-7.1.0
@@ -694,7 +693,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gcal-4.1
 	o gcc-mips-current-7.1.0
 	o gcc11-11.3
-	o gcc12-12.3
 	o gcc8-8.5
 	o gcc9-9.5
 	o gcin-1.5.5
@@ -707,6 +705,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o genius-1.0.26
 	o gens-2.15.5
 	o gfract-0.33
+	o ghc-9.4.1
 	o gimp-docs-de-2.10.0
 	o gimp-docs-en-2.10.0
 	o gimp-docs-es-2.10.0
@@ -772,7 +771,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o go-ffuf-1.3.0
 	o go-fsnotify-1.4.9
 	o go-grpc-1.37.0
-	o go-hugo-0.99.1
 	o go-i18n-2.1.2
 	o go-imaging-1.6.2
 	o go-isatty-0.0.12
@@ -802,17 +800,14 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gradle-7.0
 	o gramps5-5.1.4
 	o grantlee-5.0.0
-	o graphene-1.10.6
 	o greed-4.2
 	o gromacs-2021.1
-	o grpc-1.48.0
 	o grub2-2.06
 	o gss-1.0.3
 	o gst-plugins1-omx-1.10.0
 	o gst-rtsp-server-1.20.3 [needs libcgroup]
 	o gthumb-3.4.0
 	o gtk-gnutella-1.2.0
-	o gtk4+-4.4
 	o gtkglarea-2.1.0
 	o gtklevel9-5.1
 	o gtklife-5.2
@@ -846,6 +841,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o horde-5.2.9
 	o howm-1.4.7
 	o hplip-3.22.2
+	o hs-hie-bios-0.10.0
 	o html2wml-0.4.11
 	o http_load-20140814
 	o hyperscan-5.4.0
@@ -905,12 +901,14 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o kbool-2.1 [kbool_2_1, next to boolean-7.1]
 	o kcron-21.04.0
 	o kdenetwork-filesharing-20.12.3
+	o kdenlive-22.08
 	o kdesdk-kioslaves-20.08.0
 	o kdesdk-thumbnailers-20.08.0
 	o kdevelop-5.6
 	o kdevelop4-4.7.2
 	o kdevplatform-1.7.1
 	o kdsoap-1.10.0
+	o kea-2.2.0
 	o keybinder-0.3.2
 	o kfilemetadata-5.81.0
 	o kgb-bot-1.55
@@ -921,7 +919,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o konsole-21.04.0
 	o konversation-1.7.7
 	o kqtquickcharts4-20.12.3
-	o krita-5.0
+	o krita-5.1
 	o kronolith-4.2.14
 	o ktorrent3-3.3.4
 	o lastpass-cli-1.3.3
@@ -949,7 +947,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o libdevq-0.0.4
 	o libdmapsharing3-3.9.9
 	o libdsk-1.5.15
-	o libextractor-1.11
 	o libflash-0.4.13
 	o libgfshare-2.0.0
 	o libgiigic-1.1.2
@@ -969,8 +966,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o liboobs-2.32.0
 	o liboop-1.0.1
 	o libpgm-5.2.122
-	o libprelude-3.1.0
-	o libpreludedb-3.1.0
 	o libquantum-1.1.0 [pkg/43728, development release]
 	o librdkafka-1.6.1
 	o librelp-1.10.0
@@ -984,6 +979,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o libtrace-4.0.16
 	o libvirt-2.3
 	o libxdg-basedir-1.2.3
+	o libxslt-1.1.37 [now a GNOME project: https://gitlab.gnome.org/GNOME/libxslt]
 	o libzookeeper-3.7.0
 	o libzrtpcpp-4.6.6
 	o lilypond-2.22.2
@@ -991,7 +987,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o linpsk-1.2 [ld: cannot find -lqt-mt with qt4]
 	o liquidwar-6.0.0.11
 	o lirc-0.9.3
-	o llvm-14.0.6
+	o llvm-15.0
 	o lmbench-3
 	o log4cxx-0.11.0
 	o lohit-fonts-2.4.2
@@ -1032,6 +1028,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o md-whois-5.5.9
 	o mdd-20201207
 	o mecab-ipadic-2.7.0.20070801
+	o meld-3.21.3
 	o memached-1.5.6
 	o memtestplus-5.31b
 	o merkaator-0.18.3
@@ -1060,6 +1057,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o mtail-1.2.0
 	o multitail-6.4.2
 	o munge-0.5.14
+	o mupdf-1.20.3
 	o muse-0.9.2
 	o myodbc-8.0.28
 	o mysql-workbench-8.0.23
@@ -1079,7 +1077,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o nant-0.92
 	o nap-1.5.3
 	o nas-auscope-1.9.4
-	o ncspot-0.10.0 [needs rust-1.61.0]
 	o ncview-2.1.8
 	o nedit-5.7
 	o netbt-hcidump-5.58
@@ -1087,7 +1084,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o newmail-1.0.2
 	o nickle-2.90
 	o nios2-binutils-2.36.1
-	o node_exporter-1.1.2
+	o npm-8.19.1
 	o ns-3.14.1
 	o ns-plugger-common-5.1.3
 	o nsm-2.4.12
@@ -1097,8 +1094,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o nut-20.1
 	o nvidia-texture-tools-2.1.1
 	o nxtvepg-2.8.1
-	o oath-toolkit-2.6.6
 	o objc-3.3.24
+	o ocaml-cppo-1.6.9
 	o ocaml-cryptokit-116.1
 	o ocaml-encore-0.8
 	o ocaml-eqaf-0.7
@@ -1116,7 +1113,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o onscripter-20200722
 	o oo2c-2.1.7
 	o opal-3.16.2
-	o openblas-0.3.20
+	o openblas-0.3.21
 	o opencl-3.0.11
 	o opencolorio-2.0.0
 	o opencpn-plugin-draw-1.8.5.2
@@ -1125,7 +1122,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o opengrok-1.7.1
 	o openh323-1.19.1
 	o openmortal-0.7.1
-	o openmpi-4.1.0
 	o openntpd-6.8p1
 	o openrct2-0.3.3
 	o openslp-2.0.0
@@ -1144,7 +1140,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o p5-Alien-Hunspell-0.17
 	o p5-Archive-Peek-0.38
 	o p5-Authen-Simple-0.6
-	o p5-BerkeleyDB-1.1
 	o p5-Carp-Assert-More-1.26
 	o p5-Class-DBI-Plugin-1.04
 	o p5-Class-Measure-0.09
@@ -1153,14 +1148,12 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o p5-DBD-DB2-1.86
 	o p5-DBD-Oracle-1.80
 	o p5-DBD-Sybase-1.16
-	o p5-DBIx-SearchBuilder-1.69
 	o p5-Data-MessagePack-1.05
 	o p5-Dumbbench-0.501
 	o p5-ExtUtils-F77-1.26
 	o p5-Fsdb-2.71
 	o p5-GStreamer-0.21
 	o p5-GitLab-API-v3-1.06
-	o p5-GitLab-API-v4-0.26
 	o p5-Glib-Object-Introspection-0.049
 	o p5-JSON-MaybeXS-1.004003
 	o p5-Lingua-EN-Inflect-1.905
@@ -1200,6 +1193,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o pam-krb5-4.10
 	o pam-passwdqc-2.0.2
 	o pam-yubico-2.21
+	o pandoc-2.19.2
 	o paperkey-1.6
 	o papirus-folders-1.8.0
 	o paprefs-1.1
@@ -1259,9 +1253,11 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o plasma-wayland-protocols-1.2.0
 	o ploticus-examples-230
 	o ply-3.11
+	o pocl-3.0
 	o poco-1.7.5
 	o podcastdl-0.3.3
 	o policyd-weight-0.1.15.2
+	o polkit-121
 	o poppass-4.0.14
 	o posh-0.14.1
 	o postal-0.72
@@ -1283,9 +1279,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o ppmd-9.2
 	o pppd-2.4.7
 	o predict-2.2.7
-	o prelude-correlator-3.1.0
-	o prelude-lml-3.1.0
-	o prelude-manager-3.1.0
 	o privoxy-3.0.33
 	o profit-2.5.3
 	o proj-8.0.0
@@ -1301,10 +1294,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-MyHDL-0.11
 	o py-OTXv2-1.5.2
 	o py-Routes-2.5.1
-	o py-cares-3.1.1
 	o py-cassa-1.11.0
 	o py-configparser-5.0.0 [drops python-2.x support; pkgsrc only needs this package for python 2.x]
-	o py-coverage-6.3.2
 	o py-django-4.1
 	o py-django-debug-toolbar-3.2.1
 	o py-django-tagging-0.5.0
@@ -1319,10 +1310,12 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-hyperscan-0.2.0
 	o py-input-pad-1.4.2
 	o py-keybinder-0.3.2
+	o py-llvmlite-0.39.0
 	o py-musicbrainz-0.7.4
 	o py-musicbrainz-ngs-0.7.1
 	o py-newt-0.52.21
 	o py-omniORBpy-3.7
+	o py-openpyxl-3.0.10 [now supports only Python 3.x]
 	o py-pdf-parser-0.7.4
 	o py-postgresql-5.1.2
 	o py-ptt-1.10.2
@@ -1336,7 +1329,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-requests-kerberos-0.14.0
 	o py-sbws-1.1.0
 	o py-scgi-2.0
-	o py-serpent-1.30.2
 	o py-simpletal-5.1
 	o py-solo-0.0.27
 	o py-sybase-0.37
@@ -1364,7 +1356,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o qca2-qt5-ossl-2.3.2
 	o qconf-2.5
 	o qdirstat-1.8.1
-	o qemu-7.0
+	o qemu-7.1
+	o qt5-5.15.6
 	o qt6-6.3.1 [in wip]
 	o qtcreator-6.0
 	o quazip-1.1
@@ -1406,19 +1399,20 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o rubber-1.5.1
 	o rudiments-1.4.2
 	o rump-20131213
-	o rust-1.62.0 [wip]
-	o rust-analyzer-0.0.20220725
+	o rust-1.63.0
+	o rust-analyzer-0.0.20220905 [requires rust 1.63.0]
 	o rvault-0.4
 	o rvm-1.20
 	o sabayon-2.30.1
 	o sablecc-3.7
+	o samba-4.16.5
 	o sarg-2.4.0
 	o sasm-3.12.1
 	o saytime-20050127
 	o scala-2.13.5
 	o scamper-20210324
 	o scew-1.1.7
-	o scidavis-2.7.1
+	o scidavis-2.8
 	o scilab-5.5.2
 	o scm-5f3 [dholland has a partial update]
 	o scm-blackbox-2.0.0
@@ -1471,7 +1465,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o sqlrelay-1.9.2
 	o squeak-5.0
 	o squeak-vm-4.10.2.2765
-	o squid-5.5
 	o sqwebmail-5.8.2
 	o ssh-askpass-1.2.4.1
 	o sshguard-1.6.4
@@ -1542,7 +1535,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o top-3.8beta1
 	o topgit-0.8
 	o tor-browser-11.0.9 [wip]
-	o tor-browser-11.5.1
+	o tor-browser-11.5.2
 	o torrentzip-2.1.0
 	o toxcore-0.2.12
 	o trafficserver-9.0.1
@@ -1594,6 +1587,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o wbm-virtual-server-6.16
 	o wcalc-2.4
 	o wcslib-7.6
+	o webmin-2.0
 	o websvn-2.6.0
 	o wgetpaste-2.30
 	o whowatch-1.8.5
@@ -1680,7 +1674,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o zoneminder-1.34.21
 	o zookeeper-3.7.0
 	o zopeedit-0.8
-	o zxing-cpp-1.4.0 [breaks build of libreofficea 7.3.3]
 
 Licenses of packages
 ====================
