@@ -589,6 +589,14 @@ Darwin)
 	machine_arch=`get_machine_arch_darwin`
 	check_compiler=yes
 
+	if [ -n "${MACOSX_DEPLOYMENT_TARGET}" ]; then
+		SDK_PATH=`/usr/bin/xcrun \
+			--sdk macosx${MACOSX_DEPLOYMENT_TARGET} \
+			--show-sdk-path 2>/dev/null || echo /nonexistent`
+		CFLAGS="-isysroot ${SDK_PATH} ${CFLAGS}"
+		export CFLAGS
+	fi
+
 	# Combine major.minor product version for simpler numerical tests.
 	macos_version=`sw_vers -productVersion | \
 	    awk -F. '{ printf("%02d%02d", $1, $2) }'`
@@ -1392,6 +1400,10 @@ if test -n "$LDFLAGS"; then
 fi
 if test -n "$LIBS"; then
 	echo "LIBS+=		$LIBS" >> ${TARGET_MKCONF}
+fi
+if test -n "$MACOSX_DEPLOYMENT_TARGET"; then
+	echo "MACOSX_DEPLOYMENT_TARGET=	$MACOSX_DEPLOYMENT_TARGET" >>${TARGET_MKCONF}
+	echo "MACOSX_DEPLOYMENT_TARGET=	$MACOSX_DEPLOYMENT_TARGET" >>${BOOTSTRAP_MKCONF}
 fi
 
 # opsys specific fiddling
