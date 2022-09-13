@@ -1,4 +1,4 @@
-# $NetBSD: haskell.mk,v 1.44 2022/07/23 07:14:54 wiz Exp $
+# $NetBSD: haskell.mk,v 1.49 2022/09/08 15:18:48 pho Exp $
 #
 # This Makefile fragment handles Haskell Cabal packages. Package
 # configuration, building, installation, registration and unregistration
@@ -13,6 +13,12 @@
 # MASTER_SITES
 #	Default to HackageDB URLs.
 #
+# HASKELL_PKG_NAME
+#	The name of the corresponding Cabal package, in case it differs
+#	from ${DISTNAME}.
+#
+#	Default value: ${DISTNAME}
+#
 # HASKELL_OPTIMIZATION_LEVEL
 #	Optimization level for compilation.
 #
@@ -25,6 +31,15 @@
 #
 #	Possible values: yes, no
 #	Default value: inherits ${HASKELL_ENABLE_SHARED_LIBRARY}
+#
+# HASKELL_UNRESTRICT_DEPENDENCIES
+#	A list of Cabal packages that the package depends on, whose version
+#	constraints are way too restricted to solve. Listing packages in
+#	this variable will cause the *.cabal file to be rewritten so that
+#	any version is accepted. Use this with care, because not all
+#	incompatibilities are caught during build time.
+#
+#	Default value: empty
 #
 # User-settable variables:
 #
@@ -64,14 +79,14 @@ _USER_VARS.haskell= \
 	HASKELL_ENABLE_LIBRARY_PROFILING \
 	HASKELL_ENABLE_HADDOCK_DOCUMENTATION \
 	HS_UPDATE_PLIST
-_SYS_VARS.haskell= \
-	PKGNAME DISTNAME MASTER_SITES MASTER_SITE_HASKELL_HACKAGE \
-	HOMEPAGE UNLIMIT_RESOURCES PREFIX
-_DEF_VARS.haskell= \
-	BUILDLINK_PASSTHRU_DIRS \
+_PKG_VARS.haskell= \
 	HASKELL_ENABLE_DYNAMIC_EXECUTABLE \
 	HASKELL_OPTIMIZATION_LEVEL \
 	HASKELL_PKG_NAME \
+	HASKELL_UNRESTRICT_DEPENDENCIES \
+	PKGNAME HOMEPAGE MASTER_SITES
+_DEF_VARS.haskell= \
+	BUILDLINK_PASSTHRU_DIRS \
 	USE_LANGUAGES \
 	CONFIGURE_ARGS \
 	PLIST_SUBST \
@@ -82,6 +97,7 @@ _DEF_VARS.haskell= \
 	INSTALLATION_DIRS \
 	INSTALL_TEMPLATES \
 	DEINSTALL_TEMPLATES \
+	UNLIMIT_RESOURCES \
 	_HASKELL_VERSION_CMD \
 	_HASKELL_BIN \
 	_HASKELL_PKG_BIN \
@@ -89,10 +105,15 @@ _DEF_VARS.haskell= \
 	_HASKELL_PKG_ID_FILE \
 	_HASKELL_VERSION
 _USE_VARS.haskell= \
+	DISTNAME \
 	PKG_VERBOSE \
 	BUILDLINK_PREFIX.ghc \
+	MASTER_SITE_HASKELL_HACKAGE \
 	PKGDIR DESTDIR \
+	PREFIX \
 	WRKSRC
+_SORTED_VARS.haskell= \
+	HASKELL_UNRESTRICT_DEPENDENCIES
 _LISTED_VARS.haskell= \
 	BUILDLINK_PASSTHRU_DIRS \
 	CONFIGURE_ARGS \
@@ -114,6 +135,7 @@ HASKELL_ENABLE_DYNAMIC_EXECUTABLE?=	${HASKELL_ENABLE_SHARED_LIBRARY}
 HASKELL_ENABLE_SHARED_LIBRARY?=		yes
 HASKELL_ENABLE_LIBRARY_PROFILING?=	yes
 HASKELL_ENABLE_HADDOCK_DOCUMENTATION?=	yes
+HASKELL_UNRESTRICT_DEPENDENCIES?=	# empty
 
 .include "../../lang/ghc92/buildlink3.mk"
 
@@ -140,6 +162,24 @@ _HASKELL_BUILD_SETUP_OPTS=	-package-env -
 # GHC requires C compiler.
 USE_LANGUAGES+=	c
 
+# Haskell packages don't use semvars but they use something similar to it,
+# which is called Haskell PVP (https://pvp.haskell.org/). Packages usually
+# have version constraints on their dependencies that specify not only
+# lower bounds but also upper bounds. The problem is that, while lower
+# bounds are mostly accurate, package authors can not be sure about upper
+# bounds so they tend to be too pessimistic about compatibility.
+.if !empty(HASKELL_UNRESTRICT_DEPENDENCIES)
+SUBST_CLASSES+=		cabal
+SUBST_STAGE.cabal?=	post-extract
+SUBST_FILES.cabal?=	${HASKELL_PKG_NAME:C/-[[:digit:].]+$//}.cabal
+SUBST_MESSAGE.cabal?=	Relaxing version constraints on dependencies
+.  for _pkg_ in ${HASKELL_UNRESTRICT_DEPENDENCIES}
+# Leading whitespace or commas to avoid mismatches, remove version
+# constraints up to end of line or ','.
+SUBST_SED.cabal+=	-Ee 's/((^|,)[[:space:]]*${_pkg_})[^[:alpha:],]+(,|$$)/\1\3/g'
+.  endfor
+.endif
+
 # Declarations for ../../mk/configure/configure.mk
 CONFIGURE_ARGS+=	--ghc
 CONFIGURE_ARGS+=	--with-compiler=${_HASKELL_BIN:Q}
@@ -151,26 +191,35 @@ PKGSRC_OVERRIDE_MKPIE=	yes
 CONFIGURE_ARGS+=	--ghc-option=-fPIC --ghc-option=-pie
 .endif
 
-.if ${HASKELL_ENABLE_DYNAMIC_EXECUTABLE} == "yes"
+.if ${HASKELL_ENABLE_DYNAMIC_EXECUTABLE:tl} == "yes"
 CONFIGURE_ARGS+=	--enable-executable-dynamic
 .else
 CONFIGURE_ARGS+=	--disable-executable-dynamic
 .endif
 
-.if ${HASKELL_ENABLE_SHARED_LIBRARY} == "yes"
+PLIST_VARS+=		shlibs
+PRINT_PLIST_AWK+=	/(\.dyn_hi|\/lib[^\/]+\.so)$$/ { $$0 = "$${PLIST.shlibs}" $$0 }
+.if ${HASKELL_ENABLE_SHARED_LIBRARY:tl} == "yes"
 CONFIGURE_ARGS+=	--enable-shared
+PLIST.shlibs=		yes
 .else
 CONFIGURE_ARGS+=	--disable-shared
 .endif
 
-.if ${HASKELL_ENABLE_LIBRARY_PROFILING} == "yes"
+PLIST_VARS+=		prof
+PRINT_PLIST_AWK+=	/(\.p_hi|\/lib[^\/]+_p\.a)$$/ { $$0 = "$${PLIST.prof}" $$0 }
+.if ${HASKELL_ENABLE_LIBRARY_PROFILING:tl} == "yes"
 CONFIGURE_ARGS+=	--enable-library-profiling
+PLIST.prof=		yes
 .else
 CONFIGURE_ARGS+=	--disable-library-profiling
 .endif
 
-.if ${HASKELL_ENABLE_HADDOCK_DOCUMENTATION} == "yes"
+PLIST_VARS+=		doc
+PRINT_PLIST_AWK+=	/\/doc\// { $$0 = "$${PLIST.doc}" $$0 }
+.if ${HASKELL_ENABLE_HADDOCK_DOCUMENTATION:tl} == "yes"
 CONFIGURE_ARGS+=	--with-haddock=${BUILDLINK_PREFIX.ghc:Q}/bin/haddock
+PLIST.doc=		yes
 .endif
 
 CONFIGURE_ARGS+=	-O${HASKELL_OPTIMIZATION_LEVEL}

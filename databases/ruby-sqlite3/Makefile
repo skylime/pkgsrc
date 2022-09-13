@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.53 2022/08/11 04:16:28 taca Exp $
+# $NetBSD: Makefile,v 1.56 2022/09/11 16:05:14 taca Exp $
 
-DISTNAME=	sqlite3-1.4.4
+DISTNAME=	sqlite3-1.5.0
+PKGREVISION=	1
 CATEGORIES=	databases
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -8,7 +9,14 @@ HOMEPAGE=	https://github.com/luislavena/sqlite3-ruby
 COMMENT=	Ruby interface for the SQLite database engine
 LICENSE=	modified-bsd
 
+DEPENDS+=	${RUBY_PKGPREFIX}-mini_portile2>=2.8.0<2.9:../../misc/ruby-mini_portile2
+
 USE_GCC_RUNTIME=	yes
+RUBY_EXTCONF_ARGS=	--enable-system-libraries
+OVERRIDE_GEMSPEC+=	:files ports/archives/sqlite-autoconf-3380500.tar.gz=
+
+pre-configure:
+	${RM} -f ${WRKSRC}/ports/archives/sqlite-autoconf-3380500.tar.gz
 
 .include "../../lang/ruby/gem.mk"
 .include "../../databases/sqlite3/buildlink3.mk"

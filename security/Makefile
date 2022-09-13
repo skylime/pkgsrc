@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.870 2022/09/03 04:03:09 taca Exp $
+# $NetBSD: Makefile,v 1.873 2022/09/11 05:42:23 taca Exp $
 #
 
 COMMENT=	Security and cryptography tools and libraries
@@ -339,6 +339,7 @@ SUBDIR+=	p5-Net-DNS-SEC-Maint-Key
 SUBDIR+=	p5-Net-OpenSSH
 SUBDIR+=	p5-Net-SFTP
 SUBDIR+=	p5-Net-SSH
+SUBDIR+=	p5-Net-SSH2
 SUBDIR+=	p5-Net-SSLeay
 SUBDIR+=	p5-Netpgp-Verify
 SUBDIR+=	p5-SHA
@@ -544,6 +545,7 @@ SUBDIR+=	ruby-net-ssh-gateway
 SUBDIR+=	ruby-net-ssh-multi
 SUBDIR+=	ruby-nexpose
 SUBDIR+=	ruby-oauth
+SUBDIR+=	ruby-oauth-tty
 SUBDIR+=	ruby-openid
 SUBDIR+=	ruby-openssl-ccm
 SUBDIR+=	ruby-openssl-cmac
@@ -575,6 +577,7 @@ SUBDIR+=	ruby-ruby-openid
 SUBDIR+=	ruby-rubyntlm
 SUBDIR+=	ruby-shadow
 SUBDIR+=	ruby-simple_oauth
+SUBDIR+=	ruby-snaky_hash
 SUBDIR+=	ruby-sshkey
 SUBDIR+=	ruby-sshkit
 SUBDIR+=	ruby-sslshake
