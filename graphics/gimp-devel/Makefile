@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2022/09/10 09:32:33 wiz Exp $
+# $NetBSD: Makefile,v 1.8 2022/09/12 17:48:52 ryoon Exp $
 
 DISTNAME=	gimp-2.99.12
 PKGNAME=	${DISTNAME:S/gimp/gimp-devel/}
@@ -31,6 +31,10 @@ USE_TOOLS+=		gdbus-codegen
 PKGCONFIG_OVERRIDE=	gimp.pc.in
 UNLIMIT_RESOURCES+=	datasize
 
+# Disable documentation for developers explicitly.
+MESON_ARGS+=	-Dgi-docgen=disabled
+MESON_ARGS+=	-Dg-ir-doc=false
+
 # example files
 CHECK_INTERPRETER_SKIP+=	lib/gimp/2.99/extensions/org.gimp.extension.goat-exercises/*
 CHECK_INTERPRETER_SKIP+=	lib/gimp/2.99/plug-ins/test-sphere-v3/test-sphere-v3.scm
@@ -54,11 +58,6 @@ CONF_FILES+=		${EGDIR}/${f} ${PKG_SYSCONFDIR}/gimp/2.99/${f}
 _TOOLS_USE_PKGSRC.xgettext=	yes
 
 .include "../../mk/bsd.prefs.mk"
-
-.if ${OPSYS} != "Linux"
-# https://gitlab.gnome.org/GNOME/gimp/-/issues/8604
-MESON_ARGS+=	-Dlinux-input=disabled
-.endif
 
 # msgfmt: unknown option -- desktop
 .if ${OPSYS} == "NetBSD"

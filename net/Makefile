@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1478 2022/09/03 04:05:49 taca Exp $
+# $NetBSD: Makefile,v 1.1481 2022/09/12 06:55:39 wiz Exp $
 #
 
 COMMENT=	Networking tools
@@ -74,7 +74,6 @@ SUBDIR+=	clive
 SUBDIR+=	cmu-dhcpd
 SUBDIR+=	cntlm
 SUBDIR+=	coda
-SUBDIR+=	coherence
 #SUBDIR+=	coilmq		# broken
 SUBDIR+=	connect
 SUBDIR+=	corebird
@@ -780,7 +779,6 @@ SUBDIR+=	py-tweepy
 SUBDIR+=	py-twine
 SUBDIR+=	py-twisted
 SUBDIR+=	py-twisted-docs
-SUBDIR+=	py-twisted19
 SUBDIR+=	py-twython
 SUBDIR+=	py-txamqp
 SUBDIR+=	py-txtorcon
@@ -987,7 +985,6 @@ SUBDIR+=	unifi
 SUBDIR+=	unison
 SUBDIR+=	unworkable
 SUBDIR+=	upclient
-SUBDIR+=	upnpinspector
 SUBDIR+=	urlgfe
 SUBDIR+=	userppp
 SUBDIR+=	uucp

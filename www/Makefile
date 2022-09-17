@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1640 2022/09/01 11:57:38 markd Exp $
+# $NetBSD: Makefile,v 1.1642 2022/09/11 18:04:04 wiz Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -767,7 +767,6 @@ SUBDIR+=	py-furl
 SUBDIR+=	py-genshi
 SUBDIR+=	py-google-api-python-client
 SUBDIR+=	py-google-apitools
-SUBDIR+=	py-graphite-web
 SUBDIR+=	py-grappelli_safe
 SUBDIR+=	py-gunicorn
 SUBDIR+=	py-h11
@@ -801,7 +800,6 @@ SUBDIR+=	py-multipart
 SUBDIR+=	py-nbclient
 SUBDIR+=	py-nbconvert
 SUBDIR+=	py-nbformat
-SUBDIR+=	py-nevow
 SUBDIR+=	py-notebook
 SUBDIR+=	py-parsel
 SUBDIR+=	py-paste

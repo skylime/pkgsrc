@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.50 2022/09/10 09:34:16 wiz Exp $
+# $NetBSD: Makefile,v 1.52 2022/09/11 08:59:14 tnn Exp $
 
 DISTNAME=	babl-0.1.96
 CATEGORIES=	graphics
@@ -46,7 +46,7 @@ PKG_SUPPORTED_OPTIONS+=	mmx
 
 .if (${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64") \
 	&& empty(CC_VERSION:Mgcc-7.*)
-PKG_SUGGESTED_OPTIONS=	mmx
+PKG_SUGGESTED_OPTIONS+=	mmx
 .endif
 
 .include "../../mk/bsd.options.mk"

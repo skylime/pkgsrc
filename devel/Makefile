@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3793 2022/09/09 13:32:39 taca Exp $
+# $NetBSD: Makefile,v 1.3797 2022/09/15 17:51:06 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -2343,6 +2343,7 @@ SUBDIR+=	py-binaryornot
 SUBDIR+=	py-bintrees
 SUBDIR+=	py-bitarray
 SUBDIR+=	py-bitstring
+SUBDIR+=	py-blessed
 SUBDIR+=	py-blessings
 SUBDIR+=	py-blinker
 SUBDIR+=	py-boltons
@@ -2547,7 +2548,6 @@ SUBDIR+=	py-jaraco.functools
 SUBDIR+=	py-jaraco.itertools
 SUBDIR+=	py-jaraco.path
 SUBDIR+=	py-jaraco_util
-SUBDIR+=	py-jersey
 SUBDIR+=	py-joblib
 SUBDIR+=	py-jupyter-console
 SUBDIR+=	py-jupyter_client
@@ -2875,7 +2875,6 @@ SUBDIR+=	py-tryton
 SUBDIR+=	py-trytond
 SUBDIR+=	py-tubes
 SUBDIR+=	py-txaio
-SUBDIR+=	py-txgithub
 SUBDIR+=	py-txrequests
 SUBDIR+=	py-typed-ast
 SUBDIR+=	py-typeguard
@@ -3191,6 +3190,7 @@ SUBDIR+=	ruby-turn
 SUBDIR+=	ruby-uglifier
 SUBDIR+=	ruby-uuidtools
 SUBDIR+=	ruby-validatable
+SUBDIR+=	ruby-version_gem
 SUBDIR+=	ruby-wisper
 SUBDIR+=	ruby-wmi-lite
 SUBDIR+=	ruby-yell
