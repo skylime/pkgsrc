@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1014 2022/08/31 10:11:09 sborrill Exp $
+# $NetBSD: Makefile,v 1.1016 2022/09/18 22:38:44 jschauma Exp $
 #
 
 COMMENT=	System utilities
@@ -599,6 +599,7 @@ SUBDIR+=	renameutils
 SUBDIR+=	restic
 SUBDIR+=	rfstool
 SUBDIR+=	riemann-client
+SUBDIR+=	ripdrag
 SUBDIR+=	rkdeveloptool
 SUBDIR+=	rkflashtool
 SUBDIR+=	rmtrash
@@ -906,6 +907,7 @@ SUBDIR+=	xmbmon
 SUBDIR+=	xmeter
 SUBDIR+=	xnc
 SUBDIR+=	xosview
+SUBDIR+=	xpipe
 SUBDIR+=	xplr
 SUBDIR+=	xps
 SUBDIR+=	xuvmstat

@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.157 2022/09/07 09:32:14 bsiegert Exp $
+# $NetBSD: Makefile,v 1.159 2022/09/18 21:37:21 triaxx Exp $
 
 # Protocol breaks require tech-pkg@ discussion and MAINTAINER approval.
-DISTNAME=	syncthing-source-v1.20.4
+DISTNAME=	syncthing-source-v1.21.0
 PKGNAME=	${DISTNAME:S,source-v,,}
-PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=syncthing/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
@@ -15,9 +14,8 @@ LICENSE=	mpl-2.0
 
 # The 'zillode' dependency calls the compiler on certain archs.
 USE_LANGUAGES=		c
+WRKSRC=			${WRKDIR}/syncthing
 NO_CONFIGURE=		yes
-GO_SRCPATH=		github.com/syncthing/syncthing
-GO_DIST_BASE=		syncthing
 INSTALLATION_DIRS=	bin share/applications
 
 CHECK_RELRO_SKIP+=	bin/syncthing
@@ -79,7 +77,9 @@ do-install:
 		${DESTDIR}${PREFIX}/share/icons/hicolor/${s}x${s}/apps/syncthing.png
 .endfor
 
-.include "../../lang/go/go-package.mk"
+.include "go-modules.mk"
+
+.include "../../lang/go/go-module.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

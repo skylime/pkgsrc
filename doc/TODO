@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.22203 2022/09/15 14:46:00 wiz Exp $
+$NetBSD: TODO,v 1.22220 2022/09/21 10:53:01 wiz Exp $
 
 Suggested new packages
 ======================
@@ -625,7 +625,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o epubcheck-4.0.2
 	o eric5-5.4.6
 	o erlang-25.0
-	o errcheck-1.6.0
 	o es-0.83
 	o esh-0.8.5
 	o ess-18.10.2
@@ -656,6 +655,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o felt-3.07 [wip]
 	o fet-6.0.1
 	o filerunner-14.06.18.10
+	o firefox-105
 	o flashplayer-0.4.13
 	o flatbuffers-1.12.0
 	o flow-tools-0.411
@@ -679,7 +679,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o freetype-utils-1.5.20050518
 	o freewais-sf-2.2.14
 	o frink-2.3.1a2
-	o fstrm-0.6.1
 	o ftplibpp-2.0.2
 	o fuse-unionfs-2.1
 	o fvwm-devel-2.7.0
@@ -689,6 +688,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o ganglia-3.7.5
 	o ganglia-webfrontend-3.7.5
 	o gap-4r4p9
+	o gaupol-1.11
 	o gbrainy-2.43
 	o gcal-4.1
 	o gcc-mips-current-7.1.0
@@ -778,7 +778,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o go-logrus-1.8.1
 	o go-mkcert-1.4.3
 	o go-org-1.5.0
-	o go-protobuf-1.5.2
 	o go-siphash-1.2.2
 	o go-text-0.3.6
 	o go-toml-pelletier-1.9.0
@@ -828,6 +827,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o h8300-elf-gcc-7.1.0
 	o hamster-applet-2.32.1
 	o hanzim-3.5
+	o harfbuzz-5.2.0
 	o harminv-1.4.1
 	o hashcash-1.23
 	o haskell-mode-13.20
@@ -840,7 +840,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o horde-5.2.9
 	o howm-1.4.7
 	o hplip-3.22.2
+	o hs-bifunctors-5.5.13
 	o hs-hie-bios-0.10.0
+	o hs-th-abstraction-0.4.5.0
 	o html2wml-0.4.11
 	o http_load-20140814
 	o hyperscan-5.4.0
@@ -978,6 +980,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o libtrace-4.0.16
 	o libvirt-2.3
 	o libxdg-basedir-1.2.3
+	o libxml2-2.10.2
 	o libxslt-1.1.37 [now a GNOME project: https://gitlab.gnome.org/GNOME/libxslt]
 	o libzookeeper-3.7.0
 	o libzrtpcpp-4.6.6
@@ -986,7 +989,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o linpsk-1.2 [ld: cannot find -lqt-mt with qt4]
 	o liquidwar-6.0.0.11
 	o lirc-0.9.3
-	o llvm-15.0
+	o llvm-15.0.1
 	o lmbench-3
 	o log4cxx-0.11.0
 	o lohit-fonts-2.4.2
@@ -1111,7 +1114,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o oo2c-2.1.7
 	o opal-3.16.2
 	o openblas-0.3.21
-	o opencl-3.0.11
+	o opencl-3.0.12
 	o opencolorio-2.0.0
 	o opencpn-plugin-draw-1.8.5.2
 	o opencsg-1.4.2
@@ -1280,6 +1283,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o privoxy-3.0.33
 	o profit-2.5.3
 	o proj-8.0.0
+	o protobuf-21.6
 	o ps2eps-1.70
 	o psmisc-22.20
 	o pspp-1.4.1
@@ -1355,7 +1359,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o qca2-qt5-ossl-2.3.2
 	o qconf-2.5
 	o qdirstat-1.8.1
-	o qemu-7.1
 	o qt6-6.3.1 [in wip]
 	o qtcreator-6.0
 	o quazip-1.1
@@ -1398,7 +1401,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o rudiments-1.4.2
 	o rump-20131213
 	o rust-1.63.0
-	o rust-analyzer-0.0.20220905 [requires rust 1.63.0]
+	o rust-analyzer-0.0.20220912 [requires rust 1.63.0]
 	o rvault-0.4
 	o rvm-1.20
 	o sabayon-2.30.1
@@ -1434,7 +1437,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o showfont-1.0.4 [wip]
 	o sickgear-0.23.17
 	o siege-4.0.9
-	o sift-0.9.0
 	o sigscheme-0.9.1
 	o silc-1.1.11
 	o silc-client-1.1.11
@@ -1604,7 +1606,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o x16-rom-38
 	o x2vnc-1.31
 	o xaric-0.13.9
-	o xcircuit-3.10.30
 	o xcoral-3.14
 	o xcursor-capitaine-4
 	o xerces-j-2.4.0 [pkg/21725]
@@ -1641,6 +1642,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o xrmap-flags-2.9
 	o xrmap-hymns-1.4
 	o xsc-1.6
+	o xscreensaver-6.05.1 [wiz]
 	o xteddy-2.2
 	o xtermcontrol-3.7
 	o xtrace-1.4.0
