@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.51 2022/08/26 09:55:09 adam Exp $
+# $NetBSD: Makefile,v 1.53 2022/09/22 10:11:19 wiz Exp $
 
-DISTNAME=	ansible-6.3.0
+DISTNAME=	ansible-6.4.0
 CATEGORIES=	sysutils python
 MASTER_SITES=	${MASTER_SITE_PYPI:=a/ansible/}
 
@@ -35,6 +35,7 @@ REPLACE_PYTHON+=	ansible_collections/community/hashi_vault/.github/actions/docke
 REPLACE_PYTHON+=	ansible_collections/community/okd/ci/doc_fragment_modules.py
 REPLACE_PYTHON+=	ansible_collections/community/okd/ci/downstream_fragments.py
 REPLACE_PYTHON+=	ansible_collections/community/routeros/update-docs.py
+REPLACE_PYTHON+=	ansible_collections/community/sap_libs/plugins/module_utils/swpm2_parameters_inifile_generate.py
 REPLACE_PYTHON+=	ansible_collections/ngine_io/cloudstack/scripts/inventory/cloudstack.py
 REPLACE_PYTHON+=	ansible_collections/ovirt/ovirt/roles/disaster_recovery/files/*.py
 REPLACE_PYTHON+=	ansible_collections/ovirt/ovirt/roles/disaster_recovery/files/ovirt-dr
@@ -54,6 +55,7 @@ CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/ansible_collections/community/vmware/tools
 CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/ansible_collections/community/zabbix/roles/zabbix_proxy/files/*.bsx
 CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/ansible_collections/community/zabbix/roles/zabbix_server/files/*.bsx
 CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/ansible_collections/cyberark/conjur/ci/*
+CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/ansible_collections/cyberark/conjur/dev/*
 CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/ansible_collections/cyberark/conjur/roles/conjur_host_identity/tests/test.sh*
 CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/ansible_collections/infinidat/infinibox/bin/*.sh
 CHECK_INTERPRETER_SKIP+=	${PYSITELIB}/ansible_collections/ovirt/ovirt/automation/*.sh

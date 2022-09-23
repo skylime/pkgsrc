@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3797 2022/09/15 17:51:06 adam Exp $
+# $NetBSD: Makefile,v 1.3800 2022/09/22 09:53:49 wiz Exp $
 #
 
 COMMENT=	Development utilities
@@ -424,7 +424,6 @@ SUBDIR+=	gnustep-examples
 SUBDIR+=	gnustep-make
 SUBDIR+=	gnustep-objc
 SUBDIR+=	gnustep-objc-lf2
-SUBDIR+=	go-check
 SUBDIR+=	go-ed25519
 SUBDIR+=	go-flags-svent
 SUBDIR+=	go-gocode
@@ -436,7 +435,6 @@ SUBDIR+=	go-gox
 SUBDIR+=	go-impl
 SUBDIR+=	go-logrus
 SUBDIR+=	go-nbreader
-SUBDIR+=	go-protobuf
 SUBDIR+=	go-pty
 SUBDIR+=	go-review
 SUBDIR+=	go-siphash
@@ -2931,7 +2929,6 @@ SUBDIR+=	qtscriptgenerator
 SUBDIR+=	quilt
 SUBDIR+=	radamsa
 SUBDIR+=	radare2
-SUBDIR+=	radare2-cutter
 SUBDIR+=	ragel
 SUBDIR+=	rainbow-delimiters-el
 SUBDIR+=	range-v3
