@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.88 2022/09/11 12:52:07 wiz Exp $
+# $NetBSD: Makefile,v 1.90 2022/09/29 05:18:47 markd Exp $
 
 DISTNAME=	kdf-${KAPPSVER}
-PKGREVISION=	9
 CATEGORIES=	sysutils
 
-HOMEPAGE=	https://kde.org/applications/system/kdiskfree/
+HOMEPAGE=	https://apps.kde.org/kdf/
 COMMENT=	Show mount points and disk usage under KDE desktop
 LICENSE=	gnu-gpl-v2
 

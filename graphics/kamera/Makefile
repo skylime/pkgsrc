@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.65 2022/09/11 12:51:52 wiz Exp $
+# $NetBSD: Makefile,v 1.67 2022/09/29 05:57:38 markd Exp $
 
 DISTNAME=	kamera-${KAPPSVER}
-PKGREVISION=	9
 CATEGORIES=	graphics
 
-HOMEPAGE=	https://kde.org/applications/graphics/kamera/
+HOMEPAGE=	https://apps.kde.org/kamera/
 COMMENT=	KDE digital camera manager
 LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2 AND gnu-lgpl-v2
 
