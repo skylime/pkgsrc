@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.55 2022/09/11 12:52:05 wiz Exp $
+# $NetBSD: Makefile,v 1.57 2022/09/29 05:20:43 markd Exp $
 
 DISTNAME=	krfb-${KAPPSVER}
-PKGREVISION=	11
 CATEGORIES=	net
 
-HOMEPAGE=	https://kde.org/applications/system/krfb/
+HOMEPAGE=	https://apps.kde.org/krfb/
 COMMENT=	KDE desktop sharing
 LICENSE=	gnu-lgpl-v2 AND gnu-gpl-v2 AND gnu-fdl-v1.2
 

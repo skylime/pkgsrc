@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.22222 2022/09/22 09:54:07 wiz Exp $
+$NetBSD: TODO,v 1.22251 2022/10/01 08:08:16 wen Exp $
 
 Suggested new packages
 ======================
@@ -508,9 +508,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o c4-1.10
 	o cacti-1.2.19
 	o cacti-spine-1.2.16
+	o cairomm1.16-1.16.2
 	o calc-2.11.10.1
 	o calcoo-2.1.0
-	o calibre-6.5.0 [requires qt6/py-qt6/py-qt6-webengine]
+	o calibre-6.6.0 [requires qt6/py-qt6/py-qt6-webengine]
 	o calligra-3.0.1 [in wip; koffice successor]
 	o camlp4-4.12
 	o camlp5-8.00.03 [dholland has a partial update]
@@ -589,7 +590,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o diction-1.14
 	o digikam-7.6
 	o dikt-2s1
-	o direnv-2.28.0
 	o direvent-5.2
 	o distcc-pump-3.3.5
 	o distccmon-gnome-3.3.5
@@ -651,7 +651,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o fakeroot-1.6.5
 	o fastp-0.20.1
 	o fd-3.01j
-	o felinks-0.14.0
 	o felt-3.07 [wip]
 	o fet-6.0.1
 	o filerunner-14.06.18.10
@@ -793,7 +792,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gossip-0.31
 	o got-0.74
 	o gourmet-0.13.3
-	o gperiodic-3.0.2
+	o gperiodic-3.0.3
 	o gprolog-1.5.0 [adds arm64 support]
 	o gps-17.0
 	o gradle-7.0
@@ -827,7 +826,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o h8300-elf-gcc-7.1.0
 	o hamster-applet-2.32.1
 	o hanzim-3.5
-	o harfbuzz-5.2.0
 	o harminv-1.4.1
 	o hashcash-1.23
 	o haskell-mode-13.20
@@ -840,6 +838,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o horde-5.2.9
 	o howm-1.4.7
 	o hplip-3.22.2
+	o hs-aeson-2.1.1.0
 	o hs-bifunctors-5.5.13
 	o hs-hie-bios-0.10.0
 	o hs-th-abstraction-0.4.5.0
@@ -890,7 +889,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o jdbc-mysql5-5.1.36
 	o jdom-2.0.6
 	o jed-0.99-18
-	o jemalloc-5.3
 	o jetty7-7.6.17
 	o jetty9-9.3.7
 	o jools-1.0
@@ -1057,7 +1055,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o mtail-1.2.0
 	o multitail-6.4.2
 	o munge-0.5.14
-	o mupdf-1.20.3
 	o muse-0.9.2
 	o myodbc-8.0.28
 	o mysql-workbench-8.0.23
@@ -1096,11 +1093,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o nxtvepg-2.8.1
 	o objc-3.3.24
 	o ocaml-cppo-1.6.9
-	o ocaml-cryptokit-116.1
 	o ocaml-encore-0.8
 	o ocaml-eqaf-0.7
 	o ocaml-expat-1.1.0
-	o ocaml-findlib-1.9.5
+	o ocaml-findlib-1.9.6
 	o ocaml-mtime-1.2.0
 	o ocaml-parsexp-0.14.0
 	o ocaml-resource-pooling-1.2
@@ -1250,10 +1246,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o pks-0.9.6
 	o plan-1.10.1
 	o plasma-5.25.1
-	o plasma-wayland-protocols-1.2.0
 	o ploticus-examples-230
 	o ply-3.11
-	o png-1.6.38
 	o pocl-3.0
 	o poco-1.7.5
 	o podcastdl-0.3.3
@@ -1267,13 +1261,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o postgresql-pljava-1.6.2
 	o pound-3.0d
 	o povray-3.7.0.0
-	o powerdns-4.4.3
-	o powerdns-geoip-4.4.3
-	o powerdns-ldap-4.4.3
-	o powerdns-mysql-4.4.3
-	o powerdns-odbc-4.4.3
-	o powerdns-pgsql-4.4.3
-	o powerdns-recursor-4.4.3
 	o powerpc-none-elf-binutils-2.36.1
 	o powerpc-none-elf-gcc-9.3.0
 	o powwow-1.2.22
@@ -1384,7 +1371,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o riemann-client-1.10.4.1
 	o rio500-0.8.1
 	o rmtrash-1.14
-	o root-6.24
 	o root-tail-1.2
 	o ropper-1.13.6
 	o rosegarden-21.12 [updating wip; audio/rosegarden -> rosegarden-x11]
@@ -1398,9 +1384,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o rtty-4.0 [at ftp://ftp.isc.org/isc/rtty/]
 	o rubber-1.5.1
 	o rudiments-1.4.2
-	o rump-20131213
 	o rust-1.63.0
-	o rust-analyzer-0.0.20220912 [requires rust 1.63.0]
+	o rust-analyzer-0.0.20220919 [requires rust 1.63.0]
 	o rvault-0.4
 	o rvm-1.20
 	o sabayon-2.30.1
@@ -1413,7 +1398,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o scala-2.13.5
 	o scamper-20210324
 	o scew-1.1.7
-	o scidavis-2.8
+	o scidavis-2.9.0
 	o scilab-5.5.2
 	o scm-5f3 [dholland has a partial update]
 	o scm-blackbox-2.0.0
@@ -1462,7 +1447,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o spin-649
 	o spiped-1.6.1b
 	o spl-1.0pre6
-	o sqlrelay-1.9.2
+	o sqlrelay-1.9.3
 	o squeak-5.0
 	o squeak-vm-4.10.2.2765
 	o sqwebmail-5.8.2
@@ -1641,7 +1626,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o xrmap-flags-2.9
 	o xrmap-hymns-1.4
 	o xsc-1.6
-	o xscreensaver-6.05.1 [wiz]
 	o xteddy-2.2
 	o xtermcontrol-3.7
 	o xtrace-1.4.0
@@ -1664,7 +1648,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o yorick-2.1.05
 	o yudit-3.0.7
 	o z-push-2.6.1
-	o z3-4.8.10
+	o z3-4.11.2
 	o z80-asm-2.4
 	o zabbix-4.4.4
 	o zabbix-frontend-4.4.4

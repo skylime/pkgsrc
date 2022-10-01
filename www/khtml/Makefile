@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.67 2022/09/17 21:34:01 he Exp $
+# $NetBSD: Makefile,v 1.69 2022/09/29 01:23:23 markd Exp $
 
 DISTNAME=	khtml-${KF5VER}
-PKGREVISION=	4
 CATEGORIES=	www
 
 HOMEPAGE=	https://community.kde.org/Frameworks
@@ -15,6 +14,7 @@ USE_TOOLS+=	perl msgfmt
 # Need gnu variant for built-in alloca()
 BUILDLINK_TRANSFORM+=	opt:-std=c99:-std=gnu99
 BUILDLINK_TRANSFORM+=	opt:-std=c++17:-std=gnu++17
+BUILDLINK_TRANSFORM+=	opt:-std=c++1z:-std=gnu++1z
 
 CMAKE_ARGS.SunOS+=	-DHAVE_ALLOCA_H=1
 

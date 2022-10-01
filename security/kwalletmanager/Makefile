@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.40 2022/09/11 12:52:06 wiz Exp $
+# $NetBSD: Makefile,v 1.42 2022/09/29 05:25:11 markd Exp $
 
 DISTNAME=	kwalletmanager-${KAPPSVER}
-PKGREVISION=	9
 CATEGORIES=	security
 
-HOMEPAGE=	https://kde.org/applications/system/kwalletmanager/
+HOMEPAGE=	https://apps.kde.org/kwalletmanager5/
 COMMENT=	KDE wallet manager
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2
 

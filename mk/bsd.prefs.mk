@@ -1,4 +1,4 @@
-# $NetBSD: bsd.prefs.mk,v 1.426 2022/08/06 07:38:44 nia Exp $
+# $NetBSD: bsd.prefs.mk,v 1.428 2022/09/29 02:25:16 charlotte Exp $
 #
 # This file includes the mk.conf file, which contains the user settings.
 #
@@ -171,10 +171,6 @@ LOWER_VENDOR?=		ibm
 
 .elif ${OPSYS} == "BSDOS"
 LOWER_OPSYS?=		bsdi
-
-.elif ${OPSYS} == "Bitrig"
-LOWER_OPSYS?= 		bitrig
-LOWER_VENDOR?= 		unknown
 
 .elif ${OPSYS} == "Cygwin"
 LOWER_OPSYS?=		cygwin
@@ -880,7 +876,9 @@ _USE_CWRAPPERS=		no
 
 # Use C-based tools to speed up pkgsrc infrastructure tasks.
 .if empty(PKGPATH:Mpkgtools/mktools) && \
-    ${PKGSRC_USE_MKTOOLS:tl} == "yes"
+    (${PKGSRC_USE_MKTOOLS:tl} == "yes" || \
+    (${PKGSRC_USE_MKTOOLS:tl} == "auto" && \
+     ${_OPSYS_SUPPORTS_MKTOOLS:Uno} == "yes"))
 _PKGSRC_USE_MKTOOLS=	yes
 .else
 _PKGSRC_USE_MKTOOLS=	no
