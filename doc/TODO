@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.22251 2022/10/01 08:08:16 wen Exp $
+$NetBSD: TODO,v 1.22266 2022/10/03 14:01:06 nros Exp $
 
 Suggested new packages
 ======================
@@ -395,7 +395,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o R-poweRlaw-0.70.6
 	o R-quadprog-1.5.8
 	o R-tseries-0.10.48
-	o SDL_sound-2.0
 	o SOGo-2.4.3
 	o SOGo-5.7.1
 	o SOPE-2.4.3
@@ -561,7 +560,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o crafty-25.0.1
 	o cross-binutils-2.36.1
 	o cross-h8300-hms-binutils-2.17
-	o crypto++-850
 	o cssc-1.4.1
 	o csvkit-1.0.5
 	o ctemplate-2.4
@@ -570,7 +568,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o cygwin_lib-1.5.24.2
 	o cyrus-imapd-3.4.3
 	o dap-3.10
-	o dar-2.4.14
 	o darcs-2.16.5
 	o darktable-4.0
 	o dateutils-0.4.8
@@ -583,10 +580,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o denemo-2.6
 	o desklaunch-1.1.7
 	o deskmenu-1.4.5
-	o dhcpcd-dbus-0.6.1
-	o dhcpcd-gtk-0.7.8
-	o dhcpcd-icons-0.7.8
-	o dhcpcd-qt-0.7.8
 	o diction-1.14
 	o digikam-7.6
 	o dikt-2s1
@@ -1385,7 +1378,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o rubber-1.5.1
 	o rudiments-1.4.2
 	o rust-1.63.0
-	o rust-analyzer-0.0.20220919 [requires rust 1.63.0]
+	o rust-analyzer-0.0.20220926 [requires rust 1.63.0]
 	o rvault-0.4
 	o rvm-1.20
 	o sabayon-2.30.1
@@ -1415,6 +1408,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o ser-0.9.6
 	o sgb-20090810
 	o sge-8.1.8
+	o shared-mime-info-2.2
 	o sharity-3.7
 	o shc-3.8.9b
 	o shotwell-0.30.10
@@ -1655,6 +1649,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o zenicb-1.31 (needs merge with lots of local changes)
 	o zeroconf-ioslave-20.12.3
 	o zile-2.6.1
+	o zola-0.16.1
 	o zoneminder-1.34.21
 	o zookeeper-3.7.0
 	o zopeedit-0.8
