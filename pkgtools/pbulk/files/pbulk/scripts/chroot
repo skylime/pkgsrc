@@ -27,7 +27,7 @@ build)
 	;;
 scan)
 	clients=${scan_clients}
-	numchroots=${scan_chroots}
+	numchroots=1
 	;;
 *)
 	echo "$0: Unexpected phase '${phase}'" >&2
@@ -56,12 +56,12 @@ fi
 # Create chroots on remote clients
 if [ -n "${clients}" ]; then
 	for client in ${clients}; do
-		if [ -n "${numchroots}" -a ${numchroots} -gt 1 ]; then
+		if [ ${numchroots} -gt 1 ]; then
 			ssh $client "
 				i=1
 				while true; do
 					${chroot_script} ${chroot_dir}-${phase}-\${i} &
-					i=\`expr \$i + 1\`
+					i=\$((i + 1))
 					if [ \$i -gt ${numchroots} ]; then
 						break
 					fi
@@ -72,11 +72,11 @@ if [ -n "${clients}" ]; then
 	done
 # Create local chroots
 else
-	if [ -n "${numchroots}" -a ${numchroots} -gt 1 ]; then
+	if [ ${numchroots} -gt 1 ]; then
 		i=1
 		while true; do
 			${chroot_script} ${chroot_dir}-${phase}-${i} &
-			i=`expr $i + 1`
+			i=$((i + 1))
 			if [ $i -gt ${numchroots} ]; then
 				break
 			fi
