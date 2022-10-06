@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.887 2022/10/03 19:26:18 markd Exp $
+# $NetBSD: Makefile,v 1.889 2022/10/06 11:10:24 markd Exp $
 #
 
 COMMENT=	Desktop publishing
