@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.651 2022/06/29 07:54:40 wiz Exp $
+# $NetBSD: Makefile,v 1.656 2022/10/01 11:25:51 bsiegert Exp $
 #
 
 COMMENT=	Programming languages
@@ -97,12 +97,9 @@ SUBDIR+=	gnat_util
 SUBDIR+=	gnucobol
 SUBDIR+=	go
 SUBDIR+=	go-bin
-SUBDIR+=	go110
-SUBDIR+=	go116
-SUBDIR+=	go117
 SUBDIR+=	go118
+SUBDIR+=	go119
 SUBDIR+=	go14
-SUBDIR+=	go19
 SUBDIR+=	gpc
 SUBDIR+=	gprolog
 SUBDIR+=	guile18
@@ -143,8 +140,6 @@ SUBDIR+=	konoha
 SUBDIR+=	ksi
 SUBDIR+=	libBlocksRuntime
 SUBDIR+=	libLLVM
-SUBDIR+=	libLLVM34
-SUBDIR+=	libLLVM4
 SUBDIR+=	libcxx
 SUBDIR+=	libcxxabi
 SUBDIR+=	libduktape
@@ -170,6 +165,7 @@ SUBDIR+=	mono-basic
 SUBDIR+=	moscow_ml
 SUBDIR+=	mozjs78
 SUBDIR+=	mpd
+SUBDIR+=	mujs
 SUBDIR+=	nawk
 SUBDIR+=	neko
 SUBDIR+=	newlisp

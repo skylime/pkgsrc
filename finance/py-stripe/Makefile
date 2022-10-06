@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.54 2022/07/08 14:32:11 wiz Exp $
+# $NetBSD: Makefile,v 1.56 2022/08/22 06:50:21 adam Exp $
 
-DISTNAME=	stripe-3.5.0
+DISTNAME=	stripe-4.1.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	finance python
 MASTER_SITES=	${MASTER_SITE_PYPI:=s/stripe/}
@@ -25,5 +25,5 @@ USE_LANGUAGES=	# none
 do-test:
 	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} pytest-${PYVERSSUFFIX}
 
-.include "../../lang/python/wheel.mk"
+.include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.163 2022/07/14 23:46:26 dholland Exp $
+# $NetBSD: Makefile,v 1.167 2022/09/21 08:55:21 he Exp $
 
 DISTNAME=	cups-filters-1.28.15
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	http://openprinting.org/download/cups-filters/
 EXTRACT_SUFX=	.tar.xz
@@ -94,4 +94,5 @@ post-install:
 .include "../../print/poppler-includes/buildlink3.mk"
 .include "../../print/qpdf/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.378 2022/05/31 08:27:13 nikita Exp $
+# $NetBSD: Makefile,v 1.383 2022/09/26 16:08:25 ryoon Exp $
 #
 
 COMMENT=	Fonts
@@ -192,7 +192,9 @@ SUBDIR+=	mplayer-fonts
 SUBDIR+=	ms-ttf
 SUBDIR+=	nanum-ttf
 SUBDIR+=	neumeister-otf
+SUBDIR+=	noto-cjk-fonts
 SUBDIR+=	noto-emoji-ttf
+SUBDIR+=	noto-fonts
 SUBDIR+=	noto-ttf
 SUBDIR+=	ohruri-ttf
 SUBDIR+=	otf2bdf
@@ -252,10 +254,14 @@ SUBDIR+=	tex-albatross
 SUBDIR+=	tex-albatross-doc
 SUBDIR+=	tex-alegreya
 SUBDIR+=	tex-alegreya-doc
+SUBDIR+=	tex-alkalami
+SUBDIR+=	tex-alkalami-doc
 SUBDIR+=	tex-allrunes
 SUBDIR+=	tex-allrunes-doc
 SUBDIR+=	tex-almfixed
 SUBDIR+=	tex-almfixed-doc
+SUBDIR+=	tex-amiri
+SUBDIR+=	tex-amiri-doc
 SUBDIR+=	tex-amsfonts
 SUBDIR+=	tex-amsfonts-doc
 SUBDIR+=	tex-anonymouspro

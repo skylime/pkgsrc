@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.27 2022/07/29 16:29:08 jperkin Exp $
+# $NetBSD: Makefile,v 1.29 2022/09/11 12:51:23 wiz Exp $
 
 DISTNAME=	speech-dispatcher-0.10.2
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=brailcom/}
 GITHUB_PROJECT=	speechd
@@ -32,8 +32,6 @@ CONFIGURE_ARGS+=	--without-alsa
 CONFIGURE_ARGS+=	--without-nas
 CONFIGURE_ARGS+=	--without-oss
 CONFIGURE_ARGS+=	--without-pulse
-
-LIBS.SunOS+=	-lintl
 
 .include "../../mk/bsd.prefs.mk"
 

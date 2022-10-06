@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.566 2022/07/08 14:37:30 wiz Exp $
+# $NetBSD: Makefile,v 1.572 2022/09/27 07:49:22 pin Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -12,6 +12,7 @@ SUBDIR+=	R-pillar
 SUBDIR+=	R-praise
 SUBDIR+=	abduco
 SUBDIR+=	ansiweather
+SUBDIR+=	aschord
 SUBDIR+=	ascii
 SUBDIR+=	asr-manpages
 SUBDIR+=	astrolog
@@ -213,6 +214,7 @@ SUBDIR+=	ocaml-opam-file-format
 SUBDIR+=	ocaml-topkg
 SUBDIR+=	open2300
 SUBDIR+=	open2300-mysql
+SUBDIR+=	open2300-pgsql
 SUBDIR+=	orca
 SUBDIR+=	p5-App-MrShell
 SUBDIR+=	p5-Array-PrintCols
@@ -248,6 +250,7 @@ SUBDIR+=	pick
 SUBDIR+=	pinfo
 SUBDIR+=	pixd
 SUBDIR+=	ppower
+SUBDIR+=	preftools
 SUBDIR+=	pty-redir
 SUBDIR+=	py-anita
 SUBDIR+=	py-ansi
@@ -302,7 +305,6 @@ SUBDIR+=	reed
 SUBDIR+=	rhash
 SUBDIR+=	rlwrap
 SUBDIR+=	rocs
-SUBDIR+=	root
 SUBDIR+=	root-tail
 SUBDIR+=	routeplanner-cli
 SUBDIR+=	rox-memo
@@ -340,7 +342,6 @@ SUBDIR+=	ruby-thread_safe
 SUBDIR+=	ruby-transaction-simple
 SUBDIR+=	ruby-typed-array
 SUBDIR+=	ruby-windows_error
-SUBDIR+=	rump
 SUBDIR+=	s6-portable-utils
 SUBDIR+=	sch
 SUBDIR+=	sci
@@ -386,6 +387,7 @@ SUBDIR+=	wdic
 SUBDIR+=	wemux
 SUBDIR+=	whohas
 SUBDIR+=	window
+SUBDIR+=	wthrr
 SUBDIR+=	xchm
 SUBDIR+=	xdg-utils
 SUBDIR+=	xfce4-calculator-plugin

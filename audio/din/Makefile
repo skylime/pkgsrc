@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.40 2022/05/07 07:26:41 fox Exp $
+# $NetBSD: Makefile,v 1.42 2022/10/01 09:46:56 fox Exp $
 
-DISTNAME=	din-54
+DISTNAME=	din-55
 CATEGORIES=	audio
 MASTER_SITES=	https://archive.org/download/dinisnoise_source_code/
 
@@ -14,7 +14,7 @@ USE_TOOLS+=	autoreconf pkg-config gmake
 GNU_CONFIGURE=	yes
 
 LIBS+=		-ltcl -lSDL -lGL -lpthread
-LIBS.Darwin+=	-lSDLmain
+LIBS.Darwin+=   -lSDLmain -lSDL -Wl,-framework,Cocoa
 
 .include "options.mk"
 

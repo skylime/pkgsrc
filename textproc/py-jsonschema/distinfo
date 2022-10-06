@@ -1,5 +1,5 @@
-$NetBSD: distinfo,v 1.14 2022/07/08 07:54:06 adam Exp $
+$NetBSD: distinfo,v 1.16 2022/09/14 11:04:57 adam Exp $
 
-BLAKE2s (jsonschema-4.6.2.tar.gz) = 8898cb395d6b77dc95166793f1e5971f8d17aa43cfef7eb27755a17ec9ed60d3
-SHA512 (jsonschema-4.6.2.tar.gz) = e41d6bda1bd6b12174201a70b5ad5209ab7c445faa6c947408f0fbc255839f3379ffe8b539760d993b435972936e4052300dbc420d4b87051f33180bced7efb2
-Size (jsonschema-4.6.2.tar.gz) = 275975 bytes
+BLAKE2s (jsonschema-4.16.0.tar.gz) = f2f85a575b4203252fbbaa253766fd7cd754460bbd9ae026700bae0c9d04f903
+SHA512 (jsonschema-4.16.0.tar.gz) = c84abc992f410e9d558e2ce06c7172e9e2d298cff469baf8a23b1ea5b4777e6addfa757c5cc62b2e28e257721ee55e04bec0852e5f525adfa87392cbf712828f
+Size (jsonschema-4.16.0.tar.gz) = 292399 bytes

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2022/04/25 09:37:06 markd Exp $
+# $NetBSD: Makefile,v 1.27 2022/09/29 01:28:25 markd Exp $
 
 DISTNAME=	qqc2-desktop-style-${KF5VER}
 CATEGORIES=	x11

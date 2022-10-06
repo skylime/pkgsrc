@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.92 2022/07/23 15:09:43 leot Exp $
+# $NetBSD: Makefile,v 1.96 2022/09/28 20:16:37 leot Exp $
 
-DISTNAME=	mupdf-1.20.0-source
+DISTNAME=	mupdf-1.20.3-source
 PKGNAME=	${DISTNAME:S/-source//}
 CATEGORIES=	print
 MASTER_SITES=	https://mupdf.com/downloads/archive/
@@ -21,15 +21,14 @@ LDFLAGS+=		${COMPILER_RPATH_FLAG}${X11BASE}/lib
 MAKE_FLAGS+=		LDFLAGS=${LDFLAGS:Q}
 MAKE_FLAGS+=		XCFLAGS=${CFLAGS:Q}
 MAKE_FLAGS+=		build=release
-MAKE_ENV+=		USE_SYSTEM_LIBS=yes
+MAKE_FLAGS+=		USE_SYSTEM_LIBS=yes
+MAKE_FLAGS+=		USE_SYSTEM_MUJS=yes
 
 CFLAGS.SunOS+=	-D_XOPEN_SOURCE=600
 
 .include "options.mk"
 
 # Remove thirdparty directory in order to use the libraries provided by pkgsrc
-# mujs directory is an exception and should not be removed (MuJS is the
-# default Javascript interpreter for mupdf).
 post-extract:
 	${RM} -fr \
 	    ${WRKSRC}/thirdparty/curl \
@@ -41,6 +40,7 @@ post-extract:
 	    ${WRKSRC}/thirdparty/leptonica \
 	    ${WRKSRC}/thirdparty/lcms2 \
 	    ${WRKSRC}/thirdparty/libjpeg \
+	    ${WRKSRC}/thirdparty/mujs \
 	    ${WRKSRC}/thirdparty/openjpeg \
 	    ${WRKSRC}/thirdparty/tesseract \
 	    ${WRKSRC}/thirdparty/zlib
@@ -64,6 +64,7 @@ BUILDLINK_API_DEPENDS.zlib+=	zlib>=1.2.7
 #.include "../../graphics/lcms2/buildlink3.mk"
 .include "../../graphics/openjpeg/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
+.include "../../lang/mujs/buildlink3.mk"
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../www/gumbo-parser/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

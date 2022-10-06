@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.28 2021/12/11 14:44:13 taca Exp $
+# $NetBSD: Makefile,v 1.30 2022/09/04 19:02:44 wiz Exp $
 
-DISTNAME=	capybara-3.36.0
+DISTNAME=	capybara-3.37.1
 CATEGORIES=	www devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -17,6 +17,8 @@ DEPENDS+=	${RUBY_PKGPREFIX}-regexp_parser>=1.5:../../devel/ruby-regexp_parser
 DEPENDS+=	${RUBY_PKGPREFIX}-xpath>=3.2<4:../../textproc/ruby-xpath
 
 USE_LANGUAGES=	# none
+
+RUBY_VERSIONS_INCOMPATIBLE=	26
 
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

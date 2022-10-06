@@ -1,6 +1,5 @@
-# $NetBSD: Makefile,v 1.8 2022/06/30 11:18:44 nia Exp $
+# $NetBSD: Makefile,v 1.10 2022/09/06 18:47:27 adam Exp $
 
-PKGREVISION= 2
 .include "../../net/nmap/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/nmap/zenmap/}
@@ -18,6 +17,7 @@ EGG_NAME=	zenmap-${PKGVERSION_NOREV}
 PYTHON_VERSIONS_ACCEPTED=	27
 
 DEPENDS+=	nmap-[0-9]*:../../net/nmap
+DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 DEPENDS+=	${PYPKGPREFIX}-gtk2-[0-9]*:../../x11/py-gtk2
 DEPENDS+=	${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
 

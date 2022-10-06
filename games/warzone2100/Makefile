@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.61 2022/07/02 16:53:21 ryoon Exp $
+# $NetBSD: Makefile,v 1.64 2022/09/24 08:31:23 nia Exp $
 
 DISTNAME=	warzone2100_src
 PKGNAME=	warzone2100-4.2.7
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Warzone2100/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -43,6 +43,9 @@ CFLAGS.NetBSD+=		-D_NETBSD_SOURCE
 LDFLAGS.DragonFly+=	-lX11 -lintl
 
 BUILDLINK_TRANSFORM+=	rm:-Werror
+
+# Needs gnu standard variant to get alloca builtin.
+BUILDLINK_TRANSFORM+=	opt:-std=c++11:-std=gnu++11
 
 pre-configure:
 	${RUN}${MKDIR} ${WRKSRC}/build

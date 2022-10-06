@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.231 2022/07/28 19:09:20 leot Exp $
+# $NetBSD: Makefile,v 1.238 2022/09/25 08:57:51 nia Exp $
 
-DISTNAME=	webkitgtk-2.36.5
+DISTNAME=	webkitgtk-2.36.8
 PKGNAME=	${DISTNAME:S/webkitgtk/webkit-gtk/}
 CATEGORIES=	www
 MASTER_SITES=	https://www.webkitgtk.org/releases/
@@ -26,14 +26,9 @@ CTF_SUPPORTED=	no
 
 # GCC >= 8 is required, it no longer builds with lower versions.
 GCC_REQD+=		8
-USE_GCC_RUNTIME=	yes
 
 .include "../../mk/bsd.prefs.mk"
 
-# This package will link against libstdc++.so from the pkgsrc GCC when the
-# base OS GCC doesn't meet the minimum requirement. Thus we do this so the
-# appropriate gcc-libs package will be captured as a dependency, otherwise
-# binary packages will be broken. See also PR pkg/56604.
 .if ${OPSYS} == "NetBSD" && ${OPSYS_VERSION} < 099915
 USE_PKGSRC_GCC=		yes
 USE_PKGSRC_GCC_RUNTIME=	yes
@@ -134,6 +129,9 @@ CFLAGS+=	-DRELEASE_WITHOUT_OPTIMIZATIONS
 NOT_PAX_MPROTECT_SAFE+=	libexec/webkit2gtk-4.0/WebKitWebProcess
 NOT_PAX_MPROTECT_SAFE+=	libexec/webkit2gtk-4.0/jsc
 
+CHECK_PORTABILITY_SKIP+=	Source/JavaScriptCore/Scripts/create-symlink-to-altroot.sh
+CHECK_PORTABILITY_SKIP+=	Source/WebCore/Scripts/create-symlink-to-altroot.sh
+CHECK_PORTABILITY_SKIP+=	Source/WebKit/Scripts/create-symlink-to-altroot.sh
 CHECK_PORTABILITY_SKIP+=	Source/WebKit/Scripts/generate-feature-flags-plist.sh
 
 .include "options.mk"

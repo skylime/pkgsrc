@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.45 2022/08/03 22:03:43 rillig Exp $
+# $NetBSD: Makefile,v 1.56 2022/09/29 21:26:23 rillig Exp $
 
-PKGNAME=	lintpkgsrc-4.99
+PKGNAME=	lintpkgsrc-2022.09.29
 CATEGORIES=	pkgtools
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -8,25 +8,42 @@ HOMEPAGE=	https://www.NetBSD.org/docs/pkgsrc/
 COMMENT=	Sanity checks on the complete pkgsrc tree
 
 DEPENDS+=	digest>=20010101:../../pkgtools/digest
-TEST_DEPENDS+=	p5-Capture-Tiny>=0:../../devel/p5-Capture-Tiny
 TEST_DEPENDS+=	p5-File-Slurp>=0:../../devel/p5-File-Slurp
 TEST_DEPENDS+=	p5-IO-Null>=0:../../devel/p5-IO-Null
-CONFLICTS+=	pkglint<4.82
 
 USE_TOOLS+=	perl:run
+PERL5_REQD+=	5.36
 
 WRKSRC=		${WRKDIR}
 USE_LANGUAGES=	# none
 AUTO_MKDIRS=	yes
 
+.include "../../mk/bsd.prefs.mk"
+
+# See bootstrap/bootstrap.
+# See pkgtools/bootstrap-mk-files/files/bsd.own.mk.in.
+# Another guess would be '${.MAKE.MAKEFILES:M*/mk.conf:[1]}'.
+.for conf in \
+    ${MAKECONF} \
+    ${PKG_SYSCONFBASE:=/mk.conf} \
+    ${SYSCONFBASE:=/mk.conf} \
+    ${LOCALBASE:=/etc/mk.conf}
+.  if exists(${conf})
+LINTPKGSRC_MAKECONF?=	${conf}
+.  endif
+.endfor
+LINTPKGSRC_MAKECONF?=	/etc/mk.conf
+
 SUBST_CLASSES+=		lp
 SUBST_STAGE.lp=		post-configure
-SUBST_FILES.lp+=	lintpkgsrc.0 lintpkgsrc.1 lintpkgsrc.pl
-SUBST_SED.lp+=		-e 's;@PKGSRCDIR@;${BATCH:D/usr/pkgsrc:U${PKGSRCDIR}};g'
+SUBST_FILES.lp+=	lintpkgsrc.1 lintpkgsrc.pl
+SUBST_VARS.lp+=		LINTPKGSRC_MAKECONF
 SUBST_VARS.lp+=		MAKE
 SUBST_VARS.lp+=		PERL5
-SUBST_VARS.lp+=		PKG_SYSCONFDIR
+SUBST_VARS.lp+=		PKGSRCDIR
+SUBST_VARS.lp+=		PKG_INFO
 SUBST_VARS.lp+=		PREFIX
+SUBST_VARS.lp+=		X11BASE
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -45,13 +62,6 @@ do-test:
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/lintpkgsrc.pl ${DESTDIR}${PREFIX}/bin/lintpkgsrc
-.if !empty(MANINSTALL:Mcatinstall)
-.  if defined(CATMAN_SECTION_SUFFIX) && !empty(CATMAN_SECTION_SUFFIX:M[Yy][Ee][Ss])
-	${INSTALL_MAN} ${WRKSRC}/lintpkgsrc.0 ${DESTDIR}${PREFIX}/${PKGMANDIR}/cat1/lintpkgsrc.1
-.  else
-	${INSTALL_MAN} ${WRKSRC}/lintpkgsrc.0 ${DESTDIR}${PREFIX}/${PKGMANDIR}/cat1
-.  endif
-.endif
 .if !empty(MANINSTALL:Mmaninstall)
 	${INSTALL_MAN} ${WRKSRC}/lintpkgsrc.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1
 .endif

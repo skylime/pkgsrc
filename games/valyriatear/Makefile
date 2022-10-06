@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.6 2022/03/28 10:44:18 tnn Exp $
+# $NetBSD: Makefile,v 1.8 2022/09/11 12:51:49 wiz Exp $
 
 DISTNAME=	ValyriaTear-src-with-deps-1.1.0
 PKGNAME=	${DISTNAME:tl:S/-src-with-deps//1}
-PKGREVISION=	3
+PKGREVISION=	5
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ValyriaTear/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}

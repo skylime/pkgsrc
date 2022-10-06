@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2022/02/26 03:58:36 pho Exp $
+# $NetBSD: Makefile,v 1.8 2022/09/07 06:50:52 pho Exp $
 
 DISTNAME=	warp-tls-3.3.2
-PKGREVISION=	2
+PKGREVISION=	5
 CATEGORIES=	www
 
 MAINTAINER=	pho@cielonegro.org

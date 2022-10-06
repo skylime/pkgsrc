@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.27 2022/05/21 07:25:34 nia Exp $
+# $NetBSD: Makefile.common,v 1.29 2022/10/03 07:50:27 nia Exp $
 #
 # This Makefile fragment is included by all PostgreSQL packages built from
 # the main sources of the PostgreSQL distribution except jdbc-postgresql.
@@ -16,7 +16,7 @@
 # used by databases/postgresql11-pltcl/Makefile
 # used by databases/postgresql11-server/Makefile
 
-DISTNAME=	postgresql-11.16
+DISTNAME=	postgresql-11.17
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL:=source/v${PKGVERSION_NOREV}/}
 EXTRACT_SUFX=	.tar.bz2
@@ -88,7 +88,11 @@ CONFIGURE_ENV+=		pgac_cv_prog_cc_ldflags__Wl___as_needed=no
 # https://www.postgresql.org/message-id/E1X0yaj-000753-N6%40gemulon.postgresql.org
 BROKEN_ON_PLATFORM+=	*-*-alpha
 
-# "fatal error: catalog/pg_type_d.h: No such file or directory"
+# Sporadic failures with a _high_ number of MAKE_JOBS:
+# "fatal error: utils/errcodes.h: No such file or directory"
+# Please override this locally if you can't reproduce it rather
+# than removing MAKE_JOBS_SAFE, since this is necessary for
+# bulk build stability.
 MAKE_JOBS_SAFE=		no
 
 .if ${MACHINE_ARCH} == "sparc"

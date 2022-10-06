@@ -1,12 +1,11 @@
-@comment $NetBSD: PLIST,v 1.15 2022/06/07 18:53:21 adam Exp $
+@comment $NetBSD: PLIST,v 1.17 2022/09/14 10:53:53 adam Exp $
 ${PYSITELIB}/${WHEEL_INFODIR}/INSTALLER
 ${PYSITELIB}/${WHEEL_INFODIR}/METADATA
 ${PYSITELIB}/${WHEEL_INFODIR}/RECORD
 ${PYSITELIB}/${WHEEL_INFODIR}/REQUESTED
 ${PYSITELIB}/${WHEEL_INFODIR}/WHEEL
 ${PYSITELIB}/${WHEEL_INFODIR}/direct_url.json
-${PYSITELIB}/${WHEEL_INFODIR}/entry_points.txt
-${PYSITELIB}/${WHEEL_INFODIR}/license_files/COPYING.md
+${PYSITELIB}/${WHEEL_INFODIR}/licenses/COPYING.md
 ${PYSITELIB}/ipykernel/__init__.py
 ${PYSITELIB}/ipykernel/__init__.pyc
 ${PYSITELIB}/ipykernel/__main__.py
@@ -94,6 +93,7 @@ ${PYSITELIB}/ipykernel/pylab/config.py
 ${PYSITELIB}/ipykernel/pylab/config.pyc
 ${PYSITELIB}/ipykernel/resources/logo-32x32.png
 ${PYSITELIB}/ipykernel/resources/logo-64x64.png
+${PYSITELIB}/ipykernel/resources/logo-svg.svg
 ${PYSITELIB}/ipykernel/serialize.py
 ${PYSITELIB}/ipykernel/serialize.pyc
 ${PYSITELIB}/ipykernel/tests/__init__.py
@@ -141,3 +141,4 @@ ${PYSITELIB}/ipykernel_launcher.pyc
 share/jupyter/kernels/python3/kernel.json
 share/jupyter/kernels/python3/logo-32x32.png
 share/jupyter/kernels/python3/logo-64x64.png
+share/jupyter/kernels/python3/logo-svg.svg

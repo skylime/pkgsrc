@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.52 2022/07/02 16:53:18 ryoon Exp $
+# $NetBSD: Makefile,v 1.55 2022/09/29 00:47:29 markd Exp $
 
 DISTNAME=	klickety-${KAPPSVER}
-PKGREVISION=	7
 CATEGORIES=	games
 
 HOMEPAGE=	https://kde.org/applications/games/klickety/
@@ -14,7 +13,7 @@ BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
 
-REPLACE_PERL+=	klickety-2.0-inherit-ksame-highscore.pl
+REPLACE_PERL+=	src/klickety-2.0-inherit-ksame-highscore.pl
 
 .include "../../games/libkdegames/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"

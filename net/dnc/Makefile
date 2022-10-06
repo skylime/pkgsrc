@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.3 2022/06/30 11:18:40 nia Exp $
+# $NetBSD: Makefile,v 1.5 2022/09/11 16:46:59 wiz Exp $
 
-GITHUB_PROJECT=	dnc
 DISTNAME=	dnc-0.2.0
 PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=fcambus/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
+GITHUB_PROJECT=	dnc
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/fcambus/dnc/
@@ -17,6 +17,8 @@ USE_LANGUAGES=	# none
 DEPENDS+=	${PYPKGPREFIX}-dns-[0-9]*:../../net/py-dns
 DEPENDS+=	${PYPKGPREFIX}-OpenSSL-[0-9]*:../../security/py-OpenSSL
 DEPENDS+=	${PYPKGPREFIX}-prettytable-[0-9]*:../../textproc/py-prettytable
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 NO_BUILD=	yes
 

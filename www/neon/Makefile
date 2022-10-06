@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.86 2022/06/28 11:37:06 wiz Exp $
+# $NetBSD: Makefile,v 1.89 2022/09/18 11:47:54 wiz Exp $
 
-DISTNAME=	neon-0.32.2
-PKGREVISION=	1
+DISTNAME=	neon-0.32.4
 CATEGORIES=	www
 MASTER_SITES=	https://notroj.github.io/neon/
 
@@ -22,8 +21,6 @@ PKGCONFIG_OVERRIDE=	neon.pc.in
 TEST_TARGET=		check
 #selftest needs perl
 USE_TOOLS+=		perl
-
-LDFLAGS.SunOS+=		-lintl
 
 .include "options.mk"
 

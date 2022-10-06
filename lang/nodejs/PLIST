@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.64 2022/05/05 07:08:06 adam Exp $
+@comment $NetBSD: PLIST,v 1.67 2022/10/02 03:29:35 ryoon Exp $
 bin/node
 include/node/common.gypi
 include/node/config.gypi

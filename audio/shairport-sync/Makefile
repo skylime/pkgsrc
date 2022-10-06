@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2022/07/02 16:53:08 ryoon Exp $
+# $NetBSD: Makefile,v 1.4 2022/09/11 12:51:22 wiz Exp $
 
 DISTNAME=	shairport-sync-3.3.9
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mikebrady/}
 

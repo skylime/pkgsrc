@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.2 2022/02/26 03:57:46 pho Exp $
+# $NetBSD: buildlink3.mk,v 1.4 2022/09/07 06:50:45 pho Exp $
 
 BUILDLINK_TREE+=	fourmolu
 
@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	fourmolu
 FOURMOLU_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.fourmolu+=	fourmolu>=0.5.0
-BUILDLINK_ABI_DEPENDS.fourmolu+=	fourmolu>=0.5.0.1nb1
+BUILDLINK_ABI_DEPENDS.fourmolu+=	fourmolu>=0.5.0.1nb4
 BUILDLINK_PKGSRCDIR.fourmolu?=		../../devel/fourmolu
 
 .include "../../converters/hs-aeson/buildlink3.mk"

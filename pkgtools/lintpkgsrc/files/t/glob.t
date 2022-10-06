@@ -1,47 +1,82 @@
-# $NetBSD: glob.t,v 1.3 2022/08/03 18:51:56 rillig Exp $
+# $NetBSD: glob.t,v 1.13 2022/08/14 12:54:01 rillig Exp $
+#
+# Tests for file globbing and matching.
 
 use strict;
 use warnings;
 use Test;
 
-BEGIN { plan tests => 12, onfail => sub { die } }
+BEGIN { plan tests => 27, onfail => sub { die } }
 
 require('../lintpkgsrc.pl');
 
 sub test_glob2regex() {
 
 	ok(glob2regex('*'), '^.*$');
+	ok(glob2regex('\*'), '');
 
 	ok(glob2regex('?'), '^.$');
+	ok(glob2regex('\?'), '');
 
-	# The '' means that the regular expression equals the glob.
+	# Ordinary characters in glob patterns.
+	ok(glob2regex('+'), '^\+$');
+	ok(glob2regex('\+'), '');
+	ok(glob2regex('|'), '^\|$');
+	ok(glob2regex('\|'), '');
+
+	ok(glob2regex('\.'), '');
+	ok(glob2regex('\n'), '^n$');
+	ok(glob2regex('\\\\'), '');
+	ok(glob2regex('\['), '');
+	ok(glob2regex('\{'), '');
+	ok(glob2regex('\-'), '');
+
 	ok(glob2regex('[a-z]'), '');
-
-	# The '' means that the regular expression equals the glob.
 	ok(glob2regex('[a-z0-9]'), '');
-
-	# The '' means that the regular expression equals the glob.
 	ok(glob2regex('[a-z0-9_]'), '');
+	ok(glob2regex('[*]'), '');
 
 	ok(glob2regex('*.[ch]'), '^.*\.[ch]$');
 
+	# Outside of braces, the ',' is a regular character.
+	ok(glob2regex('a,b'), '');
 	ok(glob2regex('{one,two}'), '^(one|two)$');
-
 	ok(glob2regex('{{thi,fou}r,fif}teen'), '^((thi|fou)r|fif)teen$');
 
 	# There is an unbalanced '}' at the very end.
-	ok(glob2regex('{{thi,fou}r,fif}teen}'), undef);
+	ok(glob2regex('{four,fif}teen}'), undef);
 
-	# XXX: Why is '+' turned into '.'?
-	ok(glob2regex('a+b|c'), '^a.b\|c$');
-
-	# XXX: Typo in the code, the case '\\+' is unreachable.
-	# Escaping the backslash works nevertheless.
+	# An escaped '[' does not start a character class.
 	ok(glob2regex('a\[b*'), '^a\[b.*$');
 
-	# XXX: Depending on the exact implementation, the '\n' may be
-	# interpreted as a newline, a literal 'n' or a literal '\' 'n'.
-	ok(glob2regex('a\n*'), '^a\n.*$');
+	ok(glob2regex('a\n*'), '^an.*$');
+
+	# https://gnats.netbsd.org/12996
+	ok(glob2regex('libsigc++'), '^libsigc\+\+$');
+
+	my $re = 'a\nb';
+	ok("a\nb" =~ $re, 1);
+}
+
+sub test_expand_braces() {
+	my @examples = (
+	    [ '', ],
+	    [ 'abc', 'abc' ],
+	    [ '{a,b,c}', 'a', 'b', 'c' ],
+	    [ '<{opt,}>', '<opt>', '<>' ],
+	    [ '<{,opt}>', '<>', '<opt>' ],
+	    [ '{0,1,2}', '0', '1', '2' ],
+	    [ '{2,1,0}', '2', '1', '0' ],
+	    # XXX: duplicate 'thirteen'.
+	    [ '{thir,f{our,if}}teen', 'thirteen', 'fourteen', 'thirteen', 'fifteen' ]
+	);
+
+	foreach my $example (@examples) {
+		my ($str, @expected) = @$example;
+		my @actual = expand_braces($str);
+		ok(join(' ', @actual), join(' ', @expected));
+	}
 }
 
 test_glob2regex();
+test_expand_braces();

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.31 2022/03/28 10:43:35 tnn Exp $
+# $NetBSD: Makefile,v 1.34 2022/09/27 20:58:22 wiz Exp $
 
 DISTNAME=	libgroove-4.3.0
-PKGREVISION=	12
+PKGREVISION=	15
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=andrewrk/}
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1012 2022/07/31 12:29:26 wiz Exp $
+# $NetBSD: Makefile,v 1.1017 2022/10/04 11:26:31 pin Exp $
 #
 
 COMMENT=	System utilities
@@ -239,6 +239,7 @@ SUBDIR+=	fscd
 SUBDIR+=	fsviewer
 SUBDIR+=	ftwin
 SUBDIR+=	fzf
+SUBDIR+=	gam
 SUBDIR+=	gamin
 SUBDIR+=	gcdmaster
 SUBDIR+=	gcombust
@@ -562,6 +563,7 @@ SUBDIR+=	py-google-compute-engine
 SUBDIR+=	py-invoke
 SUBDIR+=	py-jeepney
 SUBDIR+=	py-kazoo
+SUBDIR+=	py-loguru
 SUBDIR+=	py-magic
 SUBDIR+=	py-notify
 SUBDIR+=	py-notify2
@@ -597,6 +599,7 @@ SUBDIR+=	renameutils
 SUBDIR+=	restic
 SUBDIR+=	rfstool
 SUBDIR+=	riemann-client
+SUBDIR+=	ripdrag
 SUBDIR+=	rkdeveloptool
 SUBDIR+=	rkflashtool
 SUBDIR+=	rmtrash
@@ -870,6 +873,7 @@ SUBDIR+=	xbattbar
 SUBDIR+=	xc3028l-firmware
 SUBDIR+=	xc5k-firmware
 SUBDIR+=	xcdroast
+SUBDIR+=	xcp
 SUBDIR+=	xdu
 SUBDIR+=	xe
 SUBDIR+=	xe-guest-utilities
@@ -904,6 +908,7 @@ SUBDIR+=	xmbmon
 SUBDIR+=	xmeter
 SUBDIR+=	xnc
 SUBDIR+=	xosview
+SUBDIR+=	xpipe
 SUBDIR+=	xplr
 SUBDIR+=	xps
 SUBDIR+=	xuvmstat

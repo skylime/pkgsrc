@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.57 2022/07/02 16:53:24 ryoon Exp $
+# $NetBSD: Makefile,v 1.59 2022/09/11 12:51:56 wiz Exp $
 #
 
 SQUEAK_VERSION=	4.10.2.2614
 
 DISTNAME=	Squeak-${SQUEAK_VERSION}-src
 PKGNAME=	squeak-vm-${SQUEAK_VERSION:C/-/./}
-PKGREVISION=	27
+PKGREVISION=	28
 CATEGORIES=	lang
 MASTER_SITES=	http://squeakvm.org/unix/release/
 MASTER_SITES+=	http://ftp.squeak.org/3.10/unix-linux/
@@ -29,7 +29,7 @@ CMAKE_ARGS+=	-DPKGMANDIR=${PKGMANDIR}
 CMAKE_ARGS+=	-DVM_HOST=${MACHINE_GNU_PLATFORM:Q} -DVM_VERSION=${SQUEAK_VERSION}
 CMAKE_ARGS+=	-DDEVOSSAUDIO=${DEVOSSAUDIO}
 
-LDFLAGS.SunOS+=	-liconv -lsocket -lnsl -lm
+LDFLAGS.SunOS+=	-lsocket -lnsl -lm
 
 # UUID routines are in libc:
 BUILDLINK_TRANSFORM.NetBSD+=	rm:-luuid

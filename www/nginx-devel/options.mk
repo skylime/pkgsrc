@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.11 2022/07/19 18:08:29 osa Exp $
+# $NetBSD: options.mk,v 1.13 2022/09/25 15:10:11 osa Exp $
 
 CODELOAD_SITE_GITHUB=		https://codeload.github.com/
 
@@ -164,7 +164,7 @@ DISTFILES+=		${NDK_DISTFILE}
 .endif
 
 .if !empty(PKG_OPTIONS:Mluajit) || make(makesum) || make(mdi) || make(distclean)
-LUA_VERSION=		0.10.21
+LUA_VERSION=		0.10.22
 LUA_DISTNAME=		lua-nginx-module-${LUA_VERSION}
 LUA_DISTFILE=		${LUA_DISTNAME}.tar.gz
 SITES.${LUA_DISTFILE}=	-${MASTER_SITE_GITHUB:=openresty/lua-nginx-module/archive/}v${LUA_VERSION}.tar.gz
@@ -334,7 +334,7 @@ PLIST.rtmp=		yes
 .endif
 
 .if !empty(PKG_OPTIONS:Mnjs) || make(makesum) || make(mdi) || make(distclean)
-NJS_VERSION=		0.7.6
+NJS_VERSION=		0.7.7
 NJS_DISTNAME=		njs-${NJS_VERSION}
 NJS_DISTFILE=		${NJS_DISTNAME}.tar.gz
 NJS_CONFIGURE_ARGS=	--no-pcre2

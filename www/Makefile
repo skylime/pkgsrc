@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1633 2022/07/21 23:56:38 nia Exp $
+# $NetBSD: Makefile,v 1.1643 2022/09/24 06:59:32 wiz Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -121,10 +121,6 @@ SUBDIR+=	firefox102
 SUBDIR+=	firefox102-l10n
 SUBDIR+=	firefox52
 SUBDIR+=	firefox52-l10n
-SUBDIR+=	firefox68
-SUBDIR+=	firefox68-l10n
-SUBDIR+=	firefox78
-SUBDIR+=	firefox78-l10n
 SUBDIR+=	firefox91
 SUBDIR+=	firefox91-l10n
 SUBDIR+=	firefox_decrypt
@@ -757,6 +753,7 @@ SUBDIR+=	py-flask-restplus
 SUBDIR+=	py-flask-script
 SUBDIR+=	py-flask-security
 SUBDIR+=	py-flask-sendmail
+SUBDIR+=	py-flask-session
 SUBDIR+=	py-flask-sqlalchemy
 SUBDIR+=	py-flask-sslify
 SUBDIR+=	py-flask-static-digest
@@ -770,7 +767,6 @@ SUBDIR+=	py-furl
 SUBDIR+=	py-genshi
 SUBDIR+=	py-google-api-python-client
 SUBDIR+=	py-google-apitools
-SUBDIR+=	py-graphite-web
 SUBDIR+=	py-grappelli_safe
 SUBDIR+=	py-gunicorn
 SUBDIR+=	py-h11
@@ -789,9 +785,11 @@ SUBDIR+=	py-hyperlink
 SUBDIR+=	py-idna
 SUBDIR+=	py-ipywidgets
 SUBDIR+=	py-jonpy
+SUBDIR+=	py-jwcrypto
 SUBDIR+=	py-klein
 SUBDIR+=	py-landslide
 SUBDIR+=	py-livereload
+SUBDIR+=	py-lti1p3
 SUBDIR+=	py-mechanize
 SUBDIR+=	py-meinheld
 SUBDIR+=	py-mezzanine
@@ -802,11 +800,11 @@ SUBDIR+=	py-multipart
 SUBDIR+=	py-nbclient
 SUBDIR+=	py-nbconvert
 SUBDIR+=	py-nbformat
-SUBDIR+=	py-nevow
 SUBDIR+=	py-notebook
 SUBDIR+=	py-parsel
 SUBDIR+=	py-paste
 SUBDIR+=	py-pelican
+SUBDIR+=	py-pook
 SUBDIR+=	py-priority
 SUBDIR+=	py-protego
 SUBDIR+=	py-publicsuffix2
@@ -1022,6 +1020,7 @@ SUBDIR+=	spawn-fcgi
 SUBDIR+=	spdylay
 SUBDIR+=	sqtop
 SUBDIR+=	squid4
+SUBDIR+=	squid5
 SUBDIR+=	squidGuard
 SUBDIR+=	squidanalyzer
 SUBDIR+=	squidclamav
@@ -1092,6 +1091,5 @@ SUBDIR+=	yahttp
 SUBDIR+=	yaws
 SUBDIR+=	z-push
 SUBDIR+=	zola
-SUBDIR+=	zopeedit
 
 .include "../mk/misc/category.mk"

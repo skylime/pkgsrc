@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.962 2022/07/21 11:39:39 wiz Exp $
+# $NetBSD: Makefile,v 1.964 2022/09/24 07:01:26 wiz Exp $
 #
 
 COMMENT=	Packages to support the X Window System
@@ -95,7 +95,6 @@ SUBDIR+=	gtk3
 SUBDIR+=	gtk3-engines-unico
 SUBDIR+=	gtk3-nocsd
 SUBDIR+=	gtk4
-SUBDIR+=	gtkada
 SUBDIR+=	gtkdatabox
 SUBDIR+=	gtkglarea
 SUBDIR+=	gtkglarea2
@@ -614,6 +613,7 @@ SUBDIR+=	xhost
 SUBDIR+=	xicc
 SUBDIR+=	xinit
 SUBDIR+=	xinput
+SUBDIR+=	xisxwayland
 SUBDIR+=	xjman
 SUBDIR+=	xkbcomp
 SUBDIR+=	xkbd

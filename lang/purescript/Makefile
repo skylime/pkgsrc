@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.3 2022/02/26 12:35:11 pho Exp $
+# $NetBSD: Makefile,v 1.8 2022/09/08 04:46:41 pho Exp $
 
-DISTNAME=	purescript-0.14.5
+DISTNAME=	purescript-0.15.4
 PKGNAME=	${DISTNAME}
-PKGREVISION=	2
+PKGREVISION=	1
 CATEGORIES=	lang
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -24,6 +24,26 @@ HASKELL_ENABLE_SHARED_LIBRARY=	no
 # It makes no sense to build the profiling library because this package
 # isn't meant to be used as a library.
 HASKELL_ENABLE_LIBRARY_PROFILING=	no
+
+# These constraints can only be solved with GHC 9.2.3 which we haven't
+# packaged yet.
+HASKELL_UNRESTRICT_DEPENDENCIES+= \
+	Cabal \
+	base \
+	bytestring \
+	deepseq \
+	filepath \
+	parsec \
+	stm \
+	process
+# These constraints can only be solved with older packages than what we
+# provide.
+HASKELL_UNRESTRICT_DEPENDENCIES+= \
+	aeson \
+	language-javascript \
+	lens \
+	memory \
+	vector
 
 # purs is built with optparse-applicative, and can generate shell
 # completion scripts automatically.
@@ -50,17 +70,16 @@ OPTPARSE_APPLICATIVE_EXECUTABLES+=	purs
 .include "../../devel/hs-fsnotify/buildlink3.mk"
 .include "../../textproc/hs-Glob/buildlink3.mk"
 .include "../../lang/hs-language-javascript/buildlink3.mk"
+.include "../../devel/hs-lens/buildlink3.mk"
 .include "../../devel/hs-lifted-async/buildlink3.mk"
 .include "../../devel/hs-lifted-base/buildlink3.mk"
 .include "../../devel/hs-memory/buildlink3.mk"
-.include "../../devel/hs-microlens/buildlink3.mk"
-.include "../../devel/hs-microlens-platform/buildlink3.mk"
 .include "../../devel/hs-monad-control/buildlink3.mk"
 .include "../../devel/hs-monad-logger/buildlink3.mk"
+.include "../../devel/hs-monoidal-containers/buildlink3.mk"
 .include "../../devel/hs-parallel/buildlink3.mk"
 .include "../../devel/hs-pattern-arrows/buildlink3.mk"
 .include "../../devel/hs-protolude/buildlink3.mk"
-.include "../../lang/hs-purescript-cst/buildlink3.mk"
 .include "../../textproc/hs-regex-tdfa/buildlink3.mk"
 .include "../../devel/hs-safe/buildlink3.mk"
 .include "../../math/hs-scientific/buildlink3.mk"
@@ -74,6 +93,7 @@ OPTPARSE_APPLICATIVE_EXECUTABLES+=	purs
 .include "../../devel/hs-these/buildlink3.mk"
 .include "../../devel/hs-transformers-base/buildlink3.mk"
 .include "../../devel/hs-transformers-compat/buildlink3.mk"
+.include "../../sysutils/hs-typed-process/buildlink3.mk"
 .include "../../devel/hs-unordered-containers/buildlink3.mk"
 .include "../../devel/hs-utf8-string/buildlink3.mk"
 .include "../../devel/hs-vector/buildlink3.mk"

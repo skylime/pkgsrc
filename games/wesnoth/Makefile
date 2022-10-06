@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.183 2022/07/27 08:40:58 adam Exp $
+# $NetBSD: Makefile,v 1.187 2022/09/14 07:24:06 adam Exp $
 
-DISTNAME=	wesnoth-1.16.5
+DISTNAME=	wesnoth-1.16.6
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=wesnoth/}
 EXTRACT_SUFX=	.tar.bz2
@@ -58,7 +58,7 @@ PLIST_VARS+=		icons
 PLIST.icons=		yes
 .endif
 
-LDFLAGS.SunOS+=		-lintl -lsocket
+LDFLAGS.SunOS+=		-lsocket
 
 .include "../../audio/SDL2_mixer/buildlink3.mk"
 .include "../../audio/libvorbis/buildlink3.mk"

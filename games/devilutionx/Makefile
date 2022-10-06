@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.19 2022/03/28 10:44:06 tnn Exp $
+# $NetBSD: Makefile,v 1.22 2022/09/24 08:46:23 nia Exp $
 
 DISTNAME=	devilutionx-1.2.1
-PKGREVISION=	3
+PKGREVISION=	6
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=diasurgical/}
 GITHUB_PROJECT=	devilutionX
@@ -12,6 +12,7 @@ COMMENT=	Port of the RPG Diablo for modern operating systems
 LICENSE=	unlicense
 
 WRKSRC=		${WRKDIR}/${GITHUB_PROJECT}-${PKGVERSION_NOREV}
+TOOL_DEPENDS=	dos2unix-[0-9]*:../../converters/dos2unix
 
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
@@ -31,6 +32,9 @@ CMAKE_ARGS+=	-DVERSION_NUM=${PKGVERSION_NOREV}
 INSTALLATION_DIRS+=	bin
 INSTALLATION_DIRS+=	share/applications
 INSTALLATION_DIRS+=	share/icons/hicolor/512x512/apps
+
+pre-patch:
+	dos2unix ${WRKSRC}/CMakeLists.txt
 
 pre-configure:
 	${MKDIR} -p ${WRKSRC}/build

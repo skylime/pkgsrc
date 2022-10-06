@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.66 2022/07/18 18:58:30 adam Exp $
+# $NetBSD: Makefile,v 1.70 2022/09/26 17:50:09 adam Exp $
 
-DISTNAME=	pylint-2.14.5
+DISTNAME=	pylint-2.15.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pylint/}
@@ -10,7 +10,8 @@ HOMEPAGE=	https://www.pylint.org/
 COMMENT=	Python source code analyzer
 LICENSE=	gnu-gpl-v2
 
-DEPENDS+=	${PYPKGPREFIX}-astroid>=2.11.6:../../devel/py-astroid
+BUILD_DEPENDS+=	${PYPKGPREFIX}-wheel>=0:../../devel/py-wheel
+DEPENDS+=	${PYPKGPREFIX}-astroid>=2.12.4:../../devel/py-astroid
 DEPENDS+=	${PYPKGPREFIX}-dill>=0.2:../../textproc/py-dill
 DEPENDS+=	${PYPKGPREFIX}-isort>=4.2.5:../../devel/py-isort
 DEPENDS+=	${PYPKGPREFIX}-mccabe>=0.6:../../devel/py-mccabe
@@ -23,8 +24,6 @@ USE_LANGUAGES=	# none
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
-USE_PKG_RESOURCES=	yes
-
 .include "../../lang/python/pyversion.mk"
 .if ${_PYTHON_VERSION} < 310
 DEPENDS+=	${PYPKGPREFIX}-typing-extensions>=3.10.0:../../devel/py-typing-extensions
@@ -36,5 +35,5 @@ post-install:
 	${MV} ${file} ${file}-${PYVERSSUFFIX} || ${TRUE}
 .endfor
 
-.include "../../lang/python/egg.mk"
+.include "../../lang/python/wheel.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,11 +1,11 @@
-# $NetBSD: Makefile.common,v 1.256 2022/06/13 09:35:44 wiz Exp $
+# $NetBSD: Makefile.common,v 1.259 2022/10/03 12:55:13 wiz Exp $
 #
 # used by graphics/p5-PerlMagick/Makefile
 #
 # Changelog: https://github.com/ImageMagick/Website/blob/main/ChangeLog.md
 
 IM_MAJOR_VER=		7.1.0
-IM_MINOR_VER=		37
+IM_MINOR_VER=		49
 IM_MAJOR_LIB_VER=	7
 
 .if (${IM_MINOR_VER} != NONE)
@@ -18,7 +18,7 @@ DISTNAME=	ImageMagick-${DISTSUFFIX}
 DISTVERSION=	${DISTSUFFIX:S/-/./}
 
 CATEGORIES=	graphics
-MASTER_SITES=	https://www.imagemagick.org/download/releases/
+MASTER_SITES=	https://imagemagick.org/archive/releases/
 EXTRACT_SUFX=	.tar.xz
 
 HOMEPAGE=	https://www.imagemagick.org/
@@ -31,7 +31,6 @@ GNU_CONFIGURE=		yes
 # For things for which we do not specify an explicit dependency above, disable
 # so that we don't cause implicit "hidden" dependencies.
 CONFIGURE_ARGS+=	--without-dps
-CONFIGURE_ARGS+=	--without-fpx
 CONFIGURE_ARGS+=	--without-gvc
 CONFIGURE_ARGS+=	--without-jbig
 CONFIGURE_ARGS+=	--without-lqr

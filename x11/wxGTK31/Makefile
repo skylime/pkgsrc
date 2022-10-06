@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.10 2022/07/14 23:46:27 dholland Exp $
+# $NetBSD: Makefile,v 1.12 2022/09/20 06:44:49 nia Exp $
 
 DISTNAME=	wxWidgets-3.1.7
 PKGNAME=	${DISTNAME:S/wxWidgets/wxGTK31/}
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=wxWidgets/}
 GITHUB_PROJECT=	wxWidgets
@@ -32,6 +32,8 @@ CONFIGURE_ARGS+=	--enable-mediactrl
 CONFIGURE_ARGS+=	--disable-visibility
 CONFIGURE_ARGS+=	--bindir=${PREFIX}/libexec/wx-3.1
 CONFIGURE_ARGS+=	--datarootdir=${PREFIX}/share/wx-3.1
+
+CONFIGURE_ENV.SunOS+=	wx_cv_inotify_usable=no
 
 DOCDIR=			share/wx-3.1/doc/wxWidgets
 

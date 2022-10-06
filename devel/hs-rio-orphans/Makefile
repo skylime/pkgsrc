@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2022/02/26 03:58:06 pho Exp $
+# $NetBSD: Makefile,v 1.5 2022/09/07 06:50:48 pho Exp $
 
 DISTNAME=	rio-orphans-0.1.2.0
-PKGREVISION=	1
+PKGREVISION=	4
 CATEGORIES=	devel
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

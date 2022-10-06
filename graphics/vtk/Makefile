@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.23 2022/07/14 23:46:24 dholland Exp $
+# $NetBSD: Makefile,v 1.25 2022/08/11 05:08:47 gutteridge Exp $
 
 DISTNAME=	VTK-9.0.3
 PKGNAME=	${DISTNAME:tl}
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	graphics
 MASTER_SITES=	https://www.vtk.org/files/release/${PKGVERSION_NOREV:R}/
 
@@ -74,4 +74,5 @@ post-extract:
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../textproc/pugixml/buildlink3.mk"
 .include "../../textproc/utf8-cpp/buildlink3.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

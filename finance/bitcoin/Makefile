@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.51 2022/07/02 16:53:16 ryoon Exp $
+# $NetBSD: Makefile,v 1.54 2022/09/29 19:37:12 adam Exp $
 
-DISTNAME=	bitcoin-22.0
-PKGREVISION=	6
+DISTNAME=	bitcoin-23.0
 CATEGORIES=	finance
 MASTER_SITES=	https://bitcoincore.org/bin/bitcoin-core-${PKGVERSION_NOREV}/
 
@@ -43,7 +42,7 @@ BUILDLINK_TRANSFORM+=	l:db_cxx:db4_cxx
 
 # TODO: Decide if secp256k1 and univalue are supposed to be installed,
 # and if so where, or if they should be linked with privately.
-INSTALL_DIRS=	${BUILD_DIRS} src/secp256k1 src/univalue
+INSTALL_DIRS=	${BUILD_DIRS} src/secp256k1 #src/univalue
 
 .include "options.mk"
 
@@ -57,4 +56,5 @@ BUILDLINK_API_DEPENDS.libevent+=	libevent>=2.0.21
 .include "../../net/zeromq/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/dlopen.buildlink3.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

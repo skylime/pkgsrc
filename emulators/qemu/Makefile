@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.300 2022/07/10 14:36:25 ryoon Exp $
+# $NetBSD: Makefile,v 1.304 2022/09/17 14:05:36 tnn Exp $
 
-DISTNAME=	qemu-7.0.0
-PKGREVISION=	2
+DISTNAME=	qemu-7.1.0
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 EXTRACT_SUFX=	.tar.xz
@@ -26,15 +25,7 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 TOOL_DEPENDS+=		${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 TOOL_DEPENDS+=		${PYPKGPREFIX}-sphinx-rtd-theme>=0.4.3:../../textproc/py-sphinx-rtd-theme
-
-SUBST_CLASSES+=			sphinx-build
-SUBST_STAGE.sphinx-build=	pre-configure
-SUBST_MESSAGE.sphinx-build=	Fix hardcoded sphinx-build
-SUBST_FILES.sphinx-build+=	configure
-SUBST_FILES.sphinx-build+=	docs/meson.build
-SUBST_FILES.sphinx-build+=	roms/skiboot/doc/Makefile
-SUBST_FILES.sphinx-build+=	roms/u-boot/doc/Makefile
-SUBST_SED.sphinx-build+=	-e 's/sphinx-build/sphinx-build-${PYVERSSUFFIX}/g'
+CONFIGURE_ARGS+=	--sphinx-build=${PREFIX}/bin/sphinx-build-${PYVERSSUFFIX}
 
 .include "options.mk"
 
@@ -114,6 +105,7 @@ UE_ARCHS+=		aarch64 aarch64_be
 UE_ARCHS+=		alpha arm armeb cris
 UE_ARCHS+=		hexagon hppa
 UE_ARCHS+=		i386
+UE_ARCHS+=		loongarch64
 UE_ARCHS+=		m68k microblaze microblazeel
 UE_ARCHS+=		mips mips64 mips64el mipsel mipsn32 mipsn32el
 UE_ARCHS+=		nios2
