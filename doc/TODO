@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.22270 2022/10/04 20:22:10 adam Exp $
+$NetBSD: TODO,v 1.22280 2022/10/11 15:23:28 taca Exp $
 
 Suggested new packages
 ======================
@@ -370,6 +370,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o GNUMail-1.2.2
 	o Gorm-1.2.26
 	o HElib-2.1.0
+	o ImageMagick-7.1.0.50
 	o ImageMagick6-6.9.12.8
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
@@ -647,7 +648,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o felt-3.07 [wip]
 	o fet-6.0.1
 	o filerunner-14.06.18.10
-	o firefox-105
 	o flashplayer-0.4.13
 	o flatbuffers-1.12.0
 	o flow-tools-0.411
@@ -658,7 +658,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o fortunes-calvin-0.3
 	o fortunes-de-0.34
 	o fplll-5.4.0
-	o frama-c-25.0
 	o freecell-solver-6.2.0
 	o freemint-binutils-2.30
 	o freemint-gcc-7.1.0
@@ -712,7 +711,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gimp-docs-sv-2.10.0
 	o gimp-docs-zh_CN-2.10.0
 	o gindent-2.2.12
-	o git-2.38
 	o gitolite-3.6.12
 	o gjs-1.70.1
 	o gkrellm-2.3.11
@@ -790,6 +788,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gprolog-1.5.0 [adds arm64 support]
 	o gps-17.0
 	o gradle-7.0
+	o grafx2-2.8.3137
 	o gramps5-5.1.4
 	o grantlee-5.0.0
 	o greed-4.2
@@ -800,7 +799,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gst-rtsp-server-1.20.3 [needs libcgroup]
 	o gthumb-3.4.0
 	o gtk-gnutella-1.2.0
-	o gtkglarea-2.1.0
 	o gtklevel9-5.1
 	o gtklife-5.2
 	o gtkmagnetic-23
@@ -1117,7 +1115,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o openslp-2.0.0
 	o opensmtpd-6.8.0p2
 	o openssh-9.1
-	o openssl-3.0.5
+	o openssl-1.1.1r
+	o openssl-3.0.6
 	o openxenmanager-0.83
 	o opera-26
 	o or1k-none-elf-binutils-2.36.1
@@ -1249,6 +1248,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o policyd-weight-0.1.15.2
 	o polkit-121
 	o poppass-4.0.14
+	o poppler-22.10.0
 	o posh-0.14.1
 	o postal-0.72
 	o postgres_exporter-0.9.0
@@ -1308,7 +1308,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-pymc3-3.8
 	o py-qtgraph-qt5-0.12.1
 	o py-quixote-3.3
-	o py-qwt-qt5-1.02.01
 	o py-rarfile-4.0
 	o py-rebulk-3.0.1
 	o py-requests-kerberos-0.14.0
@@ -1536,6 +1535,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o unicode-screensaver-0.5.2
 	o units-2.21
 	o upower-0.99.20 [switches to build with meson]
+	o uriparser-0.9.7
 	o urlgrabber-3.10.2
 	o userppp-030706
 	o userspace-rcu-0.12.2
@@ -1567,6 +1567,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o wbm-virtual-server-6.16
 	o wcalc-2.4
 	o wcslib-7.6
+	o webkit-gtk-2.38.0
 	o webmin-2.0
 	o websvn-2.6.0
 	o wgetpaste-2.30
@@ -1576,6 +1577,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o wine-7.0
 	o wine-devel-3.7
 	o wiredtiger-10.0.0
+	o wireshark-4.0.0
 	o wkhtmltopdf-0.12.6
 	o wmi-11
 	o wordwarvi-1.0.4

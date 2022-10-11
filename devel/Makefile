@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3805 2022/10/06 02:18:16 markd Exp $
+# $NetBSD: Makefile,v 1.3810 2022/10/11 11:51:54 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -1171,6 +1171,7 @@ SUBDIR+=	ocaml-ppx_fixed_literal
 SUBDIR+=	ocaml-ppx_hash
 SUBDIR+=	ocaml-ppx_here
 SUBDIR+=	ocaml-ppx_ignore_instrumentation
+SUBDIR+=	ocaml-ppx_import
 SUBDIR+=	ocaml-ppx_inline_test
 SUBDIR+=	ocaml-ppx_jane
 SUBDIR+=	ocaml-ppx_let
@@ -2366,6 +2367,7 @@ SUBDIR+=	py-canonicaljson
 SUBDIR+=	py-canvasapi
 SUBDIR+=	py-capstone
 SUBDIR+=	py-case
+SUBDIR+=	py-cbor2
 SUBDIR+=	py-cffi
 SUBDIR+=	py-characteristic
 SUBDIR+=	py-checker
@@ -2972,6 +2974,7 @@ SUBDIR+=	py-zope.exceptions
 SUBDIR+=	py-zope.hookable
 SUBDIR+=	py-zope.testing
 SUBDIR+=	py27-coverage
+SUBDIR+=	py27-pluggy
 SUBDIR+=	py27-test-cov
 SUBDIR+=	pycharm-bin
 SUBDIR+=	pythontidy
@@ -3181,7 +3184,6 @@ SUBDIR+=	ruby-redmine-minimalflat2-theme
 SUBDIR+=	ruby-redmine-purplemine2-theme
 SUBDIR+=	ruby-redmine-red-andy-theme
 SUBDIR+=	ruby-redmine-yh-theme
-SUBDIR+=	ruby-redmine41
 SUBDIR+=	ruby-redmine42
 SUBDIR+=	ruby-redmine50
 SUBDIR+=	ruby-redmine_code_review
@@ -3380,6 +3382,7 @@ SUBDIR+=	wabt
 SUBDIR+=	waf
 SUBDIR+=	wayland
 SUBDIR+=	wayland-protocols
+SUBDIR+=	why3
 SUBDIR+=	woboq_codebrowser
 SUBDIR+=	xa65
 SUBDIR+=	xdelta
