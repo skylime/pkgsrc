@@ -62,30 +62,6 @@ ${STAGE_PKGFILE}: ${_CONTENTS_TARGETS}
 	${RUN} tmpname=${.TARGET:S,${PKG_SUFX}$,.tmp${PKG_SUFX},};	\
 	${MV} -f "$$tmpname" ${.TARGET}
 .endif
-	@${RUN}${MKDIR} ${PACKAGES}/ctfdata 2>/dev/null || ${TRUE};	\
-	${RM} -f ${PACKAGES}/ctfdata/${PKGNAME};			\
-	if [ -f ${WRKDIR}/.ctfdata -a -d ${PACKAGES}/ctfdata ]; then	\
-		${STEP_MSG} "Copying CTF data";				\
-		${MKDIR} ${PACKAGES}/ctfdata;				\
-		${MV} ${WRKDIR}/.ctfdata				\
-		    ${PACKAGES}/ctfdata/${PKGNAME};			\
-	fi;								\
-	${MKDIR} ${PACKAGES}/ctffail 2>/dev/null || ${TRUE};		\
-	${RM} -f ${PACKAGES}/ctffail/${PKGNAME};			\
-	if [ -f ${WRKDIR}/.ctffail -a -d ${PACKAGES}/ctffail ]; then	\
-		${STEP_MSG} "Copying CTF failures";			\
-		${MKDIR} ${PACKAGES}/ctffail;				\
-		${MV} ${WRKDIR}/.ctffail				\
-		    ${PACKAGES}/ctffail/${PKGNAME};			\
-	fi;								\
-	${MKDIR} ${PACKAGES}/ctfnox 2>/dev/null || ${TRUE};		\
-	${RM} -f ${PACKAGES}/ctfnox/${PKGNAME};				\
-	if [ -f ${WRKDIR}/.ctfnox -a -d ${PACKAGES}/ctfnox ]; then	\
-		${STEP_MSG} "Copying CTF non-executables";		\
-		${MKDIR} ${PACKAGES}/ctfnox;				\
-		${MV} ${WRKDIR}/.ctfnox					\
-		    ${PACKAGES}/ctfnox/${PKGNAME};			\
-	fi
 
 .if ${PKGFILE} != ${STAGE_PKGFILE}
 ${PKGFILE}: ${STAGE_PKGFILE}
@@ -94,6 +70,18 @@ ${PKGFILE}: ${STAGE_PKGFILE}
 	${LN} -f ${STAGE_PKGFILE} ${PKGFILE} 2>/dev/null ||		\
 		${CP} -pf ${STAGE_PKGFILE} ${PKGFILE} 2>/dev/null ||	\
 		${CP} -f ${STAGE_PKGFILE} ${PKGFILE}
+	@${STEP_MSG} "Copying CTF diagnostics"
+	${RUN} ${MKDIR} ${PACKAGES}/ctfok ${PACKAGES}/ctferr;		\
+	${RM} -f ${PACKAGES}/ctfok/${PKGNAME}				\
+		 ${PACKAGES}/ctferr/${PKGNAME};				\
+	if [ -f ${WRKDIR}/.ctfok ]; then				\
+		${MV} ${WRKDIR}/.ctfok					\
+		    ${PACKAGES}/ctfok/${PKGNAME};			\
+	fi;								\
+	if [ -f ${WRKDIR}/.ctferr ]; then				\
+		${MV} ${WRKDIR}/.ctferr					\
+		    ${PACKAGES}/ctferr/${PKGNAME};			\
+	fi
 
 ${PKGINFOFILE}: ${PKGFILE}
 	${RUN} ${MKDIR} ${.TARGET:H};					\
