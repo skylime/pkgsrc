@@ -346,7 +346,6 @@ post-install:
 ### install-ctf creates CTF information from debug binaries.
 ###
 ELFDUMP?=	/usr/bin/elfdump
-FILE?=		/usr/bin/file
 .PHONY: install-ctf
 install-ctf: plist
 	@${STEP_MSG} "Generating CTF data"
@@ -372,7 +371,8 @@ install-ctf: plist
 			${CAT} "$${err_f}" >>${WRKDIR}/.ctferr;		\
 		fi;							\
 		${RM} -f "$${tmp_f}" "$${err_f}";			\
-		if ${ELFDUMP} "$${f}" | grep SUNW_ctf >/dev/null; then	\
+		if ${ELFDUMP} "$${f}" 2>&1				\
+		    | grep SUNW_ctf >/dev/null; then			\
 			${ECHO} $${f}					\
 			    | ${SED} -e 's|^${DESTDIR}||'		\
 			    >>${WRKDIR}/.ctfok;				\

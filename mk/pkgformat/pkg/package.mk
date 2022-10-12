@@ -42,6 +42,31 @@ _PKG_ARGS_PACKAGE+=	-I ${PREFIX} -p ${DESTDIR}${PREFIX}
 _PKG_ARGS_PACKAGE+=	-u ${REAL_ROOT_USER} -g ${REAL_ROOT_GROUP}
 .endif
 
+#
+# This isn't ideal, the CTF diagnostics are copied to ${PACKAGES} in a stage
+# that doesn't otherwise write there, so running "install" will overwrite live
+# files, but pbulk invokes stage-package-create directly so we need to hook in
+# here otherwise they won't be saved in bulk builds.
+#
+# The better solution would be to save them in pbulk and have "package"
+# handling for manual builds like we do with pkginfo files.
+#
+_CONTENTS_TARGETS+=	save-ctf-diagnostics
+.PHONY: save-ctf-diagnostics
+save-ctf-diagnostics:
+	@${STEP_MSG} "Copying CTF diagnostics"
+	${RUN} ${MKDIR} ${PACKAGES}/ctfok ${PACKAGES}/ctferr;		\
+	${RM} -f ${PACKAGES}/ctfok/${PKGNAME}				\
+		 ${PACKAGES}/ctferr/${PKGNAME};				\
+	if [ -f ${WRKDIR}/.ctfok ]; then				\
+		${MV} ${WRKDIR}/.ctfok					\
+		    ${PACKAGES}/ctfok/${PKGNAME};			\
+	fi;								\
+	if [ -f ${WRKDIR}/.ctferr ]; then				\
+		${MV} ${WRKDIR}/.ctferr					\
+		    ${PACKAGES}/ctferr/${PKGNAME};			\
+	fi
+
 ${STAGE_PKGFILE}: ${_CONTENTS_TARGETS}
 	@${STEP_MSG} "Creating binary package ${.TARGET}"
 	${RUN} ${MKDIR} ${.TARGET:H}; ${_ULIMIT_CMD}			\
@@ -70,18 +95,6 @@ ${PKGFILE}: ${STAGE_PKGFILE}
 	${LN} -f ${STAGE_PKGFILE} ${PKGFILE} 2>/dev/null ||		\
 		${CP} -pf ${STAGE_PKGFILE} ${PKGFILE} 2>/dev/null ||	\
 		${CP} -f ${STAGE_PKGFILE} ${PKGFILE}
-	@${STEP_MSG} "Copying CTF diagnostics"
-	${RUN} ${MKDIR} ${PACKAGES}/ctfok ${PACKAGES}/ctferr;		\
-	${RM} -f ${PACKAGES}/ctfok/${PKGNAME}				\
-		 ${PACKAGES}/ctferr/${PKGNAME};				\
-	if [ -f ${WRKDIR}/.ctfok ]; then				\
-		${MV} ${WRKDIR}/.ctfok					\
-		    ${PACKAGES}/ctfok/${PKGNAME};			\
-	fi;								\
-	if [ -f ${WRKDIR}/.ctferr ]; then				\
-		${MV} ${WRKDIR}/.ctferr					\
-		    ${PACKAGES}/ctferr/${PKGNAME};			\
-	fi
 
 ${PKGINFOFILE}: ${PKGFILE}
 	${RUN} ${MKDIR} ${.TARGET:H};					\
