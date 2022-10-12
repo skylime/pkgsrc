@@ -361,7 +361,7 @@ install-ctf: plist
 		tmp_f="$${f}.XXX";					\
 		err_f="$${f}.err";					\
 		if ${CTFCONVERT} -o "$${tmp_f}" "$${f}"			\
-		    >"$${err_f}" 2>&1 then;				\
+		    >"$${err_f}" 2>&1; then				\
 			if [ -f "$${tmp_f}" -a -f "$${f}" ]; then	\
 				${MV} "$${tmp_f}" "$${f}";		\
 			fi;						\
