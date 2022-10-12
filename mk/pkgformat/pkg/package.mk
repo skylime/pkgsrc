@@ -40,7 +40,34 @@ _PKG_ARGS_PACKAGE+=	-I ${PREFIX} -p ${DESTDIR}${PREFIX}
 _PKG_ARGS_PACKAGE+=	-u ${REAL_ROOT_USER} -g ${REAL_ROOT_GROUP}
 .endif
 
+#
+# Copy CTF data files at the same time the binary package is created.  This
+# is somewhat ugly as it means the CTF files are being written to PACKAGES
+# at a different point to the package itself, but as pbulk calls this target
+# directly and then has its own handling for copying the binary package this
+# ends up being the simplest solution, as otherwise we'd need duplicate
+# handling similar to the pkginfo files.
+#
+# The "|| ${TRUE}" statements are required for bootstrap which builds from a
+# read-only source tree and does not have PACKAGES set up.
+#
+CTFDATADIR?=	${PACKAGES}/ctfdata
+CTFERRDIR?=	${PACKAGES}/ctferr
+
 ${STAGE_PKGFILE}: ${_CONTENTS_TARGETS}
+	@${RUN}								\
+	if [ -f ${WRKDIR}/.ctfdata ]; then				\
+		${STEP_MSG} "Copying CTF data";				\
+		${MKDIR} ${CTFDATADIR} || ${TRUE};			\
+		${MV} -f ${WRKDIR}/.ctfdata ${CTFDATADIR}/${PKGNAME} ||	\
+			${TRUE};					\
+	fi;								\
+	if [ -f ${WRKDIR}/.ctferr ]; then				\
+		${STEP_MSG} "Copying CTF warnings/errors";		\
+		${MKDIR} ${CTFERRDIR} || ${TRUE};			\
+		${MV} -f ${WRKDIR}/.ctferr ${CTFERRDIR}/${PKGNAME} ||	\
+			${TRUE};					\
+	fi
 	@${STEP_MSG} "Creating binary package ${.TARGET}"
 	${RUN} ${MKDIR} ${.TARGET:H}; ${_ULIMIT_CMD}			\
 	tmpname=${.TARGET:S,${PKG_SUFX}$,.tmp${PKG_SUFX},};		\
@@ -69,6 +96,24 @@ ${PKGFILE}: ${STAGE_PKGFILE}
 		${CP} -pf ${STAGE_PKGFILE} ${PKGFILE} 2>/dev/null ||	\
 		${CP} -f ${STAGE_PKGFILE} ${PKGFILE}
 .endif
+
+#
+# Create .pkginfo files when the "package" target is invoked directly.  This
+# should ideally not be used, but is occasionally useful when building packages
+# manually, and the package and pkginfo files must be in sync.  pbulk invokes
+# the "stage-package-create" target and does its own handling of saving things
+# to PACKAGES directly in the "pkg-build" script.
+#
+# The "|| ${TRUE}" statements are required for bootstrap which builds from a
+# read-only source tree and does not have PACKAGES set up.
+#
+PKGINFOFILE?=	${PACKAGES}/pkginfo/${FILEBASE}-${PKGVERSION}.pkginfo
+package-create: ${PKGINFOFILE}
+${PKGINFOFILE}: ${PKGFILE}
+	@${RUN}								\
+	${STEP_MSG} "Creating pkginfo file ${.TARGET}";			\
+	${MKDIR} ${.TARGET:H:Q} || ${TRUE};				\
+	${PKG_INFO} -X ${PKGFILE} >${.TARGET} || ${TRUE}
 
 ######################################################################
 ### package-remove (PRIVATE)
