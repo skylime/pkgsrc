@@ -12,7 +12,7 @@
 #		sun-jdk7 oracle-jdk8
 #		adoptopenjdk11-bin
 #		openjdk-bin openjdk11
-#		openjdk9 to openjdk15 (illumos)
+#		openjdk9 to openjdk17 (illumos)
 #		openjdk17
 #	Default value: (platform-dependent)
 #
@@ -198,6 +198,7 @@ _ONLY_FOR_PLATFORMS.openjdk14= \
 _ONLY_FOR_PLATFORMS.openjdk15= \
 	SunOS-5.11-x86_64
 _ONLY_FOR_PLATFORMS.openjdk17= \
+	SunOS-5.11-x86_64						\
 	NetBSD-9.*-x86_64		NetBSD-9.*-i386			\
 	NetBSD-1[0-9].*-x86_64		NetBSD-1[0-9].*-i386		\
 	NetBSD-9.99.*-aarch64		NetBSD-9.99.*-earmv[67]hf	\
@@ -391,8 +392,8 @@ _JRE_PKGSRCDIR=		../../joyent/openjdk15
 _JAVA_HOME=		${LOCALBASE}/java/openjdk15
 UNLIMIT_RESOURCES+=	datasize virtualsize
 .elif ${_PKG_JVM} == "openjdk17"
-_JDK_PKGSRCDIR=		../../lang/openjdk17
-_JRE_PKGSRCDIR=		../../lang/openjdk17
+_JDK_PKGSRCDIR=		../../joyent/openjdk17
+_JRE_PKGSRCDIR=		../../joyent/openjdk17
 _JAVA_HOME=		${LOCALBASE}/java/openjdk17
 UNLIMIT_RESOURCES+=	datasize virtualsize
 .endif
