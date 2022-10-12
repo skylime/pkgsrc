@@ -361,10 +361,12 @@ install-ctf: plist
 			continue;					\
 		fi;							\
 		tmp_f="$${f}.XXX";					\
-		if err=`${CTFCONVERT} -o "$${tmp_f}" "$${f}" 2>&1`; then \
-			if [ -f "$${tmp_f}" -a -f "$${f}" ]; then	\
-				${MV} "$${tmp_f}" "$${f}";		\
-			fi;						\
+		${ECHO} "$${f}:" | ${SED} -e 's|^${DESTDIR}||'		\
+		    >>${WRKDIR}/.ctffail;				\
+		${CTFCONVERT} -o "$${tmp_f}" "$${f}"			\
+		    >>${WRKDIR}/.ctffail 2>&1;				\
+		if [ \$? -eq 0 -a -f "$${tmp_f}" ]; then		\
+			${MV} "$${tmp_f}" "$${f}";			\
 		fi;							\
 		${RM} -f "$${tmp_f}";					\
 		if /bin/elfdump "$${f}"	| grep SUNW_ctf >/dev/null; then \
@@ -374,10 +376,6 @@ install-ctf: plist
 			[ -x "$${f}" ] || ${ECHO} $${f}			\
 			    | ${SED} -e 's|^${DESTDIR}||'		\
 			    >>${WRKDIR}/.ctfnox;			\
-		else							\
-			${ECHO} "$${f}: $${err}"			\
-			    | ${SED} -e 's|^${DESTDIR}||'		\
-			    >>${WRKDIR}/.ctffail;			\
 		fi;							\
 	done
 
