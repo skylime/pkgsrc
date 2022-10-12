@@ -812,14 +812,10 @@ PKG_ERROR_HANDLER.${_class_}?= \
 #
 .for _phase_ in ${_ALL_PHASES}
 ${_MAKEVARS_MK.${_phase_}}: ${WRKDIR}
-	${RUN}${RM} -f ${.TARGET}.tmp
-.  for _var_ in ${MAKEVARS:O:u}
-.    if defined(${_var_})
-	${RUN}					\
-	${ECHO} ${_var_}"=	"${${_var_}:Q} >> ${.TARGET}.tmp
-.    endif
-.  endfor
-	${RUN}					\
+	${RUN}${RM} -f ${.TARGET}.tmp;					\
+	{ ${MAKEVARS:O:u:@_var_@					\
+		${ECHO} ${_var_}"=	"${${_var_}:Q};			\
+	@} } > ${.TARGET}.tmp;						\
 	if ${TEST} -f ${.TARGET}.tmp; then				\
 		( ${ECHO} ".if !defined(_MAKEVARS_MK)";			\
 		  ${ECHO} "_MAKEVARS_MK=	defined";		\
@@ -829,8 +825,9 @@ ${_MAKEVARS_MK.${_phase_}}: ${WRKDIR}
 		  ${ECHO} ".endif # _MAKEVARS_MK";			\
 		) > ${.TARGET};						\
 		${RM} -f ${.TARGET}.tmp;				\
+	else								\
+		${TOUCH} ${TOUCH_FLAGS} ${.TARGET};			\
 	fi
-	${RUN}${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
 .endfor
 
 .if make(pbulk-index) || make(pbulk-index-item) || make(pbulk-save-wrkdir)
