@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.15 2022/09/05 19:09:12 adam Exp $
+# $NetBSD: Makefile,v 1.17 2022/10/12 19:16:43 adam Exp $
 
-DISTNAME=	rust-analyzer-2022-08-22
+DISTNAME=	rust-analyzer-2022-10-10
 PKGNAME=	${DISTNAME:C/-2([0-9]*)-([0-9]*)-([0-9]*)/-0.0.2\1.\2.\3/}
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GITHUB:=rust-lang/}

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.283 2022/07/11 23:03:51 wiz Exp $
+# $NetBSD: Makefile,v 1.285 2022/10/12 14:32:38 wiz Exp $
 
 # Remember to upload-distfiles when updating OpenSSL -- otherwise it
 # is not possible for users who have bootstrapped without OpenSSL
