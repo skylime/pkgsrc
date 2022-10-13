@@ -5,7 +5,7 @@
 #	list of tested and supported platforms.
 #
 
-PKGNAME=		libnbcompat-20200524
+PKGNAME=		libnbcompat-20221013
 CATEGORIES=		pkgtools devel
 
 MAINTAINER=		joerg@NetBSD.org
@@ -16,7 +16,7 @@ GNU_CONFIGURE=		yes
 MAKE_ENV+=		LIBMODE=${LIBMODE}
 
 # Enable by default for standalone builds
-CONFIGURE_ARGS+=	--enable-db
+CONFIGURE_ARGS+=	--enable-bsd-getopt --enable-db
 
 do-extract:
 	@${CP} -R ${FILESDIR} ${WRKSRC}
