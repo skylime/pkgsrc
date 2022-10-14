@@ -339,7 +339,7 @@ ERROR_CAT?=		${SED} -e "s|^|ERROR: |" 1>&2
 
 # How to do nothing.  Override if you, for some strange reason, would rather
 # do something.
-DO_NADA?=		${TRUE}
+DO_NADA?=
 
 # the FAIL command executes its arguments and then exits with a non-zero
 # status.
