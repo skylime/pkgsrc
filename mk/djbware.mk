@@ -24,7 +24,7 @@ DJB_CONFIG_DIR?=	${WRKSRC}
 .endif
 DJB_CONFIG_PREFIX?=	${PREFIX}
 DJB_CONFIG_HOME?=	conf-home
-DJB_CONFIG_CMDS?=	${DO_NADA}
+DJB_CONFIG_CMDS?=	${TRUE}
 
 .if defined(LICENSE) && ${LICENSE} == "djb-nonlicense"
 # Nonlicensed packages that install totally unmodified may want to opt out
