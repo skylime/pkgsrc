@@ -55,6 +55,7 @@ build: barrier
 ###
 .PHONY: build-cookie
 build-cookie:
-	${RUN}${TEST} ! -f ${_COOKIE.build} || ${FALSE}
-	${RUN}${MKDIR} ${_COOKIE.build:H}
-	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.build}
+	${RUN}								\
+	${TEST} ! -f ${_COOKIE.build} || ${FALSE};			\
+	${TEST} -d ${_COOKIE.build:H} || ${MKDIR} ${_COOKIE.build:H};	\
+	${ECHO} ${PKGNAME} > ${_COOKIE.build}

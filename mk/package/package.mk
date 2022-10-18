@@ -63,9 +63,10 @@ package-message:
 ###
 .PHONY: package-cookie
 package-cookie:
-	${RUN} ${TEST} ! -f ${_COOKIE.package} || ${FALSE}
-	${RUN} ${MKDIR} ${_COOKIE.package:H}
-	${RUN} ${ECHO} ${PKGNAME} > ${_COOKIE.package}
+	${RUN}								\
+	${TEST} ! -f ${_COOKIE.package} || ${FALSE};			\
+	${TEST} -d ${_COOKIE.package:H} || ${MKDIR} ${_COOKIE.package:H}; \
+	${ECHO} ${PKGNAME} > ${_COOKIE.package}
 
 ######################################################################
 ### The targets below are run with elevated privileges.

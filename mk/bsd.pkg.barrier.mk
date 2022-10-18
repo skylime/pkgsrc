@@ -89,5 +89,6 @@ barrier: ${_BARRIER_PRE_TARGETS} ${_COOKIE.barrier}
 ### barrier-cookie creates the "barrier" cookie file.
 ###
 ${_COOKIE.barrier}:
-	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${ECHO} ${PKGNAME} > ${.TARGET}
+	${RUN}								\
+	${TEST} -d ${.TARGET:H} || ${MKDIR} ${.TARGET:H};		\
+	${ECHO} ${PKGNAME} > ${.TARGET}

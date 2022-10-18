@@ -35,6 +35,7 @@ configure: barrier
 
 # Creates the "configure" cookie file.
 _configure-cookie: .PHONY
-	${RUN} [ ! -f ${_COOKIE.configure} ]	# XXX: What's the purpose of this assertion?
-	${RUN} ${MKDIR} ${_COOKIE.configure:H}
-	${RUN} ${ECHO} ${PKGNAME} > ${_COOKIE.configure}
+	${RUN}								\
+	[ ! -f ${_COOKIE.configure} ];					\
+	${TEST} -d ${_COOKIE.configure:H} || ${MKDIR} ${_COOKIE.configure:H}; \
+	${ECHO} ${PKGNAME} > ${_COOKIE.configure}
