@@ -24,9 +24,10 @@ _pkgformat-check-vulnerable: .PHONY
 	@${AUDIT_PACKAGES} ${_AUDIT_PACKAGES_CMD} ${AUDIT_PACKAGES_FLAGS} ${PKGNAME} || ${TRUE}
 .    endif
 .  else
-	@${PHASE_MSG} "Skipping vulnerability checks."
-	@${WARNING_MSG} "No ${_VULNFILE} file found."
-	@${WARNING_MSG} "To fix run: \`${DOWNLOAD_VULN_LIST}'."
+	${RUN}								\
+	${PHASE_MSG} "Skipping vulnerability checks.";			\
+	${WARNING_MSG} "No ${_VULNFILE} file found.";			\
+	${WARNING_MSG} "To fix run: \`${DOWNLOAD_VULN_LIST}'."
 .  endif
 
 .endif
