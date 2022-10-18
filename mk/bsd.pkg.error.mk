@@ -12,9 +12,10 @@ _WARNING_DONE_DIR=	${WRKDIR}/.warning-done
 DELAYED_ERROR_MSG?=	${ECHO} >> ${ERROR_DIR}/${.TARGET:T:C/^[.]*//:Q}
 DELAYED_WARNING_MSG?=	${ECHO} >> ${WARNING_DIR}/${.TARGET:T:C/^[.]*//:Q}
 
-makedirs: ${ERROR_DIR} ${WARNING_DIR} ${_ERROR_DONE_DIR} ${_WARNING_DONE_DIR}
-${ERROR_DIR} ${WARNING_DIR} ${_ERROR_DONE_DIR} ${_WARNING_DONE_DIR}:
-	${RUN}${MKDIR} ${.TARGET}
+makedirs: make-error-dirs
+make-error-dirs:
+	${RUN} ${MKDIR} ${ERROR_DIR} ${WARNING_DIR}			\
+			${_ERROR_DONE_DIR} ${_WARNING_DONE_DIR}
 
 .PHONY: error-check
 
@@ -29,8 +30,8 @@ ${ERROR_DIR} ${WARNING_DIR} ${_ERROR_DONE_DIR} ${_WARNING_DONE_DIR}:
 ###
 error-check: .USE
 	${RUN}								\
-	${RM} -f ${WARNING_DIR}/*.tmp;					\
 	${TEST} -d ${WARNING_DIR} || exit 0;				\
+	${RM} -f ${WARNING_DIR}/*.tmp;					\
 	cd ${WARNING_DIR};						\
 	for file in ./*; do						\
 		${TEST} "$$file" != "./*" || exit 0;			\
@@ -40,8 +41,8 @@ error-check: .USE
 	${MV} -f ./* ${_WARNING_DONE_DIR}
 
 	${RUN}								\
-	${RM} -f ${ERROR_DIR}/*.tmp;					\
 	${TEST} -d ${ERROR_DIR} || exit 0;				\
+	${RM} -f ${ERROR_DIR}/*.tmp;					\
 	cd ${ERROR_DIR};						\
 	for file in ./*; do						\
 		${TEST} "$$file" != "./*" || exit 0;			\
