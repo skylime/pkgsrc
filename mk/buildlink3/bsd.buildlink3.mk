@@ -613,7 +613,9 @@ buildlink-directories:
 _BLNK_COOKIE.${_pkg_}=		${BUILDLINK_DIR}/.buildlink_${_pkg_}_done
 
 _BLNK_TARGETS+=			buildlink-${_pkg_}
+.if ${PKG_DEBUG_LEVEL} > 0
 _BLNK_TARGETS.${_pkg_}=		buildlink-${_pkg_}-message
+.endif
 _BLNK_TARGETS.${_pkg_}+=	${_BLNK_COOKIE.${_pkg_}}
 _BLNK_TARGETS.${_pkg_}+=	buildlink-${_pkg_}-cookie
 
