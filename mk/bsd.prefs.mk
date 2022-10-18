@@ -283,7 +283,10 @@ LOWER_VENDOR?=		hp
 LOWER_VENDOR?=		sun
 LOWER_OPSYS?=		solaris
 LOWER_OPSYS_VERSUFFIX=	2.${OS_VERSION:C/5.//}
+.  if !defined(_UNAME_V)
 _UNAME_V!=		${UNAME} -v
+MAKEFLAGS+=		_UNAME_V=${_UNAME_V:Q}
+.  endif
 .  if !empty(_UNAME_V:Mjoyent_*)
 OS_VARIANT=		SmartOS
 LOWER_VARIANT_VERSION=	${_UNAME_V:C/joyent_//}
