@@ -220,6 +220,7 @@ _GCC_VERSION!=	${_CC} -dumpversion
 .  else
 _GCC_VERSION=	0
 .  endif
+MAKEFLAGS+=	_GCC_VERSION=${_GCC_VERSION:Q}
 .endif
 _GCC_PKG=	gcc-${_GCC_VERSION:C/-.*$//}
 
