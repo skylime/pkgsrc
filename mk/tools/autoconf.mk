@@ -83,9 +83,11 @@ _TOOLS_AC_NAMES+=	autoscan	autoscan-2.13
 _TOOLS_AC_NAMES+=	autoupdate	autoupdate-2.13
 _TOOLS_AC_NAMES+=	ifnames		ifnames-2.13
 
-.for _t_ in ${_TOOLS_AC_NAMES}
+.if defined(GNU_CONFIGURE)
+.  for _t_ in ${_TOOLS_AC_NAMES}
 _TOOLS_AC_TYPE.${_t_}?=	TOOLS_GNU_MISSING
-.endfor _t_
+.  endfor
+.endif
 
 .if !defined(TOOLS_IGNORE.autoconf) && !empty(USE_TOOLS:C/:.*//:Mautoconf)
 .  if !empty(PKGPATH:Mdevel/autoconf)

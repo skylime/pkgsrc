@@ -52,7 +52,7 @@ TOOLS_CREATE+=		${_t_}
 TOOLS_PATH.${_t_}=	${LOCALBASE}/bin/${_t_}
 .    endfor
 .  endif
-.else
+.elif defined(GNU_CONFIGURE)
 .  for _t_ in ${_TOOLS.intltool}
 TOOLS_BROKEN+=		${_t_}
 TOOLS_PATH.${_t_}=	${TOOLS_CMD.${_t_}}
