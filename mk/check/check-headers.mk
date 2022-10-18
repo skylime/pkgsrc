@@ -32,9 +32,9 @@ pre-build-checks-hook: _check-headers
 
 .PHONY: _check-headers
 _check-headers:
-	@${STEP_MSG} "Checking for possible problems in header files"
 	${RUN}								\
+	${STEP_MSG} "Checking for possible problems in header files";	\
 	[ -d ${WRKSRC}/. ] || exit 0;					\
 	cd ${WRKSRC};							\
-	env	SKIP_FILTER=${CHECK_HEADERS_SKIP:@p@${p}) skip=yes;;@:Q} \
+	env SKIP_FILTER=${CHECK_HEADERS_SKIP:@p@${p}) skip=yes;;@:Q}	\
 		sh ${PKGSRCDIR}/mk/check/check-headers.sh

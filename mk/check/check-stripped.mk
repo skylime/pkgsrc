@@ -37,8 +37,9 @@ USE_TOOLS+=	file
 .endif
 
 _check-stripped: error-check .PHONY
-	@${STEP_MSG} "Checking whether binaries are ${_INSTALL_UNSTRIPPED:Dun:U}stripped."
-	${RUN} cd ${DESTDIR}${PREFIX};					\
+	${RUN}								\
+	${STEP_MSG} "Checking whether binaries are ${_INSTALL_UNSTRIPPED:Dun:U}stripped."; \
+	cd ${DESTDIR}${PREFIX};						\
 	want_stripped=${_INSTALL_UNSTRIPPED:Dno:Uyes};			\
 	${_CHECK_STRIPPED_FILELIST_CMD} | ${SORT} | ${SED} 's,\\,\\\\,g'\
 	| while read file; do						\

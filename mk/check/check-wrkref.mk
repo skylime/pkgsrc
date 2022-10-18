@@ -82,9 +82,8 @@ privileged-install-hook: _check-wrkref
 .endif
 
 _check-wrkref: error-check .PHONY
-	@${STEP_MSG} "Checking for work-directory references in ${PKGNAME}"
-	${RUN} rm -f ${ERROR_DIR}/${.TARGET}
-	${RUN}					\
+	${RUN}								\
+	${STEP_MSG} "Checking for work-directory references in ${PKGNAME}"; \
 	exec 1>${ERROR_DIR}/${.TARGET};					\
 	${_CHECK_WRKREF_FILELIST_CMD} | ${SORT} |			\
 	while read file; do						\
@@ -95,10 +94,8 @@ _check-wrkref: error-check .PHONY
 		${SHCOMMENT} "[$$file]";				\
 		${EGREP} ${_CHECK_WRKREF_DIRS:ts|:Q} "${DESTDIR}$$file" \
 		    2>/dev/null | ${SED} -e "s|^|$$file:	|";	\
-	done
-	${RUN}								\
-	exec 1>>${ERROR_DIR}/${.TARGET};				\
-	if ${_NONZERO_FILESIZE_P} ${ERROR_DIR}/${.TARGET}; then		\
+	done;								\
+	if [ -s ${ERROR_DIR}/${.TARGET} ]; then				\
 		${ECHO} "*** The above files still have references to the build directory."; \
 		${ECHO} "    This is possibly an error that should be fixed by unwrapping"; \
 		${ECHO} "    the files or adding missing tools to the package makefile!"; \

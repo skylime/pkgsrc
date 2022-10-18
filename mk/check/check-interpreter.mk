@@ -45,8 +45,9 @@ privileged-install-hook: _check-interpreter
 .endif
 
 _check-interpreter: error-check .PHONY
-	@${STEP_MSG} "Checking for non-existent script interpreters in ${PKGNAME}"
-	${RUN} cd ${DESTDIR}${PREFIX};					\
+	${RUN}								\
+	${STEP_MSG} "Checking for non-existent script interpreters in ${PKGNAME}"; \
+	cd ${DESTDIR}${PREFIX};						\
 	${_CHECK_INTERP_FILELIST_CMD} | ${SORT} | ${SED} 's,\\,\\\\,g' |\
 	while read file; do						\
 		case "$$file" in					\

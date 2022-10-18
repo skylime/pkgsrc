@@ -305,29 +305,26 @@ ${_CHECK_FILES_ERRMSG.prefix}:						\
 		${_CHECK_FILES_MISSING_REAL}				\
 		${_CHECK_FILES_MISSING_SKIP}				\
 		${_CHECK_FILES_EXTRA}
-	${RUN}${RM} -f ${.TARGET}
-	${RUN}					\
-	if ${_NONZERO_FILESIZE_P} ${_CHECK_FILES_DELETED}; then		\
+	${RUN}								\
+	${RM} -f ${.TARGET};						\
+	if [ -s ${_CHECK_FILES_DELETED} ]; then				\
 		${ECHO} "The following files have been deleted"		\
 			"from ${PREFIX}!";				\
 		${SED} "s|^|        |" ${_CHECK_FILES_DELETED};		\
-	fi >> ${.TARGET}
-	${RUN}					\
-	if ${_NONZERO_FILESIZE_P} ${_CHECK_FILES_MISSING_REAL}; then	\
+	fi >> ${.TARGET};						\
+	if [ -s ${_CHECK_FILES_MISSING_REAL} ]; then			\
 		${ECHO} "************************************************************"; \
 		${ECHO} "The following files are in the"		\
-			"PLIST but not in ${DESTDIR}${PREFIX}:";			\
+			"PLIST but not in ${DESTDIR}${PREFIX}:";	\
 		${SED} "s|^|        |" ${_CHECK_FILES_MISSING_REAL};	\
-	fi >> ${.TARGET}
-	${RUN}					\
-	if ${_NONZERO_FILESIZE_P} ${_CHECK_FILES_EXTRA}; then		\
+	fi >> ${.TARGET};						\
+	if [ -s ${_CHECK_FILES_EXTRA} ]; then				\
 		${ECHO} "************************************************************"; \
 		${ECHO} "The following files are in"			\
-			"${DESTDIR}${PREFIX} but not in the PLIST:";		\
+			"${DESTDIR}${PREFIX} but not in the PLIST:";	\
 		${SED} "s|^|        |" ${_CHECK_FILES_EXTRA};		\
-	fi >> ${.TARGET}
-	${RUN}					\
-	if ${_NONZERO_FILESIZE_P} ${_CHECK_FILES_MISSING_SKIP}; then	\
+	fi >> ${.TARGET};						\
+	if [ -s ${_CHECK_FILES_MISSING_SKIP} ]; then			\
 		${ECHO} "************************************************************"; \
 		${ECHO} "The following files are in both the"		\
 			"PLIST and CHECK_FILES_SKIP:";			\
