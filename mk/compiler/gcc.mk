@@ -261,28 +261,31 @@ _IS_BUILTIN_GCC=	NO
 # Distill the GCC_REQD list into a single _GCC_REQD value that is the
 # highest version of GCC required.
 #
+.if !defined(_GCC_REQD)
 _GCC_STRICTEST_REQD?=	none
-.for _version_ in ${GCC_REQD}
-.  for _pkg_ in gcc-${_version_}
-.    if ${_GCC_STRICTEST_REQD} == "none"
+.  for _version_ in ${GCC_REQD}
+.    for _pkg_ in gcc-${_version_}
+.      if ${_GCC_STRICTEST_REQD} == "none"
 _GCC_PKG_SATISFIES_DEP=		YES
-.      for _vers_ in ${GCC_REQD}
-.        if !empty(_GCC_PKG_SATISFIES_DEP:M[yY][eE][sS])
+.        for _vers_ in ${GCC_REQD}
+.          if !empty(_GCC_PKG_SATISFIES_DEP:M[yY][eE][sS])
 _GCC_PKG_SATISFIES_DEP!=	\
 	if ${PKG_ADMIN} pmatch 'gcc>=${_vers_}' ${_pkg_} 2>/dev/null; then \
 		${ECHO} "YES";						\
 	else								\
 		${ECHO} "NO";						\
 	fi
-.        endif
-.      endfor
-.      if !empty(_GCC_PKG_SATISFIES_DEP:M[yY][eE][sS])
+.          endif
+.        endfor
+.        if !empty(_GCC_PKG_SATISFIES_DEP:M[yY][eE][sS])
 _GCC_STRICTEST_REQD=	${_version_}
+.        endif
 .      endif
-.    endif
+.    endfor
 .  endfor
-.endfor
 _GCC_REQD=	${_GCC_STRICTEST_REQD}
+MAKEFLAGS+=	_GCC_REQD=${_GCC_REQD:Q}
+.endif
 
 # Determine which GCC version is required by examining _GCC_REQD.
 _NEED_GCC6?=	no
@@ -654,6 +657,7 @@ _USE_PKGSRC_GCC!=	\
 		${ECHO} "YES";						\
 	fi
 .  endif
+MAKEFLAGS+=	_USE_PKGSRC_GCC=${_USE_PKGSRC_GCC:Q}
 .endif
 
 # Check if any of the versions of GCC in pkgsrc can satisfy the _GCC_REQD
@@ -667,7 +671,7 @@ _NEED_NEWER_GCC!=	\
 	else								\
 		${ECHO} "YES";						\
 	fi
-#MAKEFLAGS+=	_NEED_NEWER_GCC=${_NEED_NEWER_GCC}
+MAKEFLAGS+=	_NEED_NEWER_GCC=${_NEED_NEWER_GCC}
 .endif
 .if !empty(_USE_PKGSRC_GCC:M[yY][eE][sS]) && \
     !empty(_NEED_NEWER_GCC:M[yY][eE][sS])
@@ -685,6 +689,7 @@ _COMPILER_RPATH_FLAG=	-Wl,${_LINKER_RPATH_FLAG}
 # Ensure that the correct rpath is passed to the linker if we need to
 # link against gcc shared libs.
 #
+.  if !defined(_GCC_SUBPREFIX)
 _GCC_SUBPREFIX!=	\
 	if ${PKG_INFO} -qe ${_GCC_PKGBASE}; then			\
 		${PKG_INFO} -f ${_GCC_PKGBASE} |			\
@@ -705,13 +710,18 @@ _GCC_SUBPREFIX!=	\
 			;;						\
 		esac;							\
 	fi
-_GCC_PREFIX=		${LOCALBASE}/${_GCC_SUBPREFIX}
+MAKEFLAGS+=	_GCC_SUBPREFIX=${_GCC_SUBPREFIX:Q}
+.  endif
+_GCC_PREFIX=	${LOCALBASE}/${_GCC_SUBPREFIX}
+.  if !defined(_GCC_ARCHDIR)
 _GCC_ARCHDIR!=		\
 	if [ -x ${_GCC_PREFIX}bin/gcc ]; then				\
 		${DIRNAME} `${_GCC_PREFIX}bin/gcc -print-libgcc-file-name 2>/dev/null`; \
 	else								\
 		${ECHO} "_GCC_ARCHDIR_not_found";			\
 	fi
+MAKEFLAGS+=	_GCC_ARCHDIR=${_GCC_ARCHDIR:Q}
+.  endif
 _GCC_LIBDIRS=	${_GCC_ARCHDIR}
 .  if empty(USE_PKGSRC_GCC_RUNTIME:M[Yy][Ee][Ss])
 _GCC_LIBDIRS+=	${_GCC_PREFIX}lib${LIBABISUFFIX}
