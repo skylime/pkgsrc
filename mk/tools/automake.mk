@@ -102,9 +102,11 @@ _TOOLS_AM_NAMES+=	automake	automake-1.4			\
 					automake-1.15			\
 					automake-1.16
 
-.for _t_ in ${_TOOLS_AM_NAMES}
+.if defined(GNU_CONFIGURE)
+.  for _t_ in ${_TOOLS_AM_NAMES}
 _TOOLS_AM_TYPE.${_t_}?=	TOOLS_GNU_MISSING
-.endfor
+.  endfor
+.endif
 
 .if !defined(TOOLS_IGNORE.automake) && !empty(USE_TOOLS:C/:.*//:Mautomake)
 .  if !empty(PKGPATH:Mdevel/automake)
