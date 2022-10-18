@@ -44,8 +44,8 @@ pre-configure-checks-hook: _check-portability
 .endif
 .PHONY: _check-portability
 _check-portability:
-	@${STEP_MSG} "Checking for portability problems in extracted files"
 	${RUN}								\
+	${STEP_MSG} "Checking for portability problems in extracted files"; \
 	[ -d ${WRKSRC}/. ] || exit 0;					\
 	cd ${WRKSRC};							\
 	${SETENV}							\

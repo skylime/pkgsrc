@@ -73,8 +73,9 @@ _CHECK_PERMS_GETDIRS_AWK=						\
 	}
 
 _check-perms: .PHONY
-	@${STEP_MSG} "Checking file permissions in ${PKGNAME}"
-	${RUN} ${HOST_PKG_INFO} -qe "checkperms>=1.1"			\
+	${RUN}								\
+	${STEP_MSG} "Checking file permissions in ${PKGNAME}";		\
+	${HOST_PKG_INFO} -qe "checkperms>=1.1"				\
 	|| {								\
 		${WARNING_MSG} "[check-perms.mk] Skipping file permissions check."; \
 		${WARNING_MSG} "[check-perms.mk] Install sysutils/checkperms to enable this check."; \
