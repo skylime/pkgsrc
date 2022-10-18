@@ -577,14 +577,14 @@ LIBS+=		${_flag_}
 .PHONY: buildlink-directories
 do-buildlink: buildlink-directories
 buildlink-directories:
-	${RUN}${MKDIR} ${BUILDLINK_DIR}
-	${RUN}${MKDIR} ${BUILDLINK_BINDIR}
+	${RUN}								\
+	${MKDIR} ${BUILDLINK_DIR} ${BUILDLINK_BINDIR}			\
+		 ${BUILDLINK_DIR}/include ${BUILDLINK_DIR}/lib
 .if defined(USE_X11) && ${X11_TYPE} != "modular"
-	${RUN}${RM} -f ${BUILDLINK_X11_DIR}
-	${RUN}${LN} -sf ${BUILDLINK_DIR} ${BUILDLINK_X11_DIR}
+	${RUN}								\
+	${RM} -f ${BUILDLINK_X11_DIR};					\
+	${LN} -sf ${BUILDLINK_DIR} ${BUILDLINK_X11_DIR}
 .endif
-	${RUN}${MKDIR} ${BUILDLINK_DIR}/include
-	${RUN}${MKDIR} ${BUILDLINK_DIR}/lib
 
 # The following variables are all optionally defined and control which
 # package files are symlinked into ${BUILDLINK_DIR} and how their names
@@ -629,8 +629,7 @@ buildlink-${_pkg_}-message:
 
 .PHONY: buildlink-${_pkg_}-cookie
 buildlink-${_pkg_}-cookie:
-	${RUN}					\
-	${TOUCH} ${TOUCH_FLAGS} ${_BLNK_COOKIE.${_pkg_}}
+	${RUN} ${TOUCH} ${TOUCH_FLAGS} ${_BLNK_COOKIE.${_pkg_}}
 
 BUILDLINK_CONTENTS_FILTER.${_pkg_}?=					\
 	${EGREP} '(include.*/|\.h$$|\.idl$$|\.pc$$|/lib[^/]*\.[^/]*$$|lib/cmake/|share/cmake/)'
@@ -638,7 +637,7 @@ BUILDLINK_CONTENTS_FILTER.${_pkg_}?=					\
 BUILDLINK_FILES_CMD.${_pkg_}?=						\
 	${_BLNK_PKG_INFO.${_pkg_}} -f ${BUILDLINK_PKGNAME.${_pkg_}} |	\
 	${SED} -n '/File:/s/^[ 	]*File:[ 	]*//p' |		\
-	${BUILDLINK_CONTENTS_FILTER.${_pkg_}} | ${CAT}
+	${BUILDLINK_CONTENTS_FILTER.${_pkg_}}
 
 # _BLNK_FILES_CMD.<pkg> combines BUILDLINK_FILES_CMD.<pkg> and
 # BUILDLINK_FILES.<pkg> into one command that outputs all of the files
@@ -659,8 +658,8 @@ ${_BLNK_COOKIE.${_pkg_}}:
 		${ERROR_MSG} "${BUILDLINK_API_DEPENDS.${_pkg_}} is not installed; can't buildlink files."; \
 		exit 1;							\
 		;;							\
-	esac
-	${RUN} [ ${X11BASE:Q}"" ] || {					\
+	esac;								\
+	[ ${X11BASE:Q}"" ] || {						\
 		${ERROR_MSG} "[bsd.buildlink3.mk] X11BASE is not set correctly."; \
 		exit 1;							\
 	}
@@ -1177,8 +1176,9 @@ _WRAP_EXTRA_ARGS.LIBTOOL+=	${_BLNK_LDFLAGS}
 _WRAP_EXTRA_ARGS.SHLIBTOOL+=	${_BLNK_LDFLAGS}
 
 ${WRAPPER_TMPDIR}/libtool-fix-la: ${BUILDLINK_SRCDIR}/libtool-fix-la
-	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${CAT} ${.ALLSRC}			\
+	${RUN}								\
+	${TEST} -d ${.TARGET:H} || ${MKDIR} ${.TARGET:H};		\
+	${CAT} ${.ALLSRC}						\
 		| ${SED} -e "s|@_BLNK_WRAP_LT_UNTRANSFORM_SED@|"${_BLNK_WRAP_LT_UNTRANSFORM_SED:Q}"|g" \
 			 -e "s|@BUILDLINK_DIR@|${BUILDLINK_DIR}|g"	\
 			 -e "s|@LOCALBASE@|${LOCALBASE}|g"		\
@@ -1192,32 +1192,33 @@ ${WRAPPER_TMPDIR}/libtool-fix-la: ${BUILDLINK_SRCDIR}/libtool-fix-la
 		| ${_WRAP_SH_CRUNCH_FILTER} > ${.TARGET}
 
 ${WRAPPER_TMPDIR}/buildcmd-libtool: ${BUILDLINK_SRCDIR}/buildcmd-libtool
-	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${CAT} ${.ALLSRC}			\
-		| ${_WRAP_SH_CRUNCH_FILTER} > ${.TARGET}
+	${RUN}								\
+	${TEST} -d ${.TARGET:H} || ${MKDIR} ${.TARGET:H};		\
+	${CAT} ${.ALLSRC} | ${_WRAP_SH_CRUNCH_FILTER} > ${.TARGET}
 
 ${WRAPPER_TMPDIR}/cleanup-libtool:					\
 		${BUILDLINK_SRCDIR}/cleanup-libtool			\
 		${_BLNK_LIBTOOL_FIX_LA}
-	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}					\
+	${RUN}								\
+	${TEST} -d ${.TARGET:H} || ${MKDIR} ${.TARGET:H};		\
 	${CAT} ${BUILDLINK_SRCDIR}/cleanup-libtool			\
 		| ${SED} -e "s|@_BLNK_LIBTOOL_FIX_LA@|"${_BLNK_LIBTOOL_FIX_LA:Q}"|g" \
 		| ${_WRAP_SH_CRUNCH_FILTER} > ${.TARGET}
 
 ${WRAPPER_TMPDIR}/cmd-sink-libtool: ${BUILDLINK_SRCDIR}/cmd-sink-libtool
-	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${CAT} ${.ALLSRC}			\
-		| ${_WRAP_SH_CRUNCH_FILTER} > ${.TARGET}
+	${RUN}								\
+	${TEST} -d ${.TARGET:H} || ${MKDIR} ${.TARGET:H};		\
+	${CAT} ${.ALLSRC} | ${_WRAP_SH_CRUNCH_FILTER} > ${.TARGET}
 
 ${WRAPPER_TMPDIR}/scan-libtool: ${BUILDLINK_SRCDIR}/scan-libtool
-	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${CAT} ${.ALLSRC}			\
-		| ${_WRAP_SH_CRUNCH_FILTER} > ${.TARGET}
+	${RUN}								\
+	${TEST} -d ${.TARGET:H} || ${MKDIR} ${.TARGET:H};		\
+	${CAT} ${.ALLSRC} | ${_WRAP_SH_CRUNCH_FILTER} > ${.TARGET}
 
 ${WRAPPER_TMPDIR}/transform-libtool: ${BUILDLINK_SRCDIR}/transform-libtool
-	${RUN}${MKDIR} ${.TARGET:H}
-	${RUN}${CAT} ${.ALLSRC}			\
+	${RUN}								\
+	${TEST} -d ${.TARGET:H} || ${MKDIR} ${.TARGET:H};		\
+	${CAT} ${.ALLSRC}						\
 		| ${SED} -e "s|@BUILDLINK_DIR@|${BUILDLINK_DIR}|g"	\
 			 -e "s|@WRKSRC@|${WRKSRC}|g"			\
 			 -e "s|@BASENAME@|"${BASENAME:Q}"|g"		\
