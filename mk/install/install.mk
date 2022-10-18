@@ -341,6 +341,18 @@ post-install:
 	@${DO_NADA}
 .endif
 
+#
+# Filename matches that will never be suitable for debug handling.  This is
+# not meant to be exhaustive, but to catch the most common directories and
+# extensions to avoid expensive checks and improve performance.
+#
+_DEBUG_SKIP_PATTERNS=	include/* info/* share/*
+_DEBUG_SKIP_PATTERNS+=	${PKGMANDIR}/* ${PKGLOCALEDIR}/locale/*
+_DEBUG_SKIP_PATTERNS+=	*.css *.html *.js *.json *.md *.rst *.txt *.xml
+_DEBUG_SKIP_PATTERNS+=	*.php *.pl *.pm *.py *.pyc *.pyi *.pyo *.rb *.ri
+_DEBUG_SKIP_PATTERNS+=	*.png *.gz *.svg *.gif
+_DEBUG_SKIP_PATTERNS+=	*.a *.c *.h *.hpp *.la
+
 ######################################################################
 ### install-ctf (PRIVATE)
 ######################################################################
@@ -353,6 +365,7 @@ install-ctf: plist
 	cd ${DESTDIR:Q}${PREFIX:Q};					\
 	while read f; do						\
 		case "$${f}" in						\
+		${_DEBUG_SKIP_PATTERNS:@p@${p}) continue ;;@}		\
 		${CTF_FILES_SKIP:@p@${p}) continue ;;@}			\
 		*) ;;							\
 		esac;							\
@@ -381,6 +394,7 @@ install-strip-debug: plist
 	cd ${DESTDIR:Q}${PREFIX:Q};					\
 	while read f; do						\
 		case "$${f}" in						\
+		${_DEBUG_SKIP_PATTERNS:@p@${p}) continue ;;@}		\
 		${STRIP_FILES_SKIP:@p@${p}) continue;;@}		\
 		*) ;;							\
 		esac;							\
