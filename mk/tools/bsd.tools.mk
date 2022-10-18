@@ -111,9 +111,10 @@ tools-message:
 ###
 .PHONY: tools-cookie
 tools-cookie:
-	${RUN} ${TEST} ! -f ${_COOKIE.tools} || ${FALSE}
-	${RUN} ${MKDIR} ${_COOKIE.tools:H}
-	${RUN} ${ECHO} ${USE_TOOLS:Q} > ${_COOKIE.tools}
+	${RUN}								\
+	${TEST} ! -f ${_COOKIE.tools} || ${FALSE};			\
+	${TEST} -d ${_COOKIE.tools:H} || ${MKDIR} ${_COOKIE.tools:H};	\
+	${ECHO} ${USE_TOOLS:Q} > ${_COOKIE.tools}
 
 ######################################################################
 ### override-tools (PRIVATE)

@@ -181,9 +181,10 @@ post-test:
 ###
 .PHONY: test-cookie
 test-cookie:
-	${RUN}${TEST} ! -f ${_COOKIE.test} || ${FALSE}
-	${RUN}${MKDIR} ${_COOKIE.test:H}
-	${RUN}${ECHO} ${PKGNAME} > ${_COOKIE.test}
+	${RUN}								\
+	${TEST} ! -f ${_COOKIE.test} || ${FALSE};			\
+	${TEST} -d ${_COOKIE.test:H} || ${MKDIR} ${_COOKIE.test:H};	\
+	${ECHO} ${PKGNAME} > ${_COOKIE.test}
 
 ######################################################################
 ### test-clean (PRIVATE)

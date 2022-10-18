@@ -170,6 +170,7 @@ post-wrapper:
 
 .PHONY: wrapper-cookie
 wrapper-cookie:
-	${RUN} [ ! -f ${_COOKIE.wrapper} ]
-	${RUN} ${MKDIR} ${_COOKIE.wrapper:H}
-	${RUN} ${ECHO} ${PKGNAME} > ${_COOKIE.wrapper}
+	${RUN}								\
+	[ ! -f ${_COOKIE.wrapper} ];					\
+	${TEST} -d ${_COOKIE.wrapper:H} || ${MKDIR} ${_COOKIE.wrapper:H}; \
+	${ECHO} ${PKGNAME} > ${_COOKIE.wrapper}
