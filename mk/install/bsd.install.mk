@@ -58,6 +58,7 @@ stage-install: barrier
 ###
 .PHONY: install-cookie
 install-cookie:
-	${RUN} [ ! -f ${_COOKIE.install} ]
-	${RUN} ${MKDIR} ${_COOKIE.install:H}
-	${RUN} ${ECHO} ${PKGNAME} > ${_COOKIE.install}
+	${RUN}								\
+	[ ! -f ${_COOKIE.install} ];					\
+	${TEST} -d ${_COOKIE.install:H} || ${MKDIR} ${_COOKIE.install:H}; \
+	${ECHO} ${PKGNAME} > ${_COOKIE.install}

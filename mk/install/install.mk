@@ -127,10 +127,11 @@ install-message:
 ###
 install-check-interactive: .PHONY
 .if !empty(INTERACTIVE_STAGE:Minstall) && defined(BATCH)
-	@${ERROR_MSG} "The installation stage of this package requires user interaction"
-	@${ERROR_MSG} "Please install manually with:"
-	@${ERROR_MSG} "	\"cd ${.CURDIR} && ${MAKE} install\""
-	${RUN} ${FALSE}
+	${RUN}								\
+	${ERROR_MSG} "The installation stage of this package requires user interaction"; \
+	${ERROR_MSG} "Please install manually with:";			\
+	${ERROR_MSG} "	\"cd ${.CURDIR} && ${MAKE} install\"";		\
+	${FALSE}
 .else
 	@${DO_NADA}
 .endif
@@ -287,10 +288,9 @@ install-makedirs:
 #
 .PHONY: install-dirs-from-PLIST
 install-dirs-from-PLIST:
-	@${STEP_MSG} "Creating installation directories from PLIST files"
 	${RUN}								\
-	${CAT} ${PLIST_SRC}						\
-	| sed -n							\
+	${STEP_MSG} "Creating installation directories from PLIST files"; \
+	${SED} -n							\
 		-e 's,\\,\\\\,'						\
 		-e 's,^gnu/man/,${PKGGNUDIR}${PKGMANDIR}/,'		\
 		-e 's,^gnu/,${PKGGNUDIR},'				\
@@ -298,6 +298,7 @@ install-dirs-from-PLIST:
 		-e 's,^info/,${PKGINFODIR}/,'				\
 		-e 's,^share/locale/,${PKGLOCALEDIR}/locale/,'		\
 		-e 's,^\([^$$@]*\)/[^/]*$$,\1,p'			\
+		< ${PLIST_SRC}						\
 	| ${TOOLS_PLATFORM.uniq:Uuniq}					\
 	| while read dir; do						\
 		${_INSTALL_ONE_DIR_CMD};				\
@@ -347,9 +348,10 @@ post-install:
 ###
 .PHONY: install-ctf
 install-ctf: plist
-	@${STEP_MSG} "Generating CTF data"
-	${RUN}cd ${DESTDIR:Q}${PREFIX:Q};				\
-	${CAT} ${_PLIST_NOKEYWORDS} | while read f; do			\
+	${RUN}								\
+	${STEP_MSG} "Generating CTF data";				\
+	cd ${DESTDIR:Q}${PREFIX:Q};					\
+	while read f; do						\
 		case "$${f}" in						\
 		${CTF_FILES_SKIP:@p@${p}) continue ;;@}			\
 		*) ;;							\
@@ -361,8 +363,10 @@ install-ctf: plist
 				${MV} "$${tmp_f}" "$${f}";		\
 			fi;						\
 		fi;							\
-		${RM} -f "$${tmp_f}";					\
-	done
+		if [ -f "$${tmp_f}" ]; then				\
+			${RM} -f "$${tmp_f}";				\
+		fi;							\
+	done < ${_PLIST_NOKEYWORDS}
 
 ######################################################################
 ### install-strip-debug (PRIVATE)
@@ -372,9 +376,10 @@ install-ctf: plist
 ###
 .PHONY: install-strip-debug
 install-strip-debug: plist
-	@${STEP_MSG} "Automatic stripping of debug information"
-	${RUN}cd ${DESTDIR:Q}${PREFIX:Q};				\
-	${CAT} ${_PLIST_NOKEYWORDS} | while read f; do			\
+	${RUN}								\
+	${STEP_MSG} "Automatic stripping of debug information";		\
+	cd ${DESTDIR:Q}${PREFIX:Q};					\
+	while read f; do						\
 		case "$${f}" in						\
 		${STRIP_FILES_SKIP:@p@${p}) continue;;@}		\
 		*) ;;							\
@@ -386,8 +391,10 @@ install-strip-debug: plist
 				${MV} "$${tmp_f}" "$${f}";		\
 			fi;						\
 		fi;							\
-		${RM} -f "$${tmp_f}";					\
-	done
+		if [ -f "$${tmp_f}" ]; then				\
+			${RM} -f "$${tmp_f}";				\
+		fi;							\
+	done < ${_PLIST_NOKEYWORDS}
 
 ######################################################################
 ### install-doc-handling (PRIVATE)
@@ -409,10 +416,9 @@ _DOC_COMPRESS=								\
 
 .PHONY: install-doc-handling
 install-doc-handling: plist
-	@${STEP_MSG} "Automatic manual page handling"
-	${RUN} \
-	${CAT} ${_PLIST_NOKEYWORDS} \
-	| ${EGREP} ${_PLIST_REGEXP.man:Q} \
+	${RUN}								\
+	${STEP_MSG} "Automatic manual page handling";			\
+	${EGREP} ${_PLIST_REGEXP.man:Q} ${_PLIST_NOKEYWORDS}		\
 	| ${_DOC_COMPRESS}
 
 privileged-install-hook: .PHONY
