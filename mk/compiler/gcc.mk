@@ -137,11 +137,17 @@ USE_NATIVE_GCC?=	no
 USE_PKGSRC_GCC?=	no
 USE_PKGSRC_GCC_RUNTIME?=no
 
-GCC_REQD+=	2.8.0
-
-# gcc2 doesn't support c99 and amd64
-.if !empty(USE_LANGUAGES:Mc99) || ${MACHINE_ARCH} == "x86_64"
+#
+# Each successive GCC_REQD has an associated cost below when executing
+# pkg_admin to determine if it's suitable, so only add these incredibly
+# old versions if we haven't already set one.
+#
+.if !defined(GCC_REQD)
+.  if !empty(USE_LANGUAGES:Mc99) || ${MACHINE_ARCH} == "x86_64"
 GCC_REQD+=	3.0
+.  else
+GCC_REQD+=	2.8.0
+.  endif
 .endif
 
 # Only one compiler defined here supports Ada: lang/gcc6-aux
