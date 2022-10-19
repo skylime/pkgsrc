@@ -1,4 +1,4 @@
-# $NetBSD: versioned_dependencies.mk,v 1.86 2022/09/11 18:10:43 wiz Exp $
+# $NetBSD: versioned_dependencies.mk,v 1.89 2022/10/19 14:17:54 nia Exp $
 #
 # This file determines which separate distribution of a Python
 # package is used as dependency, depending on the Python version
@@ -17,6 +17,7 @@
 
 # format: short name for PYTHON_VERSIONED_DEPENDENCIES<space>Python-2.x path<space>Python-3.x path
 _SUPPORTED_PACKAGES=	# empty
+_SUPPORTED_PACKAGES+=	OpenSSL security/py27-OpenSSL security/py-OpenSSL
 _SUPPORTED_PACKAGES+=	Pillow graphics/py-Pillow6 graphics/py-Pillow
 _SUPPORTED_PACKAGES+=	X textproc/py-X2 textproc/py-X
 _SUPPORTED_PACKAGES+=	cairo graphics/py-cairo118 graphics/py-cairo
@@ -49,7 +50,15 @@ _PKG_MATCHED=	no
 pkg:=	${pattern:C/:.*//}
 type:=	${pattern:C/[^:]*//}
 .  for name py2dir py3dir in ${_SUPPORTED_PACKAGES}
-.    if "${pkg}" == "${name}"
+.    if "${pkg}" == "${name}" && "${pkg}" == "cryptography"
+# Special due to Rust handling.
+_PKG_MATCHED=	yes
+.      include "../../security/py-cryptography/dependency.mk"
+.    elif "${pkg}" == "${name}" && "${pkg}" == "OpenSSL"
+# Special due to Rust handling.
+_PKG_MATCHED=	yes
+.      include "../../security/py-OpenSSL/dependency.mk"
+.    elif "${pkg}" == "${name}"
 _PKG_MATCHED=	yes
 .      if ${_PYTHON_VERSION} == 27
 dir:=	${py2dir}
