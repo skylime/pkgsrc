@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.22292 2022/10/16 06:44:17 wiz Exp $
+$NetBSD: TODO,v 1.22295 2022/10/17 22:31:11 wiz Exp $
 
 Suggested new packages
 ======================
@@ -444,6 +444,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o apache-tomcat85-8.5.65
 	o apache-tomcat9-9.0.45
 	o apollo-1.7
+	o ardour-7.0
 	o argtable-2.9
 	o argus-20121202
 	o aribas-1.64
@@ -710,6 +711,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gimp-docs-sv-2.10.0
 	o gimp-docs-zh_CN-2.10.0
 	o gindent-2.2.12
+	o gitea-1.17.3
 	o gitolite-3.6.12
 	o gjs-1.70.1
 	o gkrellm-2.3.11
@@ -1048,7 +1050,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o multitail-6.4.2
 	o munge-0.5.14
 	o muse-0.9.2
-	o musicpd-0.23.10
 	o myodbc-8.0.28
 	o mysql-workbench-8.0.23
 	o naev-0.8.2

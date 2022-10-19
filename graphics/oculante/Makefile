@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.15 2022/10/15 07:09:41 pin Exp $
+# $NetBSD: Makefile,v 1.17 2022/10/18 08:14:10 pin Exp $
 
-DISTNAME=	oculante-0.6.14
+DISTNAME=	oculante-0.6.17
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=woelper/}
 
@@ -22,6 +22,13 @@ MAKE_ENV+=	OPENSSL_DIR=${BUILDLINK_PREFIX.openssl:Q}
 RUSTFLAGS+=	-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.openssl}/lib
 RUSTFLAGS+=	-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.libX11}/lib
 RUSTFLAGS+=	-C link-arg=-L${BUILDLINK_PREFIX.libX11}/lib
+
+# This is needed as pkgsrc defaults to graphics/jpeg.
+# If you have graphics/libjpeg-turbo as a local default, it's most probably
+# possible to build the package with default features on.
+# Though, you might need to add RUSTFLAGS so that the compiler finds the
+# graphics/libjpeg-turbo location.
+CARGO_NO_DEFAULT_FEATURES=	YES
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/target/release/oculante \
