@@ -14,8 +14,8 @@ DELAYED_WARNING_MSG?=	${ECHO} >> ${WARNING_DIR}/${.TARGET:T:C/^[.]*//:Q}
 
 makedirs: make-error-dirs
 make-error-dirs:
-	${RUN} ${MKDIR} ${ERROR_DIR} ${WARNING_DIR}			\
-			${_ERROR_DONE_DIR} ${_WARNING_DONE_DIR}
+	@${MKDIR} ${ERROR_DIR} ${WARNING_DIR}				\
+		  ${_ERROR_DONE_DIR} ${_WARNING_DONE_DIR}
 
 .PHONY: error-check
 

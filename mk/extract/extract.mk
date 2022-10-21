@@ -112,9 +112,9 @@ extract-message:
 
 .PHONY: extract-dir
 extract-dir:
-	${RUN} ${TEST} -d ${EXTRACT_DIR} || ${MKDIR} ${EXTRACT_DIR}
+	@${MKDIR} ${EXTRACT_DIR}
 .for f in ${EXTRACT_ONLY}
-	${RUN} ${TEST} -d ${EXTRACT_DIR.${f}} || ${MKDIR} ${EXTRACT_DIR.${f}}
+	@${MKDIR} ${EXTRACT_DIR.${f}}
 .endfor
 
 ######################################################################

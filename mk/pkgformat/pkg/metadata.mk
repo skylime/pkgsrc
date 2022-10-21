@@ -13,7 +13,7 @@ PKG_DB_TMPDIR=	${WRKDIR}/.pkgdb
 
 unprivileged-install-hook: ${PKG_DB_TMPDIR}
 ${PKG_DB_TMPDIR}:
-	${RUN} ${TEST} -d ${TARGET} || ${MKDIR} ${.TARGET}
+	@${MKDIR} ${.TARGET}
 
 ######################################################################
 ###

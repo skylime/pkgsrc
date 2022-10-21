@@ -420,7 +420,7 @@ ALL_ENV+=		HOME=${FAKEHOMEDIR}
 .PHONY: fake-home
 fake-home: ${FAKEHOMEDIR}
 ${FAKEHOMEDIR}:
-	${RUN} ${MKDIR} ${.TARGET}
+	@${MKDIR} ${.TARGET}
 
 # Use C-based wrappers or legacy shell versions.
 .if ${_USE_CWRAPPERS} == "yes"
