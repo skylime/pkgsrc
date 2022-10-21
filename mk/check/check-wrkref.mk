@@ -96,7 +96,7 @@ _check-wrkref: error-check .PHONY
 	if [ -s ${ERROR_DIR}/${.TARGET}.tmp ]; then			\
 		${XARGS} -n 256 ${EGREP} ${_CHECK_WRKREF_DIRS:ts|:Q}	\
 			< ${ERROR_DIR}/${.TARGET}.tmp 2>/dev/null	\
-			>${ERROR_DIR}/${.TARGET};			\
+			>${ERROR_DIR}/${.TARGET} || ${TRUE};		\
 		${RM} -f ${ERROR_DIR}/${.TARGET}.tmp;			\
 	fi;								\
 	exec 1>>${ERROR_DIR}/${.TARGET};				\
