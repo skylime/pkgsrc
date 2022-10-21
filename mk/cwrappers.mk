@@ -147,7 +147,7 @@ wrapper-message:
 
 .PHONY: wrapper-dirs
 wrapper-dirs:
-	${RUN}${MKDIR} ${CWRAPPERS_CONFIG_DIR} ${WRAPPER_BINDIR}
+	@${MKDIR} ${CWRAPPERS_CONFIG_DIR} ${WRAPPER_BINDIR}
 
 .PHONY: pre-wrapper do-wrapper post-wrapper
 
