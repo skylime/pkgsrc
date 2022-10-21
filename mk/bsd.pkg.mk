@@ -816,8 +816,8 @@ ${_MAKEVARS_MK.${_phase_}}: ${WRKDIR}
 		${ECHO} ".if !defined(_MAKEVARS_MK)";			\
 		${ECHO} "_MAKEVARS_MK=	defined";			\
 		${ECHO} "";						\
-		${MAKEVARS:O:u:@_var_@					\
-			${ECHO} ${_var_}"=	"${${_var_}:Q};		\
+		${MAKEVARS:O:u:@_v_@					\
+			${${_v_}:D${ECHO} ${_v_}"=	"${${_v_}:Q};}	\
 		@}							\
 		${ECHO} "";						\
 		${ECHO} ".endif # _MAKEVARS_MK";			\
