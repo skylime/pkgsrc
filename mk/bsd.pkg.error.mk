@@ -31,25 +31,31 @@ make-error-dirs:
 error-check: .USE
 	${RUN}								\
 	${TEST} -d ${WARNING_DIR} || exit 0;				\
-	${RM} -f ${WARNING_DIR}/*.tmp;					\
 	cd ${WARNING_DIR};						\
+	if [ `${ECHO} *.tmp` != '*.tmp' ]; then                         \
+		${RM} -f *.tmp;                                         \
+	fi;                                                             \
 	for file in ./*; do						\
 		${TEST} "$$file" != "./*" || exit 0;			\
 		break;							\
 	done;								\
-	${CAT} ./* | ${WARNING_CAT};					\
-	${MV} -f ./* ${_WARNING_DONE_DIR}
+	if ${_NONZERO_FILESIZE_P} ./*; then				\
+		${CAT} ./* | ${WARNING_CAT};				\
+		${MV} -f ./* ${_WARNING_DONE_DIR};			\
+	fi
 
 	${RUN}								\
 	${TEST} -d ${ERROR_DIR} || exit 0;				\
-	${RM} -f ${ERROR_DIR}/*.tmp;					\
 	cd ${ERROR_DIR};						\
+	if [ `${ECHO} *.tmp` != '*.tmp' ]; then                         \
+		${RM} -f *.tmp;                                         \
+	fi;                                                             \
 	for file in ./*; do						\
 		${TEST} "$$file" != "./*" || exit 0;			\
 		break;							\
 	done;								\
-	${CAT} * | ${ERROR_CAT};					\
 	if ${_NONZERO_FILESIZE_P} ./*; then				\
+		${CAT} ./* | ${ERROR_CAT};				\
 		${MV} -f ./* ${_ERROR_DONE_DIR};			\
 		exit 1;							\
 	fi
