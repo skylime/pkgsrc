@@ -877,23 +877,11 @@ _COMPILER_ABI_FLAG.64=	-m64
 .endif
 
 .if !empty(_USE_PKGSRC_GCC:M[yY][eE][sS])
-.  if exists(${CCPATH})
-CC_VERSION_STRING!=	${CCPATH} -v 2>&1
-CC_VERSION!=		\
-	if ${CCPATH} -dumpversion > /dev/null 2>&1; then		\
-		${ECHO} "gcc-`${CCPATH} -dumpversion`";			\
-	else								\
-		${ECHO} "gcc-${_GCC_REQD}";				\
-	fi
-
-.  else
-CC_VERSION_STRING=	${CC_VERSION}
 CC_VERSION=		gcc-${_GCC_REQD}
-.  endif
 .else
-CC_VERSION_STRING=	${CC_VERSION}
 CC_VERSION=		${_GCC_PKG}
 .endif
+CC_VERSION_STRING=	${CC_VERSION}
 
 # The user can choose the level of stack smashing protection.
 .if empty(CC_VERSION:Mgcc-[1-3].*)
