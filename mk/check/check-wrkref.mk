@@ -84,7 +84,6 @@ privileged-install-hook: _check-wrkref
 _check-wrkref: error-check .PHONY
 	${RUN}								\
 	${STEP_MSG} "Checking for work-directory references in ${PKGNAME}"; \
-	exec 1>${ERROR_DIR}/${.TARGET};					\
 	${_CHECK_WRKREF_FILELIST_CMD} | ${SORT} |			\
 	while read file; do						\
 		case "$$file" in					\
@@ -92,9 +91,15 @@ _check-wrkref: error-check .PHONY
 		*) ;;							\
 		esac;							\
 		${SHCOMMENT} "[$$file]";				\
-		${EGREP} ${_CHECK_WRKREF_DIRS:ts|:Q} "${DESTDIR}$$file" \
-		    2>/dev/null | ${SED} -e "s|^|$$file:	|";	\
+		${ECHO} "${DESTDIR}$$file" >>${ERROR_DIR}/${.TARGET}.tmp; \
 	done;								\
+	if [ -s ${ERROR_DIR}/${.TARGET}.tmp ]; then			\
+		${XARGS} -n 256 ${EGREP} ${_CHECK_WRKREF_DIRS:ts|:Q}	\
+			< ${ERROR_DIR}/${.TARGET}.tmp 2>/dev/null	\
+			>${ERROR_DIR}/${.TARGET};			\
+		${RM} -f ${ERROR_DIR}/${.TARGET}.tmp;			\
+	fi;								\
+	exec 1>>${ERROR_DIR}/${.TARGET};				\
 	if [ -s ${ERROR_DIR}/${.TARGET} ]; then				\
 		${ECHO} "*** The above files still have references to the build directory."; \
 		${ECHO} "    This is possibly an error that should be fixed by unwrapping"; \
