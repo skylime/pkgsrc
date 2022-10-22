@@ -202,6 +202,8 @@ ${WRKDIR}/.override_tools_done:
 		${LN} -fs ${TOOLS_PATH.${_t_}:Q} ${TOOLS_CMD.${_t_}:Q};	\
 		;;							\
 	esac;								\
+	@}								\
+	${TOOLS_CREATE:@_t_@						\
 	for a in ${TOOLS_ALIASES.${_t_}}; do				\
 		${TEST} ${TOOLS_CMD.${_t_}:Q} = ${TOOLS_CMD.${_t_}:H:Q}/$$a || \
 			${LN} -fs ${TOOLS_CMD.${_t_}:T:Q} ${TOOLS_CMD.${_t_}:H:Q}/$$a; \
