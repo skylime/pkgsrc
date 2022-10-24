@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.267 2022/10/10 20:34:15 he Exp $
+# $NetBSD: Makefile,v 1.269 2022/10/24 08:08:44 he Exp $
 
 DISTNAME=	rustc-1.63.0-src
 PKGNAME=	${DISTNAME:S/rustc/rust/:S/-src//}
@@ -102,11 +102,11 @@ BUILD_TARGET?=		build
 .endif
 
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-powerpc) || \
-    !empty(MACHINE_PLATFORM:MNetBSD-*-earmv7hf) || \
-    !empty(TARGET:Marmv7-unknown-netbsd-eabihf)
+    !empty(MACHINE_PLATFORM:MNetBSD-*-earmv[67]hf) || \
+    !empty(TARGET:Marmv[67]-unknown-netbsd-eabihf)
 # Bootstrapping on NetBSD/powerpc requires no debug-info from rustc
 # (both for amd64->powerpc built and powerpc->powerpc built bootstrap bits)
-# Also try to downsize the armv7 build.
+# Also try to downsize the armv[67] build.
 CONFIGURE_ARGS+=	--disable-debug
 CONFIGURE_ARGS+=	--disable-debug-assertions
 CONFIGURE_ARGS+=	--disable-llvm-release-debuginfo
@@ -118,12 +118,12 @@ CONFIGURE_ARGS+=	--debuginfo-level-tests=0
 .endif
 
 # Only build the ARM target on/for this host, due to resource constraints
-.if !empty(MACHINE_PLATFORM:MNetBSD-*-earmv7hf)
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-earmv[67]hf)
 CONFIGURE_ARGS+=	--set llvm.targets="ARM"
 .endif
 # When cross-building for ARM on X86, X86 needs to go along due
 # to 2-stage build process
-.if !empty(TARGET:Marmv7-unknown-netbsd-eabihf)
+.if !empty(TARGET:Marmv[67]-unknown-netbsd-eabihf)
 CONFIGURE_ARGS+=	--set llvm.targets="ARM;X86"
 .endif
 
@@ -399,7 +399,7 @@ CKSUMS+=	79915b243d02df1dc698f5c2de3a9356c6c296d2dedb06d9035dbcc2f8972cf4
 
 CKSUM_CRATES+=	vendor/openssl-src
 CKSUMS+=	65a4daf6f0d6ad80a83d63614288c3a9df9adcebe5f3d7ff2ad34dd3d2c75196
-CKSUMS+=	7ff3cb1d807d93defda37c2ec01e01223295bcc3d20d218436c07e89cae80fe2
+CKSUMS+=	a2fbabba485081fcad2ea712f4c1b38f111ade4c75ca61d3c8579c99aa5a173d
 
 SUBST_CLASSES+=		cksum
 SUBST_STAGE.cksum=	pre-configure
