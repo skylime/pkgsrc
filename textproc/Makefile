@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1329 2022/10/14 12:32:09 adam Exp $
+# $NetBSD: Makefile,v 1.1332 2022/10/27 15:20:24 nikita Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -519,7 +519,6 @@ SUBDIR+=	man2html
 SUBDIR+=	mandoc
 SUBDIR+=	marisa
 SUBDIR+=	markdown-mode
-SUBDIR+=	markdown2social
 SUBDIR+=	mecab
 SUBDIR+=	mecab-base
 SUBDIR+=	mecab-ipadic
@@ -996,7 +995,7 @@ SUBDIR+=	py-cssselect2
 SUBDIR+=	py-cssutils
 SUBDIR+=	py-deepdiff
 SUBDIR+=	py-defusedxml
-SUBDIR+=	py-demjson
+SUBDIR+=	py-demjson3
 SUBDIR+=	py-dicttoxml
 SUBDIR+=	py-diff-match-patch
 SUBDIR+=	py-dill
@@ -1041,6 +1040,7 @@ SUBDIR+=	py-jsonrpc-server
 SUBDIR+=	py-jsonrpclib
 SUBDIR+=	py-jsonrpclib-pelix
 SUBDIR+=	py-jsonschema
+SUBDIR+=	py-jsonschema-spec
 SUBDIR+=	py-jupyterlab-pygments
 SUBDIR+=	py-jxmlease
 SUBDIR+=	py-libxml2
