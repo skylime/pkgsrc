@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3812 2022/10/19 11:37:19 schmonz Exp $
+# $NetBSD: Makefile,v 1.3816 2022/10/26 16:03:52 nikita Exp $
 #
 
 COMMENT=	Development utilities
@@ -452,6 +452,7 @@ SUBDIR+=	googletest
 SUBDIR+=	gopls
 SUBDIR+=	goredo
 SUBDIR+=	got
+SUBDIR+=	gotags
 SUBDIR+=	gotests
 SUBDIR+=	gperf
 SUBDIR+=	gperftools
@@ -2621,6 +2622,7 @@ SUBDIR+=	py-packaging2
 SUBDIR+=	py-parameterized
 SUBDIR+=	py-path
 SUBDIR+=	py-path.py
+SUBDIR+=	py-pathable
 SUBDIR+=	py-pathlib
 SUBDIR+=	py-pathlib2
 SUBDIR+=	py-pathspec
@@ -2977,6 +2979,7 @@ SUBDIR+=	py27-coverage
 SUBDIR+=	py27-pluggy
 SUBDIR+=	py27-test-cov
 SUBDIR+=	pycharm-bin
+SUBDIR+=	pynvim
 SUBDIR+=	pythontidy
 SUBDIR+=	qbzr
 SUBDIR+=	qconf
@@ -3004,6 +3007,7 @@ SUBDIR+=	reftools
 SUBDIR+=	remake
 SUBDIR+=	reposurgeon
 SUBDIR+=	retrie
+SUBDIR+=	revive
 SUBDIR+=	rgbds
 SUBDIR+=	rinutils
 SUBDIR+=	robin-map

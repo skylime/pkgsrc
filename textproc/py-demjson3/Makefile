@@ -1,27 +1,24 @@
-# $NetBSD: Makefile,v 1.4 2022/01/04 20:54:54 wiz Exp $
+# $NetBSD: Makefile,v 1.1 2022/10/26 13:25:20 adam Exp $
 
-DISTNAME=	demjson-2.2.4
+DISTNAME=	demjson3-3.0.6
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	textproc python
-MASTER_SITES=	${MASTER_SITE_PYPI:=d/demjson/}
+MASTER_SITES=	${MASTER_SITE_PYPI:=d/demjson3/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://github.com/dmeranda/demjson
+HOMEPAGE=	https://nielstron.github.io/demjson3/
 COMMENT=	Encoder, decoder, and lint/validator for JSON compliant with RFC 7159
 LICENSE=	gnu-lgpl-v3
 
 USE_LANGUAGES=	# none
 
-.include "../../lang/python/egg.mk"
+USE_PKG_RESOURCES=	yes
 
-.if ${PYPKGPREFIX} != "py27"
-pre-build:
-	cd ${WRKSRC} && 2to3-${PYVERSSUFFIX} -w --no-diffs jsonlint demjson.py
-.endif
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && \
 	${MV} jsonlint jsonlint-${PYVERSSUFFIX} || ${TRUE}
 
+.include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"
