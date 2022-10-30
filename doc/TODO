@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.22315 2022/10/26 21:27:36 gutteridge Exp $
+$NetBSD: TODO,v 1.22325 2022/10/30 11:37:59 wiz Exp $
 
 Suggested new packages
 ======================
@@ -421,6 +421,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o album-4.17
 	o alephone-20150620
 	o alevt-1.6.2
+	o alsa-lib-1.2.8
 	o alsa-plugins-1.1.0
 	o amass-3.12.2
 	o amavis-perl-0.3.12 [called just amavis]
@@ -511,7 +512,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o cairomm1.16-1.16.2
 	o calc-2.11.10.1
 	o calcoo-2.1.0
-	o calibre-6.6.0 [requires qt6/py-qt6/py-qt6-webengine]
+	o calibre-6.7.1 [requires qt6/py-qt6/py-qt6-webengine]
 	o calligra-3.0.1 [in wip; koffice successor]
 	o camlp4-4.12
 	o camlp5-8.00.03 [dholland has a partial update]
@@ -1000,6 +1001,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o mailutis-2.2 [wip]
 	o maketool-0.8.4
 	o makeztxt-1.60
+	o mame-0.249
 	o man-pages-5.11
 	o manedit-1.2.1
 	o mapserver-7.6.2
@@ -1033,6 +1035,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o mipsel-none-elf-binutils-2.36.1
 	o mipsel-none-elf-gcc-9.3.0
 	o mit-scheme-bin-9.2
+	o mitmproxy-9
 	o modular-xorg-xwayland-22.1.4
 	o monit-5.28.0
 	o mono-nat-1.1.0
@@ -1184,7 +1187,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o paperkey-1.6
 	o papirus-folders-1.8.0
 	o paprefs-1.1
-	o pari-2.13.1
 	o parley-20.12.3
 	o parrot-8.1.0
 	o pcc-1.1.0
@@ -1372,7 +1374,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o rubber-1.5.1
 	o rudiments-1.4.2
 	o rust-1.64.0 [wip]
-	o rust-analyzer-0.0.20221017
 	o rvault-0.4
 	o rvm-1.20
 	o sabayon-2.30.1
@@ -1507,7 +1508,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o top-3.8beta1
 	o topgit-0.8
 	o tor-browser-11.0.9 [wip]
-	o tor-browser-11.5.5
+	o tor-browser-11.5.6
 	o torrentzip-2.1.0
 	o toxcore-0.2.12
 	o trafficserver-9.0.1
@@ -1570,7 +1571,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o wine-7.0
 	o wine-devel-3.7
 	o wiredtiger-10.0.0
-	o wireshark-4.0.0
+	o wireshark-4.0.1
 	o wkhtmltopdf-0.12.6
 	o wmi-11
 	o wordwarvi-1.0.4
