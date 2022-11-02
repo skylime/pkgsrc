@@ -1,19 +1,16 @@
-# $NetBSD: Makefile,v 1.54 2022/06/28 11:34:08 wiz Exp $
+# $NetBSD: Makefile,v 1.56 2022/11/01 17:28:14 gdt Exp $
 #
 
+VERSION=	4.5
 DISTNAME=	hamlib-${VERSION}
-# V.rcN, VrcN, V~rcN
-VERSION=	4.3.1
-VERSIOND=	${VERSION}
-VERSIONF=	${VERSION}
-PKGREVISION=	1
 CATEGORIES=	ham
-MASTER_SITES=	https://github.com/Hamlib/Hamlib/releases/download/${VERSIOND}/
+# hamlib is both at github and sourceforge; code is more at github and
+# mailinglists are at sourceforge.
+MASTER_SITES=	${MASTER_SITE_GITHUB:=Hamlib/}
 #MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=hamlib/}
-WRKSRC=		${WRKDIR}/hamlib-${VERSIONF}
 
 MAINTAINER=	gdt@NetBSD.org
-HOMEPAGE=	http://hamlib.sourceforge.net/
+HOMEPAGE=	https://hamlib.github.io/
 COMMENT=	API for digital communications equipment
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
@@ -28,11 +25,6 @@ CONFIGURE_ARGS+=	--without-tcl-binding \
 			--without-python-binding
 
 CHECK_PORTABILITY_SKIP+=	scripts/build-w64-jtsdk.sh
-
-# Reported to upstream mailinglist 20210915
-post-install:
-	mv ${DESTDIR}/${PREFIX}/bin/testlibusb ${DESTDIR}/${PREFIX}/bin/rigctl_testlibusb
-
 
 TEST_TARGET=	check
 
