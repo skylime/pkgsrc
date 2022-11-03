@@ -2,7 +2,6 @@
 #
 # System-supplied tools for the Solaris operating system.
 #
-# We bootstrap a pdksh shell on this platform.
 
 TOOLS_PLATFORM.[?=		[			# shell builtin
 .if exists(/usr/bin/gawk)
@@ -229,4 +228,15 @@ TOOLS_PLATFORM.zip?=		/usr/bin/zip
 TOOLS_PLATFORM.zipcloak?=	/usr/bin/zipcloak
 TOOLS_PLATFORM.zipnote?=	/usr/bin/zipnote
 TOOLS_PLATFORM.zipsplit?=	/usr/bin/zipsplit
+.endif
+
+#
+# If we've bootstrapped with bash as the default shell then ensure print is a
+# broken wrapper to work around a bug in the libtool configure script that
+# assumes print, if available, is always a builtin.  bash does not have print
+# builtin and /usr/bin/print gets called instead, affecting performance.
+#
+.if ${TOOLS_PLATFORM.sh:M*bash}
+TOOLS_CREATE+=		print
+TOOLS_PATH.print=	${FALSE}
 .endif
