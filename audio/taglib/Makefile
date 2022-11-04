@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.43 2022/10/30 11:15:06 wiz Exp $
+# $NetBSD: Makefile,v 1.45 2022/11/02 22:54:39 tnn Exp $
 
 DISTNAME=	taglib-1.13
 CATEGORIES=	audio
@@ -26,6 +26,16 @@ SUBST_STAGE.pc=		pre-configure
 SUBST_SED.pc=		-e 's|-L\([ 	]*[^ 	]*\)|${COMPILER_RPATH_FLAG}\1 -L\1|g'
 SUBST_MESSAGE.pc=	Fixing rpath in taglib-config.
 
+.include "../../mk/bsd.prefs.mk"
+
+.if !empty(PKGSRC_RUN_TEST:M[yY][eE][sS])
+TEST_TARGET=			test
+CMAKE_ARGS+=			-DBUILD_TESTING=ON
+.include "../../devel/cppunit/buildlink3.mk"
+.else
+CMAKE_ARGS+=			-DBUILD_TESTING=OFF
+.endif
+
 .include "../../mk/compiler.mk"
 #
 # depends on builtin functions which enabled with i486 and later with GCC.
@@ -33,6 +43,19 @@ SUBST_MESSAGE.pc=	Fixing rpath in taglib-config.
 .if ${OPSYS} == "NetBSD" && !empty(CC_VERSION:Mgcc-[4-9]*) && ${MACHINE_ARCH} == i386
 GNU_ARCH.i386=		i486
 CFLAGS+=		-march=i486
+.endif
+
+.if ${OPSYS} == "Darwin"
+post-install:
+	install_name_tool -id				\
+	  ${PREFIX}/lib/libtag.1.dylib			\
+	  ${DESTDIR}${PREFIX}/lib/libtag.1.19.0.dylib
+	install_name_tool -id				\
+	  ${PREFIX}/lib/libtag_c.0.dylib		\
+	  ${DESTDIR}${PREFIX}/lib/libtag_c.0.0.0.dylib  \
+	  -change					\
+	  lib/libtag.1.dylib				\
+	  ${PREFIX}/lib/libtag.1.dylib
 .endif
 
 .include "../../devel/zlib/buildlink3.mk"

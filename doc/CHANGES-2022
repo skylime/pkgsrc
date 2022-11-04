@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2022,v 1.5314 2022/11/02 17:02:40 jperkin Exp $
+$NetBSD: CHANGES-2022,v 1.5337 2022/11/04 00:58:29 taca Exp $
 
 Changes to the packages collection and infrastructure in 2022:
 
@@ -8053,3 +8053,29 @@ Changes to the packages collection and infrastructure in 2022:
 	Updated sysutils/py-psutil to 5.9.3 [adam 2022-11-02]
 	Updated databases/mysql80-client to 8.0.31 [jperkin 2022-11-02]
 	Updated databases/mysql80-server to 8.0.31 [jperkin 2022-11-02]
+	Updated www/links to 2.28 [fcambus 2022-11-02]
+	Updated www/links-gui to 2.28 [fcambus 2022-11-02]
+	Updated security/libretls to 3.5.2 [schmonz 2022-11-02]
+	Updated editors/tp-note to 1.18.2 [pin 2022-11-02]
+	Removed audio/py-audiotools [wiz 2022-11-03]
+	Updated time/ruby-tzinfo-data to 1.2022.6 [taca 2022-11-03]
+	Updated x11/libdrm to 2.4.114 [wiz 2022-11-03]
+	Updated x11/pixman to 0.42.2 [wiz 2022-11-03]
+	Updated devel/py-hypothesis to 6.56.4 [adam 2022-11-03]
+	Updated math/py-numexpr to 2.8.4 [adam 2022-11-03]
+	Added sysutils/u-boot-zynq-zturn version 2022.10 [jmcneill 2022-11-03]
+	Updated editors/micro to 2.0.11 [sjmulder 2022-11-03]
+	Updated multimedia/nostt to 1.2.2 [sjmulder 2022-11-03]
+	Updated sysutils/nnn to 4.6 [sjmulder 2022-11-03]
+	Updated devel/py-libmc to 1.6.3 [adam 2022-11-03]
+	Updated textproc/py-dominate to 2.7.0 [adam 2022-11-03]
+	Updated www/py-sanic to 22.9.1 [adam 2022-11-03]
+	Updated textproc/py-regex to 2022.10.31 [adam 2022-11-03]
+	Updated editors/ce to 4.8 [schmonz 2022-11-03]
+	Removed editors/ce-doc successor editors/ce [schmonz 2022-11-03]
+	Removed editors/ce-x11 successor editors/ce [schmonz 2022-11-03]
+	Updated x11/libdrm to 2.4.114nb1 [triaxx 2022-11-03]
+	Updated misc/wthrr to 0.4.2 [pin 2022-11-03]
+	Updated sysutils/fd-find to 8.5.2 [pin 2022-11-03]
+	Updated lang/php74 to 7.4.33 [taca 2022-11-04]
+	Updated security/sudo to 1.9.12nb1 [taca 2022-11-04]
