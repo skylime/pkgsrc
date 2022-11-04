@@ -239,4 +239,8 @@ TOOLS_PLATFORM.zipsplit?=	/usr/bin/zipsplit
 .if ${TOOLS_PLATFORM.sh:M*bash}
 TOOLS_CREATE+=		print
 TOOLS_PATH.print=	${FALSE}
+
+# Use bash builtins
+TOOLS_PLATFORM.printf=	printf
+TOOLS_PLATFORM.pwd=	pwd
 .endif
