@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3819 2022/11/06 23:10:07 wiz Exp $
+# $NetBSD: Makefile,v 1.3821 2022/11/09 22:21:34 khorben Exp $
 #
 
 COMMENT=	Development utilities
@@ -2843,6 +2843,7 @@ SUBDIR+=	py-retry_decorator
 SUBDIR+=	py-rlp
 SUBDIR+=	py-rope
 SUBDIR+=	py-rply
+SUBDIR+=	py-rstr
 SUBDIR+=	py-ruamel-base
 SUBDIR+=	py-ruamel-ordereddict
 SUBDIR+=	py-ruamel-yaml
@@ -2934,7 +2935,6 @@ SUBDIR+=	py-trytond
 SUBDIR+=	py-tubes
 SUBDIR+=	py-txaio
 SUBDIR+=	py-txrequests
-SUBDIR+=	py-typed-ast
 SUBDIR+=	py-typeguard
 SUBDIR+=	py-types-setuptools
 SUBDIR+=	py-types-toml
