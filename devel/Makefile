@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3816 2022/10/26 16:03:52 nikita Exp $
+# $NetBSD: Makefile,v 1.3821 2022/11/09 22:21:34 khorben Exp $
 #
 
 COMMENT=	Development utilities
@@ -2333,7 +2333,7 @@ SUBDIR+=	py-autopep8
 SUBDIR+=	py-babel
 SUBDIR+=	py-backcall
 SUBDIR+=	py-backports
-SUBDIR+=	py-backports.cached-property
+#SUBDIR+=	py-backports.cached-property # python 3.7 only
 SUBDIR+=	py-backports.functools_lru_cache
 SUBDIR+=	py-backports.os
 SUBDIR+=	py-backports.shutil_get_terminal_size
@@ -2545,6 +2545,8 @@ SUBDIR+=	py-isort
 SUBDIR+=	py-isort4
 SUBDIR+=	py-itanium_demangler
 SUBDIR+=	py-jaraco.classes
+SUBDIR+=	py-jaraco.collections
+SUBDIR+=	py-jaraco.context
 SUBDIR+=	py-jaraco.envs
 SUBDIR+=	py-jaraco.functools
 SUBDIR+=	py-jaraco.itertools
@@ -2841,6 +2843,7 @@ SUBDIR+=	py-retry_decorator
 SUBDIR+=	py-rlp
 SUBDIR+=	py-rope
 SUBDIR+=	py-rply
+SUBDIR+=	py-rstr
 SUBDIR+=	py-ruamel-base
 SUBDIR+=	py-ruamel-ordereddict
 SUBDIR+=	py-ruamel-yaml
@@ -2932,7 +2935,6 @@ SUBDIR+=	py-trytond
 SUBDIR+=	py-tubes
 SUBDIR+=	py-txaio
 SUBDIR+=	py-txrequests
-SUBDIR+=	py-typed-ast
 SUBDIR+=	py-typeguard
 SUBDIR+=	py-types-setuptools
 SUBDIR+=	py-types-toml
